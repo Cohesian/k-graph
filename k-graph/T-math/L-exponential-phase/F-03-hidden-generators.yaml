@@ -1,0 +1,13 @@
+title: Hidden Generators
+description: When a phase step lands in the naturals, it becomes a new local branching
+  base.
+kind: F
+data:
+  documents:
+    - md
+edges:
+  g: []
+  l:
+    prev: F-02-discrete-phase-rulers
+    next: Fd-exponential-phase-visual-notebook
+  r: []

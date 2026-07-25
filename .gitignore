@@ -1,0 +1,36 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Neo4j runtime data and local exports
+.neo4j/
+data/
+logs/
+import/
+plugins/
+
+# Generated or temporary exports
+exports/tmp/
+*.dump
+*.backup
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Node
+node_modules/
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build and cache
+.cache/
+dist/
+build/
+tmp/

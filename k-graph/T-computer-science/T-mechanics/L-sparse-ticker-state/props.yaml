@@ -1,0 +1,10 @@
+title: Sparse ticker state
+description: Sparse structures and ticker-like ledger systems.
+kind: L
+edges:
+  g:
+    - F-sparse_ticker_state_ledger
+  l:
+    prev: null
+    next: null
+  r: []

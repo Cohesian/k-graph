@@ -1,0 +1,18 @@
+title: Type Binder
+description: Types as a composite binder surface.
+kind: F
+data:
+  documents:
+    - md
+  media:
+    scripts:
+      scenes:
+        - py
+    videos:
+      - mp4
+edges:
+  g: []
+  l:
+    prev: F-01-carbon-binder
+    next: F-03-query-binder
+  r: []

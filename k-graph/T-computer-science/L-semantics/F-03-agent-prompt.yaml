@@ -1,0 +1,12 @@
+title: Semantic Data Packets
+description: Agent prompts and semantic data packets.
+kind: F
+data:
+  documents:
+    - md
+edges:
+  g: []
+  l:
+    prev: F-02-json-representation
+    next: null
+  r: []

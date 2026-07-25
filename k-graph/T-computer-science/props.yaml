@@ -1,0 +1,15 @@
+title: Computer science
+description: Computation, functions, semantics, binders, networking, and mechanics.
+kind: T
+edges:
+  g:
+    - L-composite
+    - L-functions
+    - L-inference
+    - L-semantics
+    - T-mechanics
+    - T-networking
+  l:
+    prev: null
+    next: null
+  r: []

@@ -1,0 +1,12 @@
+title: Inference
+description: Theorem-style reasoning, agents, and conclusions.
+kind: L
+edges:
+  g:
+    - F-01-theorem
+    - F-02-agents
+    - F-03-conclusions
+  l:
+    prev: null
+    next: null
+  r: []

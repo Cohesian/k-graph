@@ -1,0 +1,10 @@
+title: DNS
+description: Domain namespace tree, zones, and typed DNS record attachments.
+kind: L
+edges:
+  g:
+    - F-01-introduction
+  l:
+    prev: null
+    next: null
+  r: []

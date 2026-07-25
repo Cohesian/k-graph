@@ -1,0 +1,13 @@
+title: Composite
+description: Binder patterns and the TLF corpus composite model.
+kind: L
+edges:
+  g:
+    - F-01-carbon-binder
+    - F-02-type-binder
+    - F-03-query-binder
+    - F-04-TLF-composite
+  l:
+    prev: null
+    next: null
+  r: []

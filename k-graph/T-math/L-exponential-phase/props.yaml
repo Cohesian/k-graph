@@ -1,0 +1,13 @@
+title: Exponential phase
+description: Exponential growth, layers, and transformations as composable structures.
+kind: L
+edges:
+  g:
+    - F-01-branching-depth-resolution
+    - F-02-discrete-phase-rulers
+    - F-03-hidden-generators
+    - Fd-exponential-phase-visual-notebook
+  l:
+    prev: null
+    next: null
+  r: []

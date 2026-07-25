@@ -1,0 +1,18 @@
+title: Query Binder
+description: Query structure as a binder specialization.
+kind: F
+data:
+  documents:
+    - md
+  media:
+    scripts:
+      scenes:
+        - py
+    videos:
+      - mp4
+edges:
+  g: []
+  l:
+    prev: F-02-type-binder
+    next: F-04-TLF-composite
+  r: []

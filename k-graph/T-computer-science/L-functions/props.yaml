@@ -1,0 +1,14 @@
+title: Functions
+description: Functions as bounded nodes — composition, execution, networks, and wrappers.
+kind: L
+edges:
+  g:
+    - F-01-function
+    - F-02-execution
+    - F-03-function-network
+    - F-04-function-natural-wrappers
+    - Fd-function-orchestration
+  l:
+    prev: null
+    next: null
+  r: []

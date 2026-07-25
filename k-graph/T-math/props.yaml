@@ -1,0 +1,12 @@
+title: Math
+description: Mathematical explorations in the foundations k-graph.
+kind: T
+edges:
+  g:
+    - L-division
+    - L-exponential-phase
+    - T-linear-algebra
+  l:
+    prev: null
+    next: null
+  r: []

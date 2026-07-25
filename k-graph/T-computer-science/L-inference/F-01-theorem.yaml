@@ -1,0 +1,12 @@
+title: Inference Theorem
+description: Inducing a common semantic backbone from a family of input files.
+kind: F
+data:
+  documents:
+    - md
+edges:
+  g: []
+  l:
+    prev: null
+    next: F-02-agents
+  r: []

@@ -1,0 +1,12 @@
+title: Semantics
+description: Data semantics, JSON representation, and agent prompts.
+kind: L
+edges:
+  g:
+    - F-01-data-semantics
+    - F-02-json-representation
+    - F-03-agent-prompt
+  l:
+    prev: null
+    next: null
+  r: []
