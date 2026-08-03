@@ -2,9 +2,9 @@
 
 K accepts proposals from a closed contributor set:
 
-\[
+$$
 C=\{\texttt{research},\texttt{studio}\}
-\]
+$$
 
 | Contributor | Work |
 |---|---|
@@ -18,9 +18,9 @@ boundary. They own their work and persistence. K owns the accepted graph.
 
 Contributor attribution is a separate graph overlay:
 
-\[
+$$
 E_c\subseteq C\times V
-\]
+$$
 
 The relation associates a contributor with a K node. Its format set declares
 which content forms that contributor supplies:
@@ -53,17 +53,32 @@ record which properties and relationships each proposal changed.
 Each contributor works in its own domain and adapts proposed work to K's
 accepted proposal domain:
 
-\[
+$$
 a_c:D_c\rightharpoonup O_K
-\]
+$$
 
 The mapping is partial because not every internal result must be proposed or
 has a valid TLF expression. It should be called a functor only after the
 relevant structures and preservation laws are defined.
 
-K does not resolve contributor storage yet. Future contributor interfaces may
-resolve an immutable node `id` or current rooted `path`, together with a
-format, to one or more locations. Contributors may organize storage by either
+K does not resolve contributor storage itself. Research exposes its owned
+storage through the `research-storage` CLI. A single object can be discovered
+or resolved by immutable node `id` or current rooted `path`, together with a
+format:
+
+```bash
+research-storage list --id <id> --format md --json
+research-storage resolve --path <path> --format md --source local --json
+```
+
+The complete Research inventory is available in one call:
+
+```bash
+research-storage audit --json
+```
+
+This bulk response can be joined to K nodes by UUID without invoking the
+contributor once per node. Contributors may organize storage by either
 selector, while `id` remains valid when a graph reorganization changes paths.
 Storage roots, credentials, and publication maps remain outside K.
 

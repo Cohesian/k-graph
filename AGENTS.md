@@ -32,6 +32,7 @@ A Directory node looks like:
 title: Function
 description: Functions as bounded nodes and transformations.
 kind: F
+id: 42292902-3874-4d54-87ec-0e1b7362af13
 contributors:
   research:
     - md
@@ -49,9 +50,13 @@ neighborhood. `contributors` expresses attribution and contributed formats.
 Preserve these invariants when changing the graph:
 
 - the root is `K`, represented as a `T`;
-- portable identity derives from the grouping path;
+- each node has an immutable, unique UUID `id`;
+- each node has one rooted `path` derived from the accepted grouping
+  projection;
 - `g`, `l`, and `r` remain distinct edge families;
 - `GROUPS.position` preserves authored child order;
+- Neo4j derives rooted paths through `GROUPS` rather than persisting them as
+  node properties;
 - contributor ids and formats are registered in `k-graph.toml`;
 - the Directory and Neo4j representations remain equivalent; and
 - generated Cypher is regenerated through the tooling.
@@ -64,7 +69,7 @@ From the repository root:
 python3 -m venv .venv
 .venv/bin/python -m pip install -e ./tooling
 .venv/bin/kgraph-validate
-.venv/bin/kgraph-to-neo4j --out representations/neo4j/k-graph.cypher
+.venv/bin/kgraph-to-neo4j --out storage/neo4j/k-graph.cypher
 git diff --check
 ```
 

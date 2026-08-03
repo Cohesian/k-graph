@@ -1,0 +1,13 @@
+title: Branching Depth Resolution
+description: Base as branching factor; exponent as depth coordinate.
+kind: F
+id: 1497eefc-aa3d-4444-a426-9ccb0410b0bf
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: null
+    next: F-02-discrete-phase-rulers
+  r: []

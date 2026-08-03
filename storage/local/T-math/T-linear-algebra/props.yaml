@@ -1,0 +1,13 @@
+title: Linear algebra
+description: Vector spaces, bases, and related structure.
+kind: T
+id: 37988c21-5843-4b3e-84ac-e80b338f0322
+contributors:
+  research: []
+edges:
+  g:
+    - T-vectors
+  l:
+    prev: null
+    next: null
+  r: []

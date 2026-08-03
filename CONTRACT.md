@@ -1,6 +1,6 @@
 # k-graph contract
 
-Version: **0.3.0**
+Version: **0.5.0**
 
 Status: **draft**
 
@@ -17,9 +17,9 @@ The distinguished root is `K`, a Topic.
 | Concern | Authority |
 |---|---|
 | Mathematical model | [`docs/TLF.md`](docs/TLF.md) |
-| Authored graph | [`representations/directory/`](representations/directory/) |
-| Neo4j expression | [`representations/neo4j/`](representations/neo4j/) |
-| Representation and contributor registry | [`k-graph.toml`](k-graph.toml) |
+| Authored graph | [`storage/local/`](storage/local/) |
+| Neo4j expression | [`storage/neo4j/`](storage/neo4j/) |
+| Storage and contributor registry | [`k-graph.toml`](k-graph.toml) |
 
 Translation must preserve node identity and semantics, the `g`, `l`, and `r`
 edge families, and contributor attribution.
@@ -29,6 +29,7 @@ edge families, and contributor attribution.
 Every node has:
 
 ```yaml
+id: 42292902-3874-4d54-87ec-0e1b7362af13
 kind: T | L | F | Fd
 title: Human-facing title
 description: Concise local description
@@ -50,7 +51,7 @@ Kinds are:
 
 `Fd` is a flat kind with the same graph capabilities as `F`.
 
-The target identity model has two selectors:
+The identity model has two selectors:
 
 | Selector | Meaning |
 |---|---|
@@ -61,11 +62,14 @@ The target identity model has two selectors:
 reorganized. `id` remains fixed. A query may provide either selector; when it
 provides both, they must resolve to the same node.
 
-The present projections use the property name `key` for the rooted path. That
-is a transitional serialization name, not a third identity mechanism. The
-immutable `id` property and its generation policy remain pending before the
-external query interface is fixed. Neo4j internal element ids are never
-portable identity.
+K currently materializes `id` as a canonical UUIDv4 in every Directory node
+and as a unique Neo4j property. Neo4j internal element ids are never portable
+identity.
+
+`path` is derived, not persisted as a Neo4j node property. The Local Directory
+Projection derives it from containment; Neo4j derives it from the unique
+`GROUPS` route starting at `K`. A later cache may materialize paths as derived
+data without making them authoritative.
 
 ## 4. Topology
 
@@ -128,7 +132,7 @@ are described in [`docs/PROPOSALS.md`](docs/PROPOSALS.md).
 
 ## 7. Representation contract
 
-The repository manifest names the authoritative representation, the available
+The repository manifest names the authoritative storage, the available
 projections, and the allowed contributor formats. It contains no credentials,
 machine-specific paths, external repository locations, or content URLs.
 

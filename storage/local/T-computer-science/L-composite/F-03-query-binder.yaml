@@ -1,0 +1,17 @@
+title: Query Binder
+description: Query structure as a binder specialization.
+kind: F
+id: 371342c0-401f-4d34-a537-439386bf9f7c
+contributors:
+  research:
+    - md
+  studio:
+    - py
+    - mp4
+    - youtube
+edges:
+  g: []
+  l:
+    prev: F-02-type-binder
+    next: F-04-TLF-composite
+  r: []

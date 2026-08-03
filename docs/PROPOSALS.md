@@ -40,8 +40,9 @@ For example, a proposal may add `n4` and `n5`, group `n4` under existing `n3`,
 and connect `n4` to `n5`. The new `GROUPS` relationship changes the graph
 around `n3`; it does not become intrinsic data inside `n3`.
 
-Moving a node is a key migration because canonical keys derive from grouping
-paths. Descendant keys may change with it.
+Moving a node changes its rooted path and may change every descendant path.
+The affected node ids remain fixed, and an accepted move can expose
+`(id, old_path, new_path)` changes to contributors.
 
 Deletion must state what happens to incident relationships, descendants,
 contributor relations, and accepted content references. There is no implicit

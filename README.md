@@ -7,6 +7,7 @@ equivalent Neo4j representation.
 Each knowledge node has a small intrinsic semantic surface:
 
 ```yaml
+id: Immutable UUID
 kind: T | L | F | Fd
 title: Human-facing title
 description: Concise meaning of this node
@@ -34,8 +35,8 @@ the node or supplied content forms for it. The current contributors are
 
 ```text
 k-graph/
-├── representations/
-│   ├── directory/     # complete authored graph in YAML
+├── storage/
+│   ├── local/         # complete authored graph in YAML
 │   └── neo4j/         # schema and generated Cypher
 ├── tooling/           # validation and projection tooling
 ├── docs/              # model and representation documentation
@@ -45,16 +46,16 @@ k-graph/
 └── README.md
 ```
 
-The Directory Projection is currently authoritative. The generated Cypher is
-derived from it and can be loaded into either local Neo4j or Aura.
+The Local Directory Projection is currently authoritative. The generated
+Cypher is derived from it and can be loaded into either local Neo4j or Aura.
 
-The target query identity is an immutable node `id` plus a rooted `path`
-derived from the accepted grouping projection. The present Neo4j `key`
-property is the current serialization of that path; stable ids remain a
-pending materialization step.
+Query identity is an immutable UUID `id` plus a rooted `path` derived from the
+accepted grouping projection. Neo4j stores `id`; it derives `path` by following
+`GROUPS` from `K`. Local storage derives the same address from its directory
+tree. A query interface may use either selector or require both to agree.
 
 ## Current scope
 
-Proposals and acceptance are manual. Contributor-specific storage and content
-resolution will be exposed by contributor interfaces later; they are not part
-of this registry manifest.
+Proposals and acceptance are manual. Contributor-specific storage remains
+outside this registry manifest. Research now has a contributor-owned local
+resolver; a shared contributor protocol and the Studio resolver remain pending.

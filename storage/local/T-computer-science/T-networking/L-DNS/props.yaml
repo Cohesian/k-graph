@@ -1,0 +1,13 @@
+title: DNS
+description: Domain namespace tree, zones, and typed DNS record attachments.
+kind: L
+id: e88a1fa1-2f6e-4004-94d6-b4c24ad7b8f1
+contributors:
+  research: []
+edges:
+  g:
+    - F-01-introduction
+  l:
+    prev: null
+    next: null
+  r: []

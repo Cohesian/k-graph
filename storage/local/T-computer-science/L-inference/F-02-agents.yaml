@@ -1,0 +1,13 @@
+title: Agent Architecture
+description: Agent structure for inference over semantic data.
+kind: F
+id: 08113955-1ff0-4131-877e-4466e614bd1b
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: F-01-theorem
+    next: F-03-conclusions
+  r: []

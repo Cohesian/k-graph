@@ -46,6 +46,7 @@ G_{\mathcal K}
 \left(
 V,\;
 E_g \sqcup E_l \sqcup E_r,\;
+\iota,\;
 \kappa,\;
 \mu
 \right)
@@ -55,6 +56,7 @@ where:
 
 - $V$ is the node set;
 - $E_g$, $E_l$, and $E_r$ are disjoint relationship families;
+- $\iota$ assigns immutable identity;
 - $\kappa$ assigns node kind;
 - $\mu$ assigns local descriptive metadata.
 
@@ -187,14 +189,14 @@ $$
 
 ### Identity and rooted address
 
-Each node will have an immutable identity:
+Each node has an immutable identity:
 
 $$
 \iota:V\to I
 $$
 
-with $\iota$ injective. Separately, an accepted grouping projection derives a
-rooted address:
+with $\iota$ injective. Its current concrete codomain is canonical UUIDv4.
+Separately, an accepted grouping projection derives a rooted address:
 
 $$
 \operatorname{path}_g:V\to\operatorname{Path}
@@ -206,8 +208,7 @@ $\operatorname{path}_g(v)$ while $\iota(v)$ remains fixed.
 
 Thus `id` answers *which node?* and `path` answers *where is that node in this
 grouping projection?* Either may select a node; when both are supplied they
-must agree. The current Neo4j property named `key` is a serialization of this
-rooted path, not a separate identity.
+must agree.
 
 ## 5. Local knowledge
 
@@ -870,8 +871,9 @@ $$
 \operatorname{gpath}(\rho)=K
 $$
 
-This path is the current portable content key. Moving or renaming a node is an
-explicit key migration.
+This path is a unique address inside the accepted graph revision. Moving or
+renaming a node changes its path and descendant paths while their ids remain
+fixed.
 
 The grouping index is:
 
@@ -914,7 +916,7 @@ $$
 \boxed{
 G_{\mathcal K}
 =
-(V,E_g\sqcup E_l\sqcup E_r,\kappa,\mu)
+(V,E_g\sqcup E_l\sqcup E_r,\iota,\kappa,\mu)
 }
 $$
 

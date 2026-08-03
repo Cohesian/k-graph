@@ -1,0 +1,17 @@
+title: Carbon Binder
+description: A common binder interface that generates many structures.
+kind: F
+id: 2a05068f-d48c-4fdd-915c-778bc8f42211
+contributors:
+  research:
+    - md
+  studio:
+    - py
+    - mp4
+    - youtube
+edges:
+  g: []
+  l:
+    prev: null
+    next: F-02-type-binder
+  r: []

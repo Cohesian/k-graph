@@ -1,13 +1,15 @@
 # Pending work
 
 The graph model and its Directory and Neo4j representations are established.
-The following interfaces remain intentionally unimplemented while the graph is
-mirrored manually.
+Research now has a local contributor-owned storage resolver using the selector
+model below. K's unified query interface, a shared contributor protocol, and
+the Studio resolver remain pending while the graph is mirrored manually.
 
-## 1. Materialize stable identity
+## Established identity
 
-The target identity model is settled; its concrete id generation policy and
-representation remain to be implemented.
+Every current node now materializes a UUIDv4 `id`. The Directory tree and
+Neo4j `GROUPS` relationships each derive the rooted address; Neo4j does not
+persist it as a node property.
 
 ```text
 id        stable identity
@@ -15,9 +17,8 @@ path      current address derived from the g projection
 local_id  local readable name
 ```
 
-The current Neo4j `key` property serializes `path`; it is not a third identity
-mechanism. `path` is unique within one accepted graph revision. `id` is
-immutable across moves and revisions.
+`path` is unique within one accepted graph revision. `id` is immutable across
+moves and revisions.
 
 The future selector contract is:
 
@@ -29,7 +30,7 @@ When both values are supplied, they must identify the same node. Contributors
 may index storage by either selector, but `id` is the durable choice and `path`
 is the readable lookup address.
 
-## 2. Unified K query interface
+## 1. Unified K query interface
 
 Define one read interface independent of graph persistence, with adapters for:
 
@@ -47,7 +48,7 @@ caller → K query interface → Directory | Neo4j
 Directory remains authoritative for now. Cypher generation and loading into
 local Neo4j or Aura remain manual.
 
-## 3. Contributor projection
+## 2. Contributor projection
 
 For each contributor $c$, K can expose the portion of its accepted registry
 relevant to that contributor:
@@ -65,12 +66,12 @@ $$
 This projection communicates accepted identities, current paths, and declared
 content forms. It does not communicate storage infrastructure.
 
-## 4. Contributor discovery and resolution
+## 3. Contributor discovery and resolution
 
-Each contributor will own a small interface over its storage. Two operations
-are needed.
+Each contributor owns a small interface over its storage. Two operations are
+needed.
 
-Discovery reports what is currently available for a key:
+Discovery reports what is currently available for a selector:
 
 $$
 A_c:
@@ -79,7 +80,7 @@ A_c:
 \mathcal P(\operatorname{Format}\times\operatorname{Source}\times\operatorname{State})
 $$
 
-Resolution returns locations matching a requested key, format, and optional
+Resolution returns locations matching a requested selector, format, and optional
 source:
 
 $$
@@ -116,14 +117,14 @@ Useful optional fields are availability state, media type, version, checksum,
 and access class. Credentials and tokens remain inside the contributor's own
 storage boundary.
 
-Likely initial sources are:
+Initial source plans are:
 
 | Contributor | Sources |
 |---|---|
 | Research | local directory, Google Drive |
 | Studio | local directory, Google Drive, YouTube |
 
-## 5. Content identity
+## 4. Content identity
 
 Before fixing the contributor CLI contract, decide whether this tuple names one
 logical content object:
@@ -136,7 +137,7 @@ If a node may have several Markdown papers, videos, languages, or editions in
 the same format, the contract will also need a contributor-owned `content_ref`
 or `variant`. This decision should precede automation.
 
-## 6. Website snapshot
+## 5. Website snapshot
 
 The eventual Website content build can remain offline and reproducible:
 
@@ -154,8 +155,9 @@ exactly which content snapshot it consumed.
 ## Suggested order
 
 1. Continue manually maintaining the Directory and Neo4j mirrors.
-2. Establish Research and Studio storage independently.
-3. Choose and materialize the stable `id`; decide content multiplicity.
+2. Extend the established Research local storage to Drive, and establish
+   Studio storage independently.
+3. Decide content multiplicity.
 4. Specify the K query interface.
 5. Specify the shared contributor discovery/resolution protocol.
 6. Implement the Research and Studio adapters separately.

@@ -1,0 +1,13 @@
+title: Function Network
+description: Pipelines, wrappers, and functions as graph structure.
+kind: F
+id: 1e650360-f987-42c8-ab37-d2e928b82b32
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: F-02-execution
+    next: F-04-function-natural-wrappers
+  r: []

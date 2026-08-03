@@ -11,12 +11,13 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import uuid
 from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from kgraph_config import contributor_formats, load_manifest, representation_path
+from kgraph_config import contributor_formats, load_manifest, storage_path
 
 try:
     import yaml
@@ -27,14 +28,17 @@ except ModuleNotFoundError:
 KINDS = frozenset({"T", "L", "F", "Fd"})
 COMPOSITES = frozenset({"T", "L"})
 LEAVES = frozenset({"F", "Fd"})
-NODE_FIELDS = frozenset({"title", "description", "kind", "contributors", "edges"})
+NODE_FIELDS = frozenset(
+    {"id", "title", "description", "kind", "contributors", "edges"}
+)
 EDGE_FIELDS = frozenset({"g", "l", "r"})
 LINEAR_FIELDS = frozenset({"prev", "next"})
 
 
 @dataclass
 class Node:
-    key: str
+    id: str
+    path: str
     local_id: str
     kind: str
     title: str
@@ -111,12 +115,12 @@ def load_yaml(path: Path, graph: DirectoryGraph) -> dict[str, Any]:
     return value
 
 
-def key_for_directory(tree_root: Path, directory: Path) -> str:
+def path_for_directory(tree_root: Path, directory: Path) -> str:
     relative = directory.relative_to(tree_root)
     return "K" if relative == Path(".") else relative.as_posix()
 
 
-def key_for_leaf(tree_root: Path, leaf: Path) -> str:
+def path_for_leaf(tree_root: Path, leaf: Path) -> str:
     relative_parent = leaf.parent.relative_to(tree_root)
     return (
         leaf.stem
@@ -163,7 +167,7 @@ def normalize_contributors(
 def add_node(
     graph: DirectoryGraph,
     *,
-    key: str,
+    node_path: str,
     local_id: str,
     path: Path,
     parent_dir: Path,
@@ -172,6 +176,16 @@ def add_node(
 ) -> None:
     for field_name in sorted(set(raw) - NODE_FIELDS):
         graph.error(path, f"unknown node field {field_name!r}")
+
+    raw_id = raw.get("id")
+    try:
+        parsed_id = uuid.UUID(raw_id) if isinstance(raw_id, str) else None
+    except ValueError:
+        parsed_id = None
+    node_id = str(parsed_id) if parsed_id is not None else ""
+    if not node_id or node_id != raw_id or parsed_id.version != 4:
+        graph.error(path, "id must be a canonical UUIDv4")
+        return
 
     kind = raw.get("kind")
     if kind not in allowed_kinds:
@@ -197,8 +211,11 @@ def add_node(
         graph.error(path, "description must be a non-empty string")
         description = ""
 
-    if key in graph.nodes:
-        graph.error(path, f"duplicate graph key {key!r}")
+    if node_path in graph.nodes:
+        graph.error(path, f"duplicate graph path {node_path!r}")
+        return
+    if any(node.id == node_id for node in graph.nodes.values()):
+        graph.error(path, f"duplicate node id {node_id!r}")
         return
 
     contributors = normalize_contributors(
@@ -229,8 +246,9 @@ def add_node(
     if not isinstance(edges.get("r", []), list):
         graph.error(path, "edges.r must be a list")
 
-    graph.nodes[key] = Node(
-        key=key,
+    graph.nodes[node_path] = Node(
+        id=node_id,
+        path=node_path,
         local_id=local_id,
         kind=kind,
         title=title.strip(),
@@ -257,7 +275,7 @@ def discover_nodes(graph: DirectoryGraph) -> None:
         raw = load_yaml(props, graph)
         add_node(
             graph,
-            key=key_for_directory(tree_root, directory),
+            node_path=path_for_directory(tree_root, directory),
             local_id="K" if directory == tree_root else directory.name,
             path=props,
             parent_dir=directory.parent,
@@ -271,7 +289,7 @@ def discover_nodes(graph: DirectoryGraph) -> None:
             raw_leaf = load_yaml(leaf, graph)
             add_node(
                 graph,
-                key=key_for_leaf(tree_root, leaf),
+                node_path=path_for_leaf(tree_root, leaf),
                 local_id=leaf.stem,
                 path=leaf,
                 parent_dir=directory,
@@ -285,12 +303,12 @@ def child_nodes(graph: DirectoryGraph, parent_key: str) -> dict[str, str]:
     directory = parent.source_path.parent
     children: dict[str, str] = {}
     for node in graph.nodes.values():
-        if node.key == parent_key:
+        if node.path == parent_key:
             continue
         if node.kind in COMPOSITES and node.source_path.parent.parent == directory:
-            children[node.local_id] = node.key
+            children[node.local_id] = node.path
         elif node.kind in LEAVES and node.source_path.parent == directory:
-            children[node.local_id] = node.key
+            children[node.local_id] = node.path
     return children
 
 
@@ -304,7 +322,7 @@ def siblings(graph: DirectoryGraph, node: Node) -> dict[str, str]:
             else candidate.source_path.parent.parent
         )
         if candidate_directory == directory:
-            out[candidate.local_id] = candidate.key
+            out[candidate.local_id] = candidate.path
     return out
 
 
@@ -326,7 +344,7 @@ def resolve_local_target(
     if key is None:
         graph.error(
             node.source_path,
-            f"{edge_name} target {target!r} is neither a portable key nor a sibling id",
+            f"{edge_name} target {target!r} is neither a rooted path nor a sibling id",
         )
     return key
 
@@ -335,7 +353,7 @@ def build_group_edges(graph: DirectoryGraph) -> None:
     for node in graph.nodes.values():
         if node.kind not in COMPOSITES:
             continue
-        available = child_nodes(graph, node.key)
+        available = child_nodes(graph, node.path)
         raw_group = as_list(node.edges.get("g"))
         seen: set[str] = set()
         for position, child_id in enumerate(raw_group):
@@ -353,7 +371,7 @@ def build_group_edges(graph: DirectoryGraph) -> None:
                 graph.error(node.source_path, f"edges.g repeats child {child_id!r}")
                 continue
             seen.add(child_id)
-            graph.groups.append(GroupEdge(node.key, target, position))
+            graph.groups.append(GroupEdge(node.path, target, position))
 
         unlisted = sorted(set(available) - seen)
         for child_id in unlisted:
@@ -372,13 +390,13 @@ def build_linear_edges(graph: DirectoryGraph) -> None:
         if not isinstance(linear, dict):
             graph.error(node.source_path, "edges.l must be a mapping")
             continue
-        declared_prev[node.key] = resolve_local_target(
+        declared_prev[node.path] = resolve_local_target(
             graph,
             node,
             linear.get("prev"),
             edge_name="edges.l.prev",
         )
-        declared_next[node.key] = resolve_local_target(
+        declared_next[node.path] = resolve_local_target(
             graph,
             node,
             linear.get("next"),
@@ -448,7 +466,7 @@ def build_related_edges(graph: DirectoryGraph) -> None:
                 edge_name="edges.r",
             )
             if target is not None:
-                graph.related.append(RelatedEdge(node.key, target, weight))
+                graph.related.append(RelatedEdge(node.path, target, weight))
 
 
 def validate_graph(graph: DirectoryGraph) -> None:
@@ -495,12 +513,12 @@ def load_directory_graph(source_root: Path) -> DirectoryGraph:
     source_root = source_root.resolve()
     try:
         manifest = load_manifest(source_root)
-        tree_root = representation_path(source_root, manifest, "directory")
+        tree_root = storage_path(source_root, manifest, "local")
         formats = contributor_formats(manifest)
     except (OSError, ValueError) as exc:
         graph = DirectoryGraph(
             source_root=source_root,
-            tree_root=source_root / "representations" / "directory",
+            tree_root=source_root / "storage" / "directory",
             contributor_formats={},
         )
         graph.errors.append(f"k-graph.toml: {exc}")
@@ -529,9 +547,11 @@ def emit_cypher(graph: DirectoryGraph) -> str:
         "// Generated by tooling/to_neo4j.py.",
         "// Neo4j expression of the local Directory Projection.",
         "",
-        "CREATE CONSTRAINT k_node_key IF NOT EXISTS",
+        "DROP CONSTRAINT k_node_path IF EXISTS;",
+        "",
+        "CREATE CONSTRAINT k_node_id IF NOT EXISTS",
         "FOR (n:KNode)",
-        "REQUIRE n.key IS UNIQUE;",
+        "REQUIRE n.id IS UNIQUE;",
         "",
         "CREATE INDEX k_node_kind IF NOT EXISTS",
         "FOR (n:KNode)",
@@ -541,6 +561,9 @@ def emit_cypher(graph: DirectoryGraph) -> str:
         "FOR (c:Contributor)",
         "REQUIRE c.id IS UNIQUE;",
         "",
+        "MATCH (n:KNode)",
+        "REMOVE n.path;",
+        "",
     ]
 
     label_for_kind = {
@@ -549,10 +572,10 @@ def emit_cypher(graph: DirectoryGraph) -> str:
         "F": "File",
         "Fd": "File:Draft",
     }
-    for node in sorted(graph.nodes.values(), key=lambda item: item.key):
+    for node in sorted(graph.nodes.values(), key=lambda item: item.path):
         lines.extend(
             [
-                f"MERGE (n:KNode {{key: {cypher_value(node.key)}}})",
+                f"MERGE (n:KNode {{id: {cypher_value(node.id)}}})",
                 (
                     "SET "
                     f"n.local_id = {cypher_value(node.local_id)}, "
@@ -573,13 +596,13 @@ def emit_cypher(graph: DirectoryGraph) -> str:
             ]
         )
 
-    for node in sorted(graph.nodes.values(), key=lambda item: item.key):
+    for node in sorted(graph.nodes.values(), key=lambda item: item.path):
         for contributor, formats in sorted(node.contributors.items()):
             lines.extend(
                 [
                     (
                         f"MATCH (c:Contributor {{id: {cypher_value(contributor)}}}), "
-                        f"(n:KNode {{key: {cypher_value(node.key)}}})"
+                        f"(n:KNode {{id: {cypher_value(node.id)}}})"
                     ),
                     "MERGE (c)-[r:CONTRIBUTED]->(n)",
                     f"SET r.formats = {cypher_value(formats)};",
@@ -588,11 +611,13 @@ def emit_cypher(graph: DirectoryGraph) -> str:
             )
 
     for edge in sorted(graph.groups, key=lambda item: (item.origin, item.position)):
+        origin_id = graph.nodes[edge.origin].id
+        target_id = graph.nodes[edge.target].id
         lines.extend(
             [
                 (
-                    f"MATCH (a:KNode {{key: {cypher_value(edge.origin)}}}), "
-                    f"(b:KNode {{key: {cypher_value(edge.target)}}})"
+                    f"MATCH (a:KNode {{id: {cypher_value(origin_id)}}}), "
+                    f"(b:KNode {{id: {cypher_value(target_id)}}})"
                 ),
                 "MERGE (a)-[r:GROUPS]->(b)",
                 f"SET r.position = {edge.position};",
@@ -601,11 +626,13 @@ def emit_cypher(graph: DirectoryGraph) -> str:
         )
 
     for origin, target in sorted(graph.linear):
+        origin_id = graph.nodes[origin].id
+        target_id = graph.nodes[target].id
         lines.extend(
             [
                 (
-                    f"MATCH (a:KNode {{key: {cypher_value(origin)}}}), "
-                    f"(b:KNode {{key: {cypher_value(target)}}})"
+                    f"MATCH (a:KNode {{id: {cypher_value(origin_id)}}}), "
+                    f"(b:KNode {{id: {cypher_value(target_id)}}})"
                 ),
                 "MERGE (a)-[:NEXT]->(b);",
                 "",
@@ -616,11 +643,13 @@ def emit_cypher(graph: DirectoryGraph) -> str:
         graph.related,
         key=lambda item: (item.origin, item.target, item.weight or 0.0),
     ):
+        origin_id = graph.nodes[edge.origin].id
+        target_id = graph.nodes[edge.target].id
         lines.extend(
             [
                 (
-                    f"MATCH (a:KNode {{key: {cypher_value(edge.origin)}}}), "
-                    f"(b:KNode {{key: {cypher_value(edge.target)}}})"
+                    f"MATCH (a:KNode {{id: {cypher_value(origin_id)}}}), "
+                    f"(b:KNode {{id: {cypher_value(target_id)}}})"
                 ),
                 "MERGE (a)-[r:RELATED_TO]->(b)",
             ]

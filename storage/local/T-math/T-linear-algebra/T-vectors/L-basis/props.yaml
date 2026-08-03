@@ -1,0 +1,13 @@
+title: Basis
+description: Basis and coordinates (in development).
+kind: L
+id: 47a4d65e-41fe-4026-b87c-11050d29bacd
+contributors:
+  research: []
+edges:
+  g:
+    - F-01-introduction
+  l:
+    prev: null
+    next: null
+  r: []

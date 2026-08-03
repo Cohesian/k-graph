@@ -1,0 +1,17 @@
+title: TLF Composite
+description: Topic / Lecture / File composite pattern for a knowledge corpus.
+kind: F
+id: 42292902-3874-4d54-87ec-0e1b7362af13
+contributors:
+  research:
+    - md
+  studio:
+    - py
+    - mp4
+    - youtube
+edges:
+  g: []
+  l:
+    prev: F-03-query-binder
+    next: null
+  r: []

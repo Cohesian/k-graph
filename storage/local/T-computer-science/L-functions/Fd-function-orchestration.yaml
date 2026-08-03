@@ -1,0 +1,13 @@
+title: Function Orchestration
+description: Internal process coordination behind a function boundary (draft).
+kind: Fd
+id: 9e9629bd-eb94-40fc-ba6e-922420cd13f7
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: F-04-function-natural-wrappers
+    next: null
+  r: []

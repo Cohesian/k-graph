@@ -18,13 +18,13 @@ python3 -m venv .venv
 .venv/bin/kgraph-validate
 ```
 
-Validation covers intrinsic fields, contributor ids and formats, grouping
+Validation covers UUID identities, intrinsic fields, contributor ids and formats, grouping
 coverage and reachability, linear reciprocity and degree, and related targets.
 
 ## Generate Neo4j Cypher
 
 ```bash
-.venv/bin/kgraph-to-neo4j --out representations/neo4j/k-graph.cypher
+.venv/bin/kgraph-to-neo4j --out storage/neo4j/k-graph.cypher
 ```
 
 The command emits `KNode`, `Contributor`, `GROUPS`, `NEXT`, `RELATED_TO`, and

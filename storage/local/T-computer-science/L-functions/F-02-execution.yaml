@@ -1,0 +1,13 @@
+title: Execution
+description: Execution as the interface admitting many executable forms.
+kind: F
+id: 9d406912-c737-416c-94f2-4edb90db3ee7
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: F-01-function
+    next: F-03-function-network
+  r: []

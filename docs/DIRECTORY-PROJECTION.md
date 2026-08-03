@@ -8,13 +8,13 @@ It is human-readable, Git-versioned, and composed from node-local declarations.
 The complete projection lives in:
 
 ```text
-representations/directory/
+storage/local/
 ```
 
 ## 2. Composite and leaf correspondence
 
 ```text
-representations/directory/
+storage/local/
 ├── props.yaml
 ├── T-topic/
 │   ├── props.yaml
@@ -30,8 +30,8 @@ representations/directory/
 `props.yaml`. They may group any TLF kind. `F` and `Fd` are leaves represented
 by YAML files.
 
-The root is `representations/directory/props.yaml`; its graph key is `K` and
-its kind is `T`.
+The root is `storage/local/props.yaml`; its rooted path is `K` and its kind
+is `T`.
 
 ## 3. Node declaration
 
@@ -41,14 +41,16 @@ Every node declares its intrinsic semantics:
 title: TLF Composite
 description: Topic / Lecture / File composite pattern for a knowledge corpus.
 kind: F
+id: 42292902-3874-4d54-87ec-0e1b7362af13
 ```
 
 The current projection stores `kind` explicitly and verifies it against the
 directory or filename prefix. A different projection may derive the kind, but
 the semantic value is always present in the graph model.
 
-The directory name or YAML filename stem is the local id. The portable key is
-the relative grouping path, for example:
+`id` is an immutable UUID. The directory name or YAML filename stem is the
+local id. The rooted `path` is derived from the relative grouping path, for
+example:
 
 ```text
 T-computer-science/L-composite/F-04-TLF-composite
@@ -121,7 +123,7 @@ l:
 
 Reciprocal declarations must agree. Together they represent one directed
 `NEXT` relationship. A sibling may be named by local id; a node elsewhere in
-the graph is named by its portable key.
+the graph is named by its rooted path.
 
 ### Related
 
@@ -136,7 +138,7 @@ r:
 ```
 
 Related edges may fan out or cycle and do not affect grouping.
-As with linear edges, cross-group targets use their portable keys.
+As with linear edges, cross-group targets use their rooted paths.
 
 ## 6. Local knowledge and global emergence
 
@@ -150,7 +152,7 @@ Some incoming facts are declared reciprocally or by a neighboring composite,
 then become visible after the local declarations are composed. The loader:
 
 1. discovers every composite and leaf;
-2. derives portable keys from relative paths;
+2. validates immutable UUID ids and derives rooted paths;
 3. resolves local edge references;
 4. validates the TLF and contributor laws; and
 5. composes the complete graph.
@@ -176,14 +178,15 @@ No individual YAML node contains the whole graph.
 
 | TLF concept | Directory expression |
 |---|---|
-| Root `K` | `representations/directory/props.yaml` |
+| Root `K` | `storage/local/props.yaml` |
 | Topic | `T-*/props.yaml` |
 | Lecture | `L-*/props.yaml` |
 | File | `F-*.yaml` |
 | Draft File | `Fd-*.yaml` |
+| Stable identity | `id` UUID property |
 | Intrinsic semantics | `kind`, `title`, `description` |
 | Contributor overlay | `contributors` |
 | Grouping | containment + ordered `edges.g` |
 | Linear | `edges.l.prev` / `edges.l.next` |
 | Related | `edges.r` |
-| Portable key | relative path from `representations/directory/` |
+| Rooted address | relative path from `storage/local/` |

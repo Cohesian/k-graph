@@ -2,13 +2,13 @@ version = 1
 
 [graph]
 root = "K"
-authority = "directory"
+authority = "local"
 
-[representations.directory]
-path = "representations/directory"
+[storage.local]
+path = "storage/local"
 
-[representations.neo4j]
-path = "representations/neo4j"
+[storage.neo4j]
+path = "storage/neo4j"
 schema = "schema.cypher"
 projection = "k-graph.cypher"
 

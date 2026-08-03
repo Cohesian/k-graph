@@ -21,23 +21,23 @@ def load_manifest(source_root: Path) -> dict[str, Any]:
         raise ValueError("k-graph.toml must declare [graph]")
     if graph.get("root") != "K":
         raise ValueError("graph.root must be 'K'")
-    if graph.get("authority") != "directory":
-        raise ValueError("graph.authority must be 'directory'")
+    if graph.get("authority") != "local":
+        raise ValueError("graph.authority must be 'local'")
     return manifest
 
 
-def representation_path(
+def storage_path(
     source_root: Path,
     manifest: dict[str, Any],
     name: str,
 ) -> Path:
-    section = manifest.get("representations", {}).get(name, {})
+    section = manifest.get("storage", {}).get(name, {})
     raw = section.get("path")
     if not isinstance(raw, str) or not raw:
-        raise ValueError(f"representations.{name}.path must be a non-empty string")
+        raise ValueError(f"storage.{name}.path must be a non-empty string")
     path = Path(raw)
     if path.is_absolute() or ".." in path.parts:
-        raise ValueError(f"representations.{name}.path must stay inside the repository")
+        raise ValueError(f"storage.{name}.path must stay inside the repository")
     return source_root / path
 
 

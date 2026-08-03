@@ -1,0 +1,14 @@
+title: Knowledge
+description: Root topic for the Cohesian k-graph.
+kind: T
+id: 563523fd-87cd-41c4-a0f6-00b54f0f7bdd
+contributors:
+  research: []
+edges:
+  g:
+    - T-math
+    - T-computer-science
+  l:
+    prev: null
+    next: null
+  r: []

@@ -1,0 +1,13 @@
+title: Data Semantics
+description: Composite tree shape of data before file format.
+kind: F
+id: 39b82207-e234-4352-bc3c-01d84362a7eb
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: null
+    next: F-02-json-representation
+  r: []
