@@ -6,7 +6,7 @@ This repository uses two license boundaries.
 
 ## Software and operation — MIT
 
-Implementation code, Cypher, scripts, configuration, schemas, migrations,
+Implementation code, Cypher, scripts, configuration, schemas, translators,
 validators, and technical documentation whose primary purpose is to operate
 the graph are licensed under [`LICENSE`](LICENSE).
 

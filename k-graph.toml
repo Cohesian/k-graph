@@ -1,47 +1,19 @@
-# K-graph resolution config.
-#
-# k-graph/ leaves declare abstract `data` (documents, media.scripts.scenes,
-# media.videos). This file defines infrastructure sources and the sources each
-# data tree can reach.
-#
-# Each source declares:
-#   origin  — base domain or URL prefix (empty for local filesystem)
-#   mapping — path | hash
-#   pattern — URL segment when origin is set, or hash URL template (mapping = hash)
-#   mapper  — hash-map file (required when mapping = hash); path relative to repo root
+version = 1
 
-[infrastructure.foundations.local]
-mapping = "path"
-root = "../foundations/data/documents"
+[graph]
+root = "K"
+authority = "directory"
 
-[infrastructure.foundations.github]
-origin = "https://github.com/Cohesian/foundations/blob/main"
-mapping = "path"
-root = "data/documents"
-pattern = "/{path}"
+[representations.directory]
+path = "representations/directory"
 
-[infrastructure.studio]
-origin = "https://github.com/Cohesian/studio/blob/main"
-mapping = "path"
-root = "videos/scenes/k_graph"
-pattern = "/{path}"
+[representations.neo4j]
+path = "representations/neo4j"
+schema = "schema.cypher"
+projection = "k-graph.cypher"
 
-[infrastructure.youtube]
-origin = "https://www.youtube.com"
-mapping = "hash"
-pattern = "/watch?v={hash}"
-mapper = "maps/youtube.toml"
+[contributors.research]
+formats = ["md", "ipynb"]
 
-# --- data trees: reachable sources ---------------------------------------------
-
-[data.documents]
-sources = ["foundations.local", "foundations.github"]
-serve = "foundations.local"
-
-[data.media.scripts.scenes]
-sources = ["studio"]
-serve = "studio"
-
-[data.media.videos]
-sources = ["youtube"]
-serve = "youtube"
+[contributors.studio]
+formats = ["py", "mp4", "youtube"]

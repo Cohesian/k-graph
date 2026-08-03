@@ -1,0 +1,12 @@
+title: Functions
+description: One lens on functions as bounded executable nodes.
+kind: F
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: null
+    next: F-02-execution
+  r: []

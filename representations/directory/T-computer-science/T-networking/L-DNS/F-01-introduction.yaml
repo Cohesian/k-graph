@@ -1,0 +1,12 @@
+title: Introduction
+description: Domain namespace tree, zones, and typed DNS record attachments.
+kind: F
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: null
+    next: null
+  r: []

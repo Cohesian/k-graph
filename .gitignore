@@ -18,6 +18,7 @@ exports/tmp/
 # Python
 __pycache__/
 *.py[cod]
+*.egg-info/
 .venv/
 
 # Node

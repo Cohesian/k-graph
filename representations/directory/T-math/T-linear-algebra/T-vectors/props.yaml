@@ -1,0 +1,13 @@
+title: Vectors
+description: Vector-space lectures under linear algebra.
+kind: T
+contributors:
+  research: []
+edges:
+  g:
+    - L-basis
+    - L-reflection
+  l:
+    prev: null
+    next: null
+  r: []

@@ -1,0 +1,12 @@
+title: JSON Representation
+description: JSON as a representation layer for semantic data.
+kind: F
+contributors:
+  research:
+    - md
+edges:
+  g: []
+  l:
+    prev: F-01-data-semantics
+    next: F-03-agent-prompt
+  r: []

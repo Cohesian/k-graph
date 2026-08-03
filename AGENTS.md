@@ -1,45 +1,39 @@
 # Cohesian k-graph — agent onboarding
 
-Read this file before modifying node metadata, graph tooling, schemas, exports,
-or resolver configuration.
-
 ## Purpose
 
-This repository owns Cohesian's formal TLF model, complete Directory
-Projection, Neo4j expression, and representation tooling.
+This workspace maintains Cohesian's accepted TLF knowledge graph: node
+identity, intrinsic semantics, graph topology, contributor attribution, and
+equivalent graph representations.
 
-It does not own:
-
-- Markdown research bodies; those remain in `Cohesian/foundations`;
-- Python scene implementations or video production; those remain in
-  `Cohesian/studio`;
-- public presentation; that belongs to `Cohesian/site`; or
-- Cohesian's constitutional principles and identity; those belong to
-  `Cohesian/core`.
+Work here as the keeper of a small, coherent registry. Read the current graph,
+help shape proposals, apply accepted changes, and verify that every
+representation still describes the same object.
 
 ## Read first
 
 | Need | Read |
 |---|---|
-| Repository entry point | [`README.md`](README.md) |
-| Formal TLF mathematics | [`docs/TLF.md`](docs/TLF.md) |
-| Directory/YAML projection | [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) |
-| Neo4j projection | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
-| Normative repository contract | [`CONTRACT.md`](CONTRACT.md) |
-| Representation tooling | [`tools/README.md`](tools/README.md) |
-| License boundaries | [`LICENSING.md`](LICENSING.md) |
+| Repository overview | [`README.md`](README.md) |
+| Formal model | [`docs/TLF.md`](docs/TLF.md) |
+| Normative contract | [`CONTRACT.md`](CONTRACT.md) |
+| Directory representation | [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) |
+| Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
+| Contributor model | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |
+| Proposal model | [`docs/PROPOSALS.md`](docs/PROPOSALS.md) |
+| Pending interfaces | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
+| Tooling | [`tooling/README.md`](tooling/README.md) |
 
-## Representation boundary
+## Working model
 
-The Directory Projection stores node-local metadata, content declarations, and
-local graph edges:
+A Directory node looks like:
 
 ```yaml
 title: Function
 description: Functions as bounded nodes and transformations.
 kind: F
-data:
-  documents:
+contributors:
+  research:
     - md
 edges:
   g: []
@@ -49,38 +43,29 @@ edges:
   r: []
 ```
 
-The Neo4j Projection expresses the same local edges as `GROUPS`, `NEXT`, and
-`RELATED_TO` relationships.
+The intrinsic fields describe the node. `edges` expresses its local graph
+neighborhood. `contributors` expresses attribution and contributed formats.
 
-Never place topology inside `data`. Never place provider URLs, credentials,
-database coordinates, or resolved local paths inside node YAML.
+Preserve these invariants when changing the graph:
 
-## Change boundary
-
-- Preserve `T`, `L`, `F`, and `Fd` until a separate terminology decision is
-  accepted.
-- Treat the root `K` as a distinguished `T` node.
-- Derive node identity from the node's relative path; do not add a duplicate
-  YAML id field.
-- Preserve equivalence between the Directory and Neo4j projections.
-- Regenerate derived Cypher through the translator rather than editing it.
-- Never add credentials, Aura secrets, tokens, or private Drive links.
+- the root is `K`, represented as a `T`;
+- portable identity derives from the grouping path;
+- `g`, `l`, and `r` remain distinct edge families;
+- `GROUPS.position` preserves authored child order;
+- contributor ids and formats are registered in `k-graph.toml`;
+- the Directory and Neo4j representations remain equivalent; and
+- generated Cypher is regenerated through the tooling.
 
 ## Validation
 
-Create a local Python environment and install the YAML dependency:
+From the repository root:
 
 ```bash
 python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-```
-
-Then validate the local Directory Projection without writing outputs:
-
-```bash
-.venv/bin/python tools/to_neo4j.py
-.venv/bin/python tools/validate_kgraph.py
+.venv/bin/python -m pip install -e ./tooling
+.venv/bin/kgraph-validate
+.venv/bin/kgraph-to-neo4j --out representations/neo4j/k-graph.cypher
 git diff --check
 ```
 
-Any graph validation error is blocking.
+Graph validation errors are blocking.

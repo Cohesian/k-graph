@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cohesian-k-graph-tooling"
+version = "0.1.0"
+description = "Validation and Neo4j projection tools for Cohesian k-graph"
+requires-python = ">=3.11"
+dependencies = ["PyYAML>=6,<7"]
+
+[project.scripts]
+kgraph-validate = "validate_kgraph:main"
+kgraph-to-neo4j = "to_neo4j:main"
+
+[tool.setuptools]
+py-modules = ["kgraph_config", "to_neo4j", "validate_kgraph"]

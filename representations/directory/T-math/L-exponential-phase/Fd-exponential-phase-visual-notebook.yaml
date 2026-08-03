@@ -1,0 +1,12 @@
+title: Exponential phase visual notebook
+description: Exponential phase visual notebook (draft).
+kind: Fd
+contributors:
+  research:
+    - ipynb
+edges:
+  g: []
+  l:
+    prev: F-03-hidden-generators
+    next: null
+  r: []

@@ -1,68 +1,60 @@
 # Cohesian k-graph
 
-`k-graph` is Cohesian's knowledge-index repository. It contains the formal TLF
-model, a complete Directory Projection, the Neo4j property-graph expression,
-and the tooling that translates between concrete representations.
+`k-graph` is Cohesian's accepted knowledge registry. It defines knowledge as a
+TLF graph, keeps a complete reviewable representation in Git, and provides an
+equivalent Neo4j representation.
 
-The repository does not contain research-document bodies, scene
-implementations, or rendered videos.
+Each knowledge node has a small intrinsic semantic surface:
 
-## Representations
-
-| Concern | Expression |
-|---|---|
-| Representation-independent TLF | [`docs/TLF.md`](docs/TLF.md) |
-| Git-friendly complete graph | [`k-graph/`](k-graph/) |
-| Node and relationship property graph | Neo4j |
-| Content path and URI resolution | [`k-graph.toml`](k-graph.toml) |
-| Research Markdown | [`Cohesian/foundations`](https://github.com/Cohesian/foundations) |
-| Scene code and video production | [`Cohesian/studio`](https://github.com/Cohesian/studio) |
-
-The Directory and Neo4j projections express the same mathematical edge
-families in different languages:
-
-```text
-Directory/YAML: edges.g / edges.l / edges.r
-Neo4j:         GROUPS / NEXT / RELATED_TO
+```yaml
+kind: T | L | F | Fd
+title: Human-facing title
+description: Concise meaning of this node
 ```
 
-Topology never belongs inside a node's `data` declaration.
-
-## Current status
-
-The complete current Directory Projection, resolver configuration, and maps
-have been copied from Foundations. Foundations remains unchanged.
-
-The Neo4j translator validates that local graph and emits reviewable Cypher for
-`cypher-shell`. No database has been changed yet.
+Its grouping, linear, and related connections are graph relationships. A
+separate contributor overlay records which registered contributors introduced
+the node or supplied content forms for it. The current contributors are
+`research` and `studio`.
 
 ## Read first
 
 | Need | Read |
 |---|---|
-| Agent onboarding | [`AGENTS.md`](AGENTS.md) |
-| Formal TLF mathematics | [`docs/TLF.md`](docs/TLF.md) |
-| Directory/YAML realization | [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) |
-| Neo4j realization | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
+| Formal TLF model | [`docs/TLF.md`](docs/TLF.md) |
+| Directory/YAML representation | [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) |
+| Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
+| Contributors | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |
+| Change proposals | [`docs/PROPOSALS.md`](docs/PROPOSALS.md) |
+| Pending interfaces | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Normative repository contract | [`CONTRACT.md`](CONTRACT.md) |
-| Representation tools | [`tools/README.md`](tools/README.md) |
-| License boundary | [`LICENSING.md`](LICENSING.md) |
-| Organization-wide rollout | [`Cohesian/Organization`](https://github.com/Cohesian/Organization) `KGRAPH-ROLLOUT.md` |
+| Agent onboarding | [`AGENTS.md`](AGENTS.md) |
 
-## Planned repository shape
+## Repository shape
 
 ```text
 k-graph/
-├── k-graph/           # complete Directory Projection
-├── maps/              # external provider identifiers
-├── cypher/            # schema and generated Neo4j expression
-├── tools/             # validation, translation, and resolution
-├── docs/              # detailed operational documentation
-├── k-graph.toml       # data-location and URI resolver configuration
-├── requirements.txt
+├── representations/
+│   ├── directory/     # complete authored graph in YAML
+│   └── neo4j/         # schema and generated Cypher
+├── tooling/           # validation and projection tooling
+├── docs/              # model and representation documentation
+├── k-graph.toml       # repository manifest
 ├── CONTRACT.md
-└── AGENTS.md
+├── AGENTS.md
+└── README.md
 ```
 
-Research documents and media bodies remain in their owning repositories and
-storage systems.
+The Directory Projection is currently authoritative. The generated Cypher is
+derived from it and can be loaded into either local Neo4j or Aura.
+
+The target query identity is an immutable node `id` plus a rooted `path`
+derived from the accepted grouping projection. The present Neo4j `key`
+property is the current serialization of that path; stable ids remain a
+pending materialization step.
+
+## Current scope
+
+Proposals and acceptance are manual. Contributor-specific storage and content
+resolution will be exposed by contributor interfaces later; they are not part
+of this registry manifest.

@@ -1,44 +1,45 @@
 # k-graph contract
 
-Version: **0.1.0**
+Version: **0.3.0**
 
-Status: **initial rollout contract**
+Status: **draft**
 
 ## 1. Purpose
 
-The k-graph is Cohesian's knowledge index. It provides stable knowledge-node
-identity, explicit graph topology, and abstract links to research and media
-without embedding those content bodies.
+The k-graph is Cohesian's accepted knowledge registry. It provides stable
+knowledge-node identity, intrinsic node semantics, explicit topology, and
+contributor attribution without embedding contributed content bodies.
 
-The root is `K`, represented as a distinguished Topic.
-
-The complete mathematical model is [`docs/TLF.md`](docs/TLF.md). This document
-is the short normative storage and repository contract.
+The distinguished root is `K`, a Topic.
 
 ## 2. Authorities
 
-The model separates its abstract definition from concrete expressions:
-
-| Concern | Location |
+| Concern | Authority |
 |---|---|
-| Mathematical TLF model | `docs/TLF.md` |
-| Complete Directory Projection | `k-graph/` |
-| Neo4j property-graph expression | `docs/NEO4J-PROJECTION.md` |
-| Path and URI resolution | `k-graph.toml` |
+| Mathematical model | [`docs/TLF.md`](docs/TLF.md) |
+| Authored graph | [`representations/directory/`](representations/directory/) |
+| Neo4j expression | [`representations/neo4j/`](representations/neo4j/) |
+| Representation and contributor registry | [`k-graph.toml`](k-graph.toml) |
 
-Translation tooling must preserve node identity, properties, relationship
-semantics, direction, and relationship properties between expressions.
+Translation must preserve node identity and semantics, the `g`, `l`, and `r`
+edge families, and contributor attribution.
 
-## 3. Node contract
+## 3. Node semantics
 
-### Identity
+Every node has:
 
-A node's `local_id` is derived from its YAML filename or composite directory.
-The YAML does not repeat the id.
+```yaml
+kind: T | L | F | Fd
+title: Human-facing title
+description: Concise local description
+```
 
-The root's id is `K`. Other ids retain the established TLF prefixes.
+`kind` is a semantic property even when a concrete representation can derive
+it. The current Directory Projection stores it explicitly. `title` and
+`description` identify and explain the knowledge node; they are not the full
+research or media body.
 
-### Kinds
+Kinds are:
 
 | Kind | Meaning |
 |---|---|
@@ -47,176 +48,94 @@ The root's id is `K`. Other ids retain the established TLF prefixes.
 | `F` | File leaf |
 | `Fd` | Draft File leaf |
 
-`Fd` remains a flat kind with the same graph capabilities as `F`. A database
-projection may additionally expose `draft: true` or a `Draft` label.
+`Fd` is a flat kind with the same graph capabilities as `F`.
 
-### Conceptual node data
+The target identity model has two selectors:
 
-Every node has:
+| Selector | Meaning |
+|---|---|
+| `id` | Immutable identity, stable across graph revisions and moves |
+| `path` | Root-derived address in one accepted `g` projection |
 
-```yaml
-kind: T | L | F | Fd
-title: Human-facing title
-description: Concise local description
-data: {}
-```
+`path` is unique inside a graph revision but may change when grouping is
+reorganized. `id` remains fixed. A query may provide either selector; when it
+provides both, they must resolve to the same node.
 
-The current Directory Projection declares:
-
-| Data branch | Values | Meaning |
-|---|---|---|
-| `documents` | `md`, `ipynb` | Research document or notebook |
-| `media.scripts.scenes` | `py` | Python scene implementation |
-| `media.videos` | `mp4` | Rendered file; published YouTube presence comes from the provider map |
-
-Lists contain unique values. An empty list means that representation is not
-declared for the node.
-
-In the Directory Projection, `edges` is a top-level sibling of `data`:
-
-```yaml
-edges:
-  g: []
-  l:
-    prev: null
-    next: null
-  r: []
-```
-
-Node `data` must not contain:
-
-- graph relationships;
-- paths derived from graph position;
-- provider URLs or ids;
-- database labels, coordinates, or internal ids; or
-- document, scene, or video bodies.
-
-## 4. Graph contract
-
-Every materialized node carries the common `KNode` label and one kind
-projection:
-
-```text
-(:KNode:Topic)
-(:KNode:Lecture)
-(:KNode:File)
-(:KNode:File:Draft)
-```
-
-Its unique portable `key` is the root-derived `g_path`. Moving or renaming a
-node is an explicit key migration. Neo4j internal element ids are never
+The present projections use the property name `key` for the rooted path. That
+is a transitional serialization name, not a third identity mechanism. The
+immutable `id` property and its generation policy remain pending before the
+external query interface is fixed. Neo4j internal element ids are never
 portable identity.
 
-### `g`: grouping
+## 4. Topology
+
+Topology is represented by three disjoint edge families:
+
+| Axis | Neo4j expression | Meaning |
+|---|---|---|
+| `g` | `GROUPS {position}` | Structural grouping and authored order |
+| `l` | `NEXT` | Linear traversal; reverse traversal is `prev` |
+| `r` | `RELATED_TO {weight?}` | Directed, optional weighted relation |
+
+The `g` projection is a rooted ordered tree and therefore a DAG. Every
+non-root node has exactly one grouping parent. Only `T` and `L` may group
+children.
+
+Each node has at most one incoming and one outgoing `NEXT`. A single physical
+relationship represents both `prev` and `next`; linear components are acyclic
+in this contract.
+
+`RELATED_TO` may connect any kinds, fan out, and form cycles. Its weight is
+optional and currently has no universal scale.
+
+## 5. Contributor overlay
+
+The registered contributor set is:
 
 ```text
-(parent)-[:GROUPS {position: integer}]->(child)
+research
+studio
 ```
 
-- `K` has no grouping parent.
-- Every other node has exactly one grouping parent.
-- The projection is acyclic.
-- Zero-based sibling `position` values are unique and define authored order.
-- Only `GROUPS` affects structural layout and canonical graph paths.
+A contributor relation records participation in a node. Its format list says
+which content forms that contributor supplied:
 
-The initial grouping projection is therefore a rooted, ordered arborescence and
-also a DAG.
-
-### `l`: linear traversal
-
-```text
-(previous)-[:NEXT]->(next)
+```yaml
+contributors:
+  research:
+    - md
+  studio:
+    - py
+    - mp4
 ```
 
-- A node has at most one outgoing `NEXT`.
-- A node has at most one incoming `NEXT`.
-- Outgoing traversal is `next`; incoming traversal is `prev`.
-- Linear relationships may connect any node kind.
-- Linear components are acyclic in contract 0.1.0.
-- Linear relationships do not affect structural layout.
+An empty format list is meaningful: the contributor introduced or shaped the
+knowledge node without attaching a content form.
 
-One stored relationship represents both local traversal perspectives. A second
-physical `PREV` relationship would duplicate the same fact.
+Contributor relations do not change TLF kind or topology. Exact change-level
+provenance belongs to a future accepted-proposal history; the node relation is
+the current compact attribution view. The full model is in
+[`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md).
 
-### `r`: related knowledge
+## 6. Proposals
 
-```text
-(origin)-[:RELATED_TO {weight: number?}]->(target)
-```
+Registered contributors may asynchronously propose node or relationship
+creation, replacement, patching, or deletion against a known graph revision.
+The combined candidate graph is validated and accepted or rejected atomically.
 
-- Related relationships may connect any node kind.
-- Cycles are allowed.
-- `weight` is optional.
-- An absent weight means related but unscored.
-- Direction is preserved; consumers must not assume symmetry.
-- Related relationships do not affect structural layout.
+The current workflow is manual. Its conceptual envelope and validation stages
+are described in [`docs/PROPOSALS.md`](docs/PROPOSALS.md).
 
-The semantic scale for weights can be tightened by a later version without
-moving the relationship out of Neo4j.
+## 7. Representation contract
 
-## 5. Derived values
+The repository manifest names the authoritative representation, the available
+projections, and the allowed contributor formats. It contains no credentials,
+machine-specific paths, external repository locations, or content URLs.
 
-These values emerge from the complete graph:
+The Directory and Neo4j documents define how the same model is expressed:
 
-| Value | Derivation |
-|---|---|
-| `local_id` | Node YAML filename or composite directory |
-| `g_path` / `key` | Ordered `GROUPS` traversal from `K` |
-| `group_index` | Ordered grouping positions |
-| `x`, `y` | Layout of a selected grouping projection |
-| `prev`, `next` | Incoming and outgoing `NEXT` |
-| related neighborhood | `RELATED_TO` traversal |
+- [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md)
+- [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md)
 
-`g_path` is the canonical content key. Display indexes and coordinates are not
-identity.
-
-## 6. Resolution contract
-
-`k-graph.toml` maps an abstract declaration to a path or URI:
-
-```text
-(g_path, data branch, representation, source?)
-    -> resolve with k-graph.toml
-    -> filesystem path or final URI
-```
-
-The configuration declares:
-
-- valid data branches and representations;
-- available sources;
-- default source selection;
-- roots and URI patterns; and
-- explicit provider-id maps where derivation is insufficient.
-
-Research Markdown resolves to Foundations. Python scenes resolve to Studio.
-MP4 may resolve locally or through Drive. YouTube resolves through an explicit
-published-video mapping.
-
-## 7. Repository boundaries
-
-| Repository/system | Owns |
-|---|---|
-| `Cohesian/k-graph` | TLF theory, Directory and Neo4j expressions, resolver config, validation, and translation tooling |
-| Neo4j local/Aura | Live `g`, `l`, and `r` relationships |
-| `Cohesian/foundations` | Markdown research documents and research workspace |
-| `Cohesian/studio` | Scene code and video-production workflow |
-| `Cohesian/site` | Public graph and content projections |
-| `Cohesian/Organization` | Cross-repository governance and rollout |
-| `Cohesian/core` | Constitutional principles and identity |
-
-## 8. Representation documents
-
-- [`docs/TLF.md`](docs/TLF.md) defines the representation-independent
-  mathematics.
-- [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) defines the
-  Git-friendly complete graph expression.
-- [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) defines labels,
-  properties, relationships, constraints, and queries.
-
-## 9. T1 boundary
-
-T1 establishes this repository, the mathematical and representation contracts,
-the copied Directory Projection and resolver configuration, and a translator
-that emits Neo4j-readable Cypher.
-
-Research and media bodies remain in their owning repositories and systems.
+Generated Neo4j Cypher is derived and is regenerated through the repository
+tooling.

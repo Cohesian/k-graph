@@ -27,7 +27,7 @@ The graph has three edge families:
 - `l`: linear reading or traversal; and
 - `r`: related knowledge.
 
-Only `g` defines the taken topology and structural layout. `l` and `r` are
+Only `g` defines structural shape and layout. `l` and `r` are
 orthogonal overlays on the same nodes.
 
 ## 2. Corpus
@@ -47,8 +47,7 @@ G_{\mathcal K}
 V,\;
 E_g \sqcup E_l \sqcup E_r,\;
 \kappa,\;
-\mu,\;
-\delta
+\mu
 \right)
 $$
 
@@ -57,8 +56,7 @@ where:
 - $V$ is the node set;
 - $E_g$, $E_l$, and $E_r$ are disjoint relationship families;
 - $\kappa$ assigns node kind;
-- $\mu$ assigns local descriptive metadata; and
-- $\delta$ declares available research and media representations.
+- $\mu$ assigns local descriptive metadata.
 
 The disjoint-union symbol distinguishes relationship meaning. The same ordered
 pair of nodes can, in principle, be connected by more than one edge family.
@@ -187,9 +185,53 @@ $$
 T,L:K^*\to K
 $$
 
+### Identity and rooted address
+
+Each node will have an immutable identity:
+
+$$
+\iota:V\to I
+$$
+
+with $\iota$ injective. Separately, an accepted grouping projection derives a
+rooted address:
+
+$$
+\operatorname{path}_g:V\to\operatorname{Path}
+$$
+
+Because the current grouping profile is a rooted arborescence, every node has
+exactly one such path in a graph revision. A regrouping may change
+$\operatorname{path}_g(v)$ while $\iota(v)$ remains fixed.
+
+Thus `id` answers *which node?* and `path` answers *where is that node in this
+grouping projection?* Either may select a node; when both are supplied they
+must agree. The current Neo4j property named `key` is a serialization of this
+rooted path, not a separate identity.
+
 ## 5. Local knowledge
 
-Every node owns a bounded local description:
+Every node has three intrinsic semantic properties:
+
+$$
+\nu(v)
+=
+\left(
+\kappa(v),
+\operatorname{title}(v),
+\operatorname{description}(v)
+\right)
+$$
+
+The kind $\kappa(v)$ is always present in the mathematical object. A concrete
+representation may store it explicitly or derive it from a label, path, or
+type marker.
+
+Title and description are the node's concise semantic surface. They identify
+and describe the concept; they are not the complete paper, scene, or video
+body.
+
+Equivalently, the descriptive component is:
 
 $$
 \mu(v)
@@ -200,35 +242,10 @@ $$
 \right)
 $$
 
-and a content declaration:
+The node's local TLF neighborhood is:
 
 $$
-\delta(v)
-\subseteq
-\{
-\text{research.md},
-\text{media.scenes.py},
-\text{media.videos.mp4},
-\text{media.videos.youtube}
-\}
-$$
-
-Together with kind:
-
-$$
-\nu(v)
-=
-\left(
-\kappa(v),\mu(v),\delta(v)
-\right)
-$$
-
-is the node's local, representation-independent knowledge.
-
-The node's local graph neighborhood is:
-
-$$
-\operatorname{loc}(v)
+\operatorname{loc}_{TLF}(v)
 =
 \left(
 \nu(v),
@@ -238,13 +255,87 @@ E_r^-(v),E_r^+(v)
 \right)
 $$
 
-where $E_x^-$ and $E_x^+$ are incoming and outgoing incidences for edge
+where $E_x^-$ and $E_x^+$ are the incoming and outgoing incidences for edge
 family $x$.
+
+The edges are not intrinsic node properties. They belong to the graph, while
+their incidences form the node's local view.
+
+### Contributor overlay
+
+Contributor attribution is separate from TLF topology. The current contributor
+set is:
+
+$$
+C
+=
+\{\texttt{research},\texttt{studio}\}
+$$
+
+Define the contributor relation:
+
+$$
+E_c\subseteq C\times V
+$$
+
+and the format declaration:
+
+$$
+\phi:E_c\to\mathcal P(\mathcal F)
+$$
+
+where initially:
+
+$$
+\mathcal F
+=
+\{\texttt{md},\texttt{ipynb},\texttt{py},\texttt{mp4},\texttt{youtube}\}
+$$
+
+For $(c,v)\in E_c$, contributor $c$ has an accepted contribution associated
+with node $v$. The set $\phi(c,v)$ names the contributed content formats.
+
+An empty format set is meaningful:
+
+$$
+\phi(c,v)=\varnothing
+$$
+
+means that $c$ contributed to the node or its structure without contributing a
+content body.
+
+A node may receive work from several contributors:
+
+$$
+\deg_c^-(v)\geq0
+$$
+
+The contributor overlay does not change grouping, reading order, related
+knowledge, canonical paths, or layout.
+
+The complete local registry view is therefore:
+
+$$
+\operatorname{loc}(v)
+=
+\left(
+\nu(v),
+E_g^-(v),E_g^+(v),
+E_l^-(v),E_l^+(v),
+E_r^-(v),E_r^+(v),
+E_c^-(v),
+\phi|_{E_c^-(v)}
+\right)
+$$
 
 In the Directory Projection, this neighborhood is declared locally in YAML.
 In the Neo4j Projection, node properties and incident relationships are stored
 explicitly by the graph engine. The mathematical locality is unchanged even
 though the representation changes.
+
+The contributor relation is a node-level summary. Exact attribution of a
+property or relationship change can live in a future accepted-proposal
+history.
 
 ## 6. Emergence
 
@@ -823,7 +914,17 @@ $$
 \boxed{
 G_{\mathcal K}
 =
-(V,E_g\sqcup E_l\sqcup E_r,\kappa,\mu,\delta)
+(V,E_g\sqcup E_l\sqcup E_r,\kappa,\mu)
+}
+$$
+
+Contributor overlay:
+
+$$
+\boxed{
+E_c\subseteq C\times V,
+\qquad
+\phi:E_c\to\mathcal P(\mathcal F)
 }
 $$
 

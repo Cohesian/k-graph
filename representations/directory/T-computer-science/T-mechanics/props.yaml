@@ -1,0 +1,12 @@
+title: Mechanics
+description: Computational mechanics and ticker-like systems.
+kind: T
+contributors:
+  research: []
+edges:
+  g:
+    - L-sparse-ticker-state
+  l:
+    prev: null
+    next: null
+  r: []
