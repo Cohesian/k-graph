@@ -2,8 +2,7 @@ title: Computer science
 description: Computation, functions, semantics, binders, networking, and mechanics.
 kind: T
 id: 3a639722-8594-4c6c-9527-ffddd25cf2ec
-contributors:
-  research: []
+contributors: {}
 edges:
   g:
     - L-composite

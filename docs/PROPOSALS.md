@@ -24,7 +24,7 @@ rationale
 
 Requested changes may:
 
-- create nodes, relationships, or contributor relations;
+- create nodes, relationships, or resource declarations;
 - replace the editable description of a known element;
 - patch named properties or relationships; or
 - delete explicitly named graph elements.
@@ -45,7 +45,7 @@ The affected node ids remain fixed, and an accepted move can expose
 `(id, old_path, new_path)` changes to contributors.
 
 Deletion must state what happens to incident relationships, descendants,
-contributor relations, and accepted content references. There is no implicit
+resource declarations, and accepted content references. There is no implicit
 cascade.
 
 ## Atomic acceptance
@@ -66,7 +66,7 @@ Validation covers:
 - TLF kinds and intrinsic node properties;
 - grouping reachability, acyclicity, and sibling order;
 - incoming and outgoing `NEXT` degree;
-- relationship targets and contributor formats; and
+- relationship targets and contributor domains and formats; and
 - later, content, licensing, and policy checks.
 
 Review and application are manual today. This document defines the boundary

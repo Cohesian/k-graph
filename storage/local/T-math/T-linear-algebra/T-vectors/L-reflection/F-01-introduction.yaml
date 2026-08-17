@@ -4,7 +4,8 @@ kind: F
 id: 07ff1a0b-e84f-40bb-996f-467a03d2bf3c
 contributors:
   research:
-    - md
+    documents:
+      - md
 edges:
   g: []
   l:

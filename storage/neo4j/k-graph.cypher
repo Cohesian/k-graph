@@ -15,6 +15,12 @@ CREATE CONSTRAINT contributor_id IF NOT EXISTS
 FOR (c:Contributor)
 REQUIRE c.id IS UNIQUE;
 
+MATCH (:Contributor)-[r:CONTRIBUTED]->(:KNode)
+DELETE r;
+
+MATCH (:Contributor)-[r:PROVIDES]->(:KNode)
+DELETE r;
+
 MATCH (n:KNode)
 REMOVE n.path;
 
@@ -186,184 +192,132 @@ MERGE (:Contributor {id: "research"});
 
 MERGE (:Contributor {id: "studio"});
 
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "563523fd-87cd-41c4-a0f6-00b54f0f7bdd"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "3a639722-8594-4c6c-9527-ffddd25cf2ec"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "dfa7000b-4b6b-480a-9a33-90d7d5f764c5"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = ["py", "mp4", "youtube"];
+MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
+SET r.formats = ["py"];
+
+MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
+MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
+SET r.formats = ["mp4"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = ["py", "mp4", "youtube"];
+MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
+SET r.formats = ["py"];
+
+MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
+MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
+SET r.formats = ["mp4"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = ["py", "mp4", "youtube"];
+MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
+SET r.formats = ["py"];
+
+MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
+MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
+SET r.formats = ["mp4"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = ["py", "mp4", "youtube"];
+MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
+SET r.formats = ["py"];
 
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "d9cc0386-2ec5-4b6f-be72-24e75594598d"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
+MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
+MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
+SET r.formats = ["mp4"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "499ff1af-eed7-425d-9fed-e357ec2e0b97"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "9d406912-c737-416c-94f2-4edb90db3ee7"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "1e650360-f987-42c8-ab37-d2e928b82b32"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "7bd2455a-1fe5-4972-9c36-78d6a4f0df9b"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "9e9629bd-eb94-40fc-ba6e-922420cd13f7"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "da255734-d513-41e4-b64c-721403e9da50"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f776b280-d6fa-4bbd-b213-4978165137eb"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "08113955-1ff0-4131-877e-4466e614bd1b"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "bb00a29b-d851-4395-9e20-bce895bb379e"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "804dadca-9f14-44c8-884c-d3921f9c60e6"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "39b82207-e234-4352-bc3c-01d84362a7eb"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "5da0c374-473b-40d6-a7dd-659dc4f5211d"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "0fa7348d-69f2-487a-a684-71eada16a96d"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "e6217c42-963a-4fbf-9e0a-f224cb826639"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "30f3686f-55a9-448c-858d-98f7d28be603"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff73c9d4-922b-471e-beb5-3dde7c4a415f"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md", "ipynb"];
 
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "efc84fce-0236-4141-b12d-24342b0d91ae"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "e88a1fa1-2f6e-4004-94d6-b4c24ad7b8f1"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f2b1b8c2-86c8-484c-bb44-92c711ac607e"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "61def28d-378b-421d-bd96-42281ecc5570"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2c3cfe88-3010-4730-87b9-31138b863178"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff647a5d-44f0-42af-9f01-abcadd04fb37"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "5a761f46-a4a4-4453-98a4-c0424f94aafc"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "1497eefc-aa3d-4444-a426-9ccb0410b0bf"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff7c99b6-ce1f-4973-9d3c-89f1f12a1f69"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f1504ef9-d65e-4753-8032-27672b2ffa6a"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "c6d131b8-0ba5-4ab4-bfdb-c871b95b98e6"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["ipynb"];
 
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "37988c21-5843-4b3e-84ac-e80b338f0322"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ae514a05-eb83-4013-a8c9-b1aaab27100b"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "47a4d65e-41fe-4026-b87c-11050d29bacd"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "edba87bc-3359-4ea1-bfb7-7bb5d4762963"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
-MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
-SET r.formats = [];
-
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "07ff1a0b-e84f-40bb-996f-467a03d2bf3c"})
-MERGE (c)-[r:CONTRIBUTED]->(n)
+MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
 SET r.formats = ["md"];
 
 MATCH (a:KNode {id: "563523fd-87cd-41c4-a0f6-00b54f0f7bdd"}), (b:KNode {id: "61def28d-378b-421d-bd96-42281ecc5570"})

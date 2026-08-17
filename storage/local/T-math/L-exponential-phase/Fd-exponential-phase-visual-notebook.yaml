@@ -4,7 +4,8 @@ kind: Fd
 id: c6d131b8-0ba5-4ab4-bfdb-c871b95b98e6
 contributors:
   research:
-    - ipynb
+    documents:
+      - ipynb
 edges:
   g: []
   l:

@@ -262,81 +262,23 @@ family $x$.
 The edges are not intrinsic node properties. They belong to the graph, while
 their incidences form the node's local view.
 
-### Contributor overlay
+### Resource overlay
 
-Contributor attribution is separate from TLF topology. The current contributor
-set is:
-
-$$
-C
-=
-\{\texttt{research},\texttt{studio}\}
-$$
-
-Define the contributor relation:
+Contributor resources are separate from TLF topology. Their accepted relation
+is:
 
 $$
-E_c\subseteq C\times V
+P_{\mathcal K}
+\subseteq
+\bigcup_{c\in C}(V\times\{c\}\times D_c\times F)
 $$
 
-and the format declaration:
+An element $\rho=(v,c,d,f)$ is one logical resource leaf for node $v$,
+contributor $c$, domain $d$, and format $f$. It does not add an edge to
+$E_g$, $E_l$, or $E_r$, and it is not synonymous with a TLF `F` node.
 
-$$
-\phi:E_c\to\mathcal P(\mathcal F)
-$$
-
-where initially:
-
-$$
-\mathcal F
-=
-\{\texttt{md},\texttt{ipynb},\texttt{py},\texttt{mp4},\texttt{youtube}\}
-$$
-
-For $(c,v)\in E_c$, contributor $c$ has an accepted contribution associated
-with node $v$. The set $\phi(c,v)$ names the contributed content formats.
-
-An empty format set is meaningful:
-
-$$
-\phi(c,v)=\varnothing
-$$
-
-means that $c$ contributed to the node or its structure without contributing a
-content body.
-
-A node may receive work from several contributors:
-
-$$
-\deg_c^-(v)\geq0
-$$
-
-The contributor overlay does not change grouping, reading order, related
-knowledge, canonical paths, or layout.
-
-The complete local registry view is therefore:
-
-$$
-\operatorname{loc}(v)
-=
-\left(
-\nu(v),
-E_g^-(v),E_g^+(v),
-E_l^-(v),E_l^+(v),
-E_r^-(v),E_r^+(v),
-E_c^-(v),
-\phi|_{E_c^-(v)}
-\right)
-$$
-
-In the Directory Projection, this neighborhood is declared locally in YAML.
-In the Neo4j Projection, node properties and incident relationships are stored
-explicitly by the graph engine. The mathematical locality is unchanged even
-though the representation changes.
-
-The contributor relation is a node-level summary. Exact attribution of a
-property or relationship change can live in a future accepted-proposal
-history.
+The complete identity, storage, and bridge contract is defined in
+[`RESOURCE-OVERLAY.md`](RESOURCE-OVERLAY.md).
 
 ## 6. Emergence
 
@@ -924,9 +866,9 @@ Contributor overlay:
 
 $$
 \boxed{
-E_c\subseteq C\times V,
-\qquad
-\phi:E_c\to\mathcal P(\mathcal F)
+P_{\mathcal K}
+\subseteq
+\bigcup_{c\in C}(V\times\{c\}\times D_c\times F)
 }
 $$
 

@@ -41,25 +41,46 @@ def storage_path(
     return source_root / path
 
 
-def contributor_formats(manifest: dict[str, Any]) -> dict[str, frozenset[str]]:
+def contributor_domains(
+    manifest: dict[str, Any],
+) -> dict[str, dict[str, frozenset[str]]]:
     raw_contributors = manifest.get("contributors")
     if not isinstance(raw_contributors, dict) or not raw_contributors:
         raise ValueError("k-graph.toml must declare contributors")
 
-    out: dict[str, frozenset[str]] = {}
+    out: dict[str, dict[str, frozenset[str]]] = {}
     for contributor, config in raw_contributors.items():
         if not isinstance(contributor, str) or not contributor:
             raise ValueError("contributor ids must be non-empty strings")
         if not isinstance(config, dict):
             raise ValueError(f"contributors.{contributor} must be a table")
-        formats = config.get("formats")
-        if not isinstance(formats, list) or not all(
-            isinstance(value, str) and value for value in formats
-        ):
+        raw_domains = config.get("domains")
+        if not isinstance(raw_domains, dict) or not raw_domains:
             raise ValueError(
-                f"contributors.{contributor}.formats must be a string list"
+                f"contributors.{contributor}.domains must be a non-empty table"
             )
-        if len(formats) != len(set(formats)):
-            raise ValueError(f"contributors.{contributor}.formats contains duplicates")
-        out[contributor] = frozenset(formats)
+        domains: dict[str, frozenset[str]] = {}
+        for domain, domain_config in raw_domains.items():
+            if not isinstance(domain, str) or not domain:
+                raise ValueError("contributor domain ids must be non-empty strings")
+            if not isinstance(domain_config, dict):
+                raise ValueError(
+                    f"contributors.{contributor}.domains.{domain} must be a table"
+                )
+            formats = domain_config.get("formats")
+            if not isinstance(formats, list) or not formats or not all(
+                isinstance(value, str) and value for value in formats
+            ):
+                raise ValueError(
+                    "contributors."
+                    f"{contributor}.domains.{domain}.formats must be a "
+                    "non-empty string list"
+                )
+            if len(formats) != len(set(formats)):
+                raise ValueError(
+                    "contributors."
+                    f"{contributor}.domains.{domain}.formats contains duplicates"
+                )
+            domains[domain] = frozenset(formats)
+        out[contributor] = domains
     return out

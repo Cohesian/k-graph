@@ -2,8 +2,7 @@ title: Inference
 description: Theorem-style reasoning, agents, and conclusions.
 kind: L
 id: da255734-d513-41e4-b64c-721403e9da50
-contributors:
-  research: []
+contributors: {}
 edges:
   g:
     - F-01-theorem

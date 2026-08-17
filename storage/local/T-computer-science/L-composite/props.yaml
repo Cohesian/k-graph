@@ -2,8 +2,7 @@ title: Composite
 description: Binder patterns and the TLF corpus composite model.
 kind: L
 id: dfa7000b-4b6b-480a-9a33-90d7d5f764c5
-contributors:
-  research: []
+contributors: {}
 edges:
   g:
     - F-01-carbon-binder

@@ -3,7 +3,7 @@
 ## Purpose
 
 This workspace maintains Cohesian's accepted TLF knowledge graph: node
-identity, intrinsic semantics, graph topology, contributor attribution, and
+identity, intrinsic semantics, graph topology, accepted resources, and
 equivalent graph representations.
 
 Work here as the keeper of a small, coherent registry. Read the current graph,
@@ -20,6 +20,7 @@ representation still describes the same object.
 | Directory representation | [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) |
 | Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
 | Contributor model | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |
+| Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
 | Proposal model | [`docs/PROPOSALS.md`](docs/PROPOSALS.md) |
 | Pending interfaces | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Tooling | [`tooling/README.md`](tooling/README.md) |
@@ -35,7 +36,8 @@ kind: F
 id: 42292902-3874-4d54-87ec-0e1b7362af13
 contributors:
   research:
-    - md
+    documents:
+      - md
 edges:
   g: []
   l:
@@ -45,7 +47,8 @@ edges:
 ```
 
 The intrinsic fields describe the node. `edges` expresses its local graph
-neighborhood. `contributors` expresses attribution and contributed formats.
+neighborhood. `contributors` expresses accepted resources by contributor,
+domain, and format.
 
 Preserve these invariants when changing the graph:
 
@@ -57,7 +60,7 @@ Preserve these invariants when changing the graph:
 - `GROUPS.position` preserves authored child order;
 - Neo4j derives rooted paths through `GROUPS` rather than persisting them as
   node properties;
-- contributor ids and formats are registered in `k-graph.toml`;
+- contributor ids, domains, and formats are registered in `k-graph.toml`;
 - the Directory and Neo4j representations remain equivalent; and
 - generated Cypher is regenerated through the tooling.
 

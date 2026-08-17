@@ -17,7 +17,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from kgraph_config import contributor_formats, load_manifest, storage_path
+from kgraph_config import contributor_domains, load_manifest, storage_path
 
 try:
     import yaml
@@ -45,7 +45,7 @@ class Node:
     description: str
     source_path: Path
     parent_dir: Path
-    contributors: dict[str, list[str]] = field(default_factory=dict)
+    contributors: dict[str, dict[str, list[str]]] = field(default_factory=dict)
     edges: dict[str, Any] = field(default_factory=dict)
 
 
@@ -67,7 +67,7 @@ class RelatedEdge:
 class DirectoryGraph:
     source_root: Path
     tree_root: Path
-    contributor_formats: dict[str, frozenset[str]]
+    contributor_domains: dict[str, dict[str, frozenset[str]]]
     nodes: dict[str, Node] = field(default_factory=dict)
     groups: list[GroupEdge] = field(default_factory=list)
     linear: set[tuple[str, str]] = field(default_factory=set)
@@ -134,33 +134,52 @@ def normalize_contributors(
     *,
     path: Path,
     graph: DirectoryGraph,
-) -> dict[str, list[str]]:
+) -> dict[str, dict[str, list[str]]]:
     raw_contributors = raw.get("contributors", {})
     if not isinstance(raw_contributors, dict):
         graph.error(path, "contributors must be a mapping")
         return {}
 
-    out: dict[str, list[str]] = {}
-    for contributor, raw_formats in raw_contributors.items():
-        allowed = graph.contributor_formats.get(contributor)
-        if allowed is None:
+    out: dict[str, dict[str, list[str]]] = {}
+    for contributor, raw_domains in raw_contributors.items():
+        allowed_domains = graph.contributor_domains.get(contributor)
+        if allowed_domains is None:
             graph.error(path, f"unknown contributor {contributor!r}")
             continue
-        if not isinstance(raw_formats, list):
-            graph.error(path, f"contributors.{contributor} must be a list")
-        formats = unique_strings(as_list(raw_formats))
-        if len(formats) != len(as_list(raw_formats)):
-            graph.error(
-                path,
-                f"contributors.{contributor} must contain unique strings",
-            )
-        for value in formats:
-            if value not in allowed:
+        if not isinstance(raw_domains, dict):
+            graph.error(path, f"contributors.{contributor} must be a mapping")
+            continue
+        domains: dict[str, list[str]] = {}
+        for domain, raw_formats in raw_domains.items():
+            allowed = allowed_domains.get(domain)
+            if allowed is None:
                 graph.error(
                     path,
-                    f"contributor {contributor!r} does not accept format {value!r}",
+                    f"unknown domain {domain!r} for contributor {contributor!r}",
                 )
-        out[contributor] = formats
+                continue
+            if not isinstance(raw_formats, list) or not raw_formats:
+                graph.error(
+                    path,
+                    f"contributors.{contributor}.{domain} must be a non-empty list",
+                )
+                continue
+            formats = unique_strings(as_list(raw_formats))
+            if len(formats) != len(as_list(raw_formats)):
+                graph.error(
+                    path,
+                    f"contributors.{contributor}.{domain} must contain unique strings",
+                )
+            for value in formats:
+                if value not in allowed:
+                    graph.error(
+                        path,
+                        f"contributor {contributor!r} domain {domain!r} "
+                        f"does not accept format {value!r}",
+                    )
+            domains[domain] = formats
+        if domains:
+            out[contributor] = domains
     return out
 
 
@@ -514,12 +533,12 @@ def load_directory_graph(source_root: Path) -> DirectoryGraph:
     try:
         manifest = load_manifest(source_root)
         tree_root = storage_path(source_root, manifest, "local")
-        formats = contributor_formats(manifest)
+        domains = contributor_domains(manifest)
     except (OSError, ValueError) as exc:
         graph = DirectoryGraph(
             source_root=source_root,
             tree_root=source_root / "storage" / "directory",
-            contributor_formats={},
+            contributor_domains={},
         )
         graph.errors.append(f"k-graph.toml: {exc}")
         return graph
@@ -527,7 +546,7 @@ def load_directory_graph(source_root: Path) -> DirectoryGraph:
     graph = DirectoryGraph(
         source_root=source_root,
         tree_root=tree_root,
-        contributor_formats=formats,
+        contributor_domains=domains,
     )
     discover_nodes(graph)
     if graph.nodes:
@@ -561,6 +580,12 @@ def emit_cypher(graph: DirectoryGraph) -> str:
         "FOR (c:Contributor)",
         "REQUIRE c.id IS UNIQUE;",
         "",
+        "MATCH (:Contributor)-[r:CONTRIBUTED]->(:KNode)",
+        "DELETE r;",
+        "",
+        "MATCH (:Contributor)-[r:PROVIDES]->(:KNode)",
+        "DELETE r;",
+        "",
         "MATCH (n:KNode)",
         "REMOVE n.path;",
         "",
@@ -588,7 +613,7 @@ def emit_cypher(graph: DirectoryGraph) -> str:
             ]
         )
 
-    for contributor in sorted(graph.contributor_formats):
+    for contributor in sorted(graph.contributor_domains):
         lines.extend(
             [
                 f"MERGE (:Contributor {{id: {cypher_value(contributor)}}});",
@@ -597,18 +622,22 @@ def emit_cypher(graph: DirectoryGraph) -> str:
         )
 
     for node in sorted(graph.nodes.values(), key=lambda item: item.path):
-        for contributor, formats in sorted(node.contributors.items()):
-            lines.extend(
-                [
-                    (
-                        f"MATCH (c:Contributor {{id: {cypher_value(contributor)}}}), "
-                        f"(n:KNode {{id: {cypher_value(node.id)}}})"
-                    ),
-                    "MERGE (c)-[r:CONTRIBUTED]->(n)",
-                    f"SET r.formats = {cypher_value(formats)};",
-                    "",
-                ]
-            )
+        for contributor, domains in sorted(node.contributors.items()):
+            for domain, formats in sorted(domains.items()):
+                lines.extend(
+                    [
+                        (
+                            f"MATCH (c:Contributor {{id: {cypher_value(contributor)}}}), "
+                            f"(n:KNode {{id: {cypher_value(node.id)}}})"
+                        ),
+                        (
+                            "MERGE (c)-[r:PROVIDES "
+                            f"{{domain: {cypher_value(domain)}}}]->(n)"
+                        ),
+                        f"SET r.formats = {cypher_value(formats)};",
+                        "",
+                    ]
+                )
 
     for edge in sorted(graph.groups, key=lambda item: (item.origin, item.position)):
         origin_id = graph.nodes[edge.origin].id
@@ -664,14 +693,19 @@ def emit_cypher(graph: DirectoryGraph) -> str:
 
 
 def print_report(graph: DirectoryGraph) -> None:
-    contributions = sum(len(node.contributors) for node in graph.nodes.values())
+    resources = sum(
+        len(formats)
+        for node in graph.nodes.values()
+        for domains in node.contributors.values()
+        for formats in domains.values()
+    )
     print(
         "directory graph: "
         f"{len(graph.nodes)} nodes, "
         f"{len(graph.groups)} GROUPS, "
         f"{len(graph.linear)} NEXT, "
         f"{len(graph.related)} RELATED_TO, "
-        f"{contributions} CONTRIBUTED",
+        f"{resources} RESOURCES",
         file=sys.stderr,
     )
     for warning in graph.warnings:

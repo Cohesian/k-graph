@@ -4,6 +4,12 @@
 TLF graph, keeps a complete reviewable representation in Git, and provides an
 equivalent Neo4j representation.
 
+This repository is K's workspace: it owns the graph contract, documentation,
+validation, projections, and operational tooling. `storage/local/` is the
+current authoritative persistence. `storage/neo4j/` is a derived expression
+that may be loaded into local Neo4j or Aura. A future K interface may operate
+either persistence without changing the graph model.
+
 Each knowledge node has a small intrinsic semantic surface:
 
 ```yaml
@@ -14,9 +20,9 @@ description: Concise meaning of this node
 ```
 
 Its grouping, linear, and related connections are graph relationships. A
-separate contributor overlay records which registered contributors introduced
-the node or supplied content forms for it. The current contributors are
-`research` and `studio`.
+separate resource overlay records which accepted formats registered
+contributors provide for it, categorized by contributor and domain. The
+current contributors are `research` and `studio`.
 
 ## Read first
 
@@ -26,6 +32,7 @@ the node or supplied content forms for it. The current contributors are
 | Directory/YAML representation | [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) |
 | Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
 | Contributors | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |
+| Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
 | Change proposals | [`docs/PROPOSALS.md`](docs/PROPOSALS.md) |
 | Pending interfaces | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Normative repository contract | [`CONTRACT.md`](CONTRACT.md) |
@@ -57,5 +64,8 @@ tree. A query interface may use either selector or require both to agree.
 ## Current scope
 
 Proposals and acceptance are manual. Contributor-specific storage remains
-outside this registry manifest. Research now has a contributor-owned local
-resolver; a shared contributor protocol and the Studio resolver remain pending.
+outside this registry manifest. The Directory and Neo4j projections are
+domain-aware, and both Research and Studio expose the shared Tether protocol.
+The Website may consume a Git snapshot of the Directory Projection before a
+backend-agnostic K interface exists. Remote K persistence, content digests,
+and automated contributor admission remain pending.

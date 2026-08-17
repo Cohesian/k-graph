@@ -3,8 +3,8 @@
 ## 1. Meaning
 
 The Neo4j Projection stores the TLF object as a labeled property graph.
-Knowledge nodes and contributors become Neo4j nodes; topology and attribution
-become explicit relationships.
+Knowledge nodes and contributors become Neo4j nodes; topology and accepted
+resources become explicit relationships.
 
 ## 2. Knowledge nodes
 
@@ -66,16 +66,18 @@ Related knowledge:
 incoming and one outgoing `NEXT`. Related edges preserve direction, may fan
 out or cycle, and may carry an optional weight.
 
-## 4. Contributor overlay
+## 4. Resource overlay
 
 ```cypher
 (:Contributor {id: 'research'})
-  -[:CONTRIBUTED {formats: ['md']}]->
+  -[:PROVIDES {domain: 'documents', formats: ['md']}]->
 (:KNode {id: $id})
 ```
 
-An empty `formats` list records contribution without attached content.
-Contributor relationships are attribution, not TLF topology.
+One `PROVIDES` relationship represents the accepted format set for one
+`(contributor, domain, K node)` tuple. Each format in that set identifies one
+logical resource. Resource relationships are not TLF topology, and physical
+stores remain outside Neo4j.
 
 ## 5. Schema
 
@@ -169,12 +171,13 @@ MATCH (n:KNode {id: $id})-[r:RELATED_TO]-(other:KNode)
 RETURN other, r.weight, startNode(r).id = n.id AS outgoing;
 ```
 
-Contributors and formats:
+Resources by contributor, domain, and format:
 
 ```cypher
-MATCH (c:Contributor)-[a:CONTRIBUTED]->(n:KNode {id: $id})
-RETURN c.id AS contributor, a.formats AS formats
-ORDER BY contributor;
+MATCH (c:Contributor)-[r:PROVIDES]->(n:KNode {id: $id})
+UNWIND r.formats AS format
+RETURN c.id AS contributor, r.domain AS domain, format
+ORDER BY contributor, domain, format;
 ```
 
 ## 7. Representation summary
@@ -189,4 +192,4 @@ ORDER BY contributor;
 | Linear | `[:NEXT]` |
 | Related | `[:RELATED_TO {weight?}]` |
 | Contributor | `(:Contributor)` |
-| Attribution | `[:CONTRIBUTED {formats}]` |
+| Resource overlay | `[:PROVIDES {domain, formats}]` |

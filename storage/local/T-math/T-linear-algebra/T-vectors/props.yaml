@@ -2,8 +2,7 @@ title: Vectors
 description: Vector-space lectures under linear algebra.
 kind: T
 id: ae514a05-eb83-4013-a8c9-b1aaab27100b
-contributors:
-  research: []
+contributors: {}
 edges:
   g:
     - L-basis

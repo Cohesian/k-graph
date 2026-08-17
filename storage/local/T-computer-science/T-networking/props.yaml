@@ -2,8 +2,7 @@ title: Networking
 description: Networks, naming, and resolution — trees with typed attachments.
 kind: T
 id: efc84fce-0236-4141-b12d-24342b0d91ae
-contributors:
-  research: []
+contributors: {}
 edges:
   g:
     - L-DNS

@@ -4,11 +4,13 @@ kind: F
 id: 371342c0-401f-4d34-a537-439386bf9f7c
 contributors:
   research:
-    - md
+    documents:
+      - md
   studio:
-    - py
-    - mp4
-    - youtube
+    scenes:
+      - py
+    videos:
+      - mp4
 edges:
   g: []
   l:

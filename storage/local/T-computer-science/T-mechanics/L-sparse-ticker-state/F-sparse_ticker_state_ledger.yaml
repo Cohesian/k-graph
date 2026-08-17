@@ -4,8 +4,9 @@ kind: F
 id: ff73c9d4-922b-471e-beb5-3dde7c4a415f
 contributors:
   research:
-    - md
-    - ipynb
+    documents:
+      - md
+      - ipynb
 edges:
   g: []
   l:

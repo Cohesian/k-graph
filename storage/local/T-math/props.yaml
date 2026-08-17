@@ -2,8 +2,7 @@ title: Math
 description: Mathematical explorations in the Cohesian k-graph.
 kind: T
 id: 61def28d-378b-421d-bd96-42281ecc5570
-contributors:
-  research: []
+contributors: {}
 edges:
   g:
     - L-division

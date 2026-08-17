@@ -56,29 +56,31 @@ example:
 T-computer-science/L-composite/F-04-TLF-composite
 ```
 
-## 4. Contributor declaration
+## 4. Resource declaration
 
-Contributor attribution is local to the node:
+Accepted contributor resources are local to the node:
 
 ```yaml
 contributors:
   research:
-    - md
+    documents:
+      - md
   studio:
-    - py
-    - mp4
+    scenes:
+      - py
+    videos:
+      - mp4
 ```
 
-The keys must be registered contributors and the list values must be allowed
-formats in `k-graph.toml`. An empty list records a structural contribution:
+Contributor keys, domain keys, and formats must be admitted by `k-graph.toml`.
+Nodes without accepted resources use:
 
 ```yaml
-contributors:
-  research: []
+contributors: {}
 ```
 
-This says Research contributed to the node without claiming a content form.
-Contributor storage locations and URI resolution are not encoded here.
+Proposal provenance, contributor storage locations, and URI resolution are not
+encoded here.
 
 ## 5. Local edges
 
@@ -145,7 +147,7 @@ As with linear edges, cross-group targets use their rooted paths.
 A node's local declaration contains:
 
 - its intrinsic `kind`, `title`, and `description`;
-- its contributor relations and supplied formats; and
+- its accepted resources by contributor, domain, and format; and
 - its incoming/outgoing neighborhood as expressed through `g`, `l`, and `r`.
 
 Some incoming facts are declared reciprocally or by a neighboring composite,
@@ -185,7 +187,7 @@ No individual YAML node contains the whole graph.
 | Draft File | `Fd-*.yaml` |
 | Stable identity | `id` UUID property |
 | Intrinsic semantics | `kind`, `title`, `description` |
-| Contributor overlay | `contributors` |
+| Resource overlay | `contributors.<contributor>.<domain>[]` |
 | Grouping | containment + ordered `edges.g` |
 | Linear | `edges.l.prev` / `edges.l.next` |
 | Related | `edges.r` |

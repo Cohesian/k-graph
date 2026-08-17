@@ -12,8 +12,11 @@ path = "storage/neo4j"
 schema = "schema.cypher"
 projection = "k-graph.cypher"
 
-[contributors.research]
+[contributors.research.domains.documents]
 formats = ["md", "ipynb"]
 
-[contributors.studio]
-formats = ["py", "mp4", "youtube"]
+[contributors.studio.domains.scenes]
+formats = ["py"]
+
+[contributors.studio.domains.videos]
+formats = ["mp4"]

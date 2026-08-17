@@ -9,37 +9,62 @@ $$
 | Contributor | Work |
 |---|---|
 | `research` | Research structure and formats such as `md` and `ipynb` |
-| `studio` | Visual structure and formats such as `py`, `mp4`, and `youtube` |
+| `studio` | Visual structure and formats such as `py` and `mp4` |
 
 Contributors are trusted by Cohesian but remain outside K's responsibility
 boundary. They own their work and persistence. K owns the accepted graph.
 
-## Node relation
+## Accepted contribution relation
 
-Contributor attribution is a separate graph overlay:
+The canonical resource model is defined in
+[`RESOURCE-OVERLAY.md`](RESOURCE-OVERLAY.md).
+
+The domain-aware registration relation is:
 
 $$
-E_c\subseteq C\times V
+P_K\subseteq V\times C\times D\times F
 $$
 
-The relation associates a contributor with a K node. Its format set declares
-which content forms that contributor supplies:
+An element $(v,c,d,f)\in P_K$ states that K accepts contributor $c$ as a
+provider of format $f$ in domain $d$ for node $v$:
 
 ```yaml
 contributors:
   research:
-    - md
+    documents:
+      - md
   studio:
-    - py
-    - mp4
+    scenes:
+      - py
+    videos:
+      - mp4
 ```
 
-An empty list records a structural contribution without a content body:
+The Directory and Neo4j projections preserve contributor, domain, and format
+explicitly. `youtube` is therefore a store, not a format; a YouTube location
+may expose a Studio `videos/mp4` resource.
 
-```yaml
-contributors:
-  research: []
-```
+## Logical resource leaf
+
+Every accepted tuple identifies one logical resource:
+
+$$
+\rho=(v,c,d,f)
+$$
+
+Its durable key is:
+
+$$
+(\operatorname{id}(v),c,d,f)
+$$
+
+Protocol version 1 gives the resource no additional name. For one node,
+contributor, domain, and format there is at most one logical resource. Several
+stores may expose replicas of it.
+
+This is a leaf of the contributor overlay, not necessarily a TLF File. Any
+`T`, `L`, `F`, or `Fd` node can have resources attached without changing TLF
+topology.
 
 A node can have no contributor, one contributor, or several contributors.
 Contributor edges never affect TLF grouping, linear traversal, related
@@ -61,28 +86,39 @@ The mapping is partial because not every internal result must be proposed or
 has a valid TLF expression. It should be called a functor only after the
 relevant structures and preservation laws are defined.
 
-K does not resolve contributor storage itself. Research exposes its owned
-storage through the `research-storage` CLI. A single object can be discovered
-or resolved by immutable node `id` or current rooted `path`, together with a
-format:
+K does not resolve contributor storage itself. Every contributor exposes one
+localized `contributor.toml` containing independent domain and store axes plus
+their explicit bindings. [Tether](../../draft/tether/README.md) reads that file
+directly; no contributor-specific bridge executable is required.
+
+A target keeps the K selector separate from contribution semantics:
+
+$$
+\tau=(\sigma,(c,d,f))
+$$
+
+Thus $\tau$ is the selectable form of $\rho$. The contributor and domain
+localize ownership; the format selects the resource leaf. Physical storage may
+mirror `path`, use stable `id`, or use a provider-controlled map.
+
+Research can therefore be projected by id, rooted path, domain, format, store,
+or any intersection of those filters:
 
 ```bash
-research-storage list --id <id> --format md --json
-research-storage resolve --path <path> --format md --source local --json
+tether resource resolve ../draft/research \
+  --domain documents \
+  --format md
 ```
 
-The complete Research inventory is available in one call:
+The bulk response joins to K nodes by UUID without invoking the contributor
+once per node. Contributors may organize inventories by either selector,
+while `id` remains valid when a graph reorganization changes paths. Storage
+roots, credentials, and publication maps remain outside K.
 
-```bash
-research-storage audit --json
-```
-
-This bulk response can be joined to K nodes by UUID without invoking the
-contributor once per node. Contributors may organize storage by either
-selector, while `id` remains valid when a graph reorganization changes paths.
-Storage roots, credentials, and publication maps remain outside K.
-
-The pending discovery and resolution boundary is laid out in
+The remaining K-side migration is laid out in
 [`ROADMAP.md`](ROADMAP.md).
+
+The concrete contributor identity and inventory workflow is documented in
+[Tether's onboarding guide](../../draft/tether/docs/CONTRIBUTOR-ONBOARDING.md).
 
 Contributors outside the current set require an explicit registry change.

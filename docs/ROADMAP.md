@@ -1,9 +1,10 @@
 # Pending work
 
 The graph model and its Directory and Neo4j representations are established.
-Research now has a local contributor-owned storage resolver using the selector
-model below. K's unified query interface, a shared contributor protocol, and
-the Studio resolver remain pending while the graph is mirrored manually.
+K now stores domain-aware resources, and the shared Tether bridge is validated
+against both Research and Studio. The Directory Projection remains the current
+Git-versioned authority. Website migration can consume that representation
+directly while a unified K interface and remote persistence remain pending.
 
 ## Established identity
 
@@ -57,9 +58,9 @@ $$
 \pi_c(K)
 =
 \left\{
-(\operatorname{id}(v),\operatorname{path}(v),\phi(c,v))
-\mid
-(c,v)\in E_c
+(\operatorname{id}(v),\operatorname{path}(v),d,f)
+\;\middle|\;
+(v,c,d,f)\in P_K
 \right\}
 $$
 
@@ -68,8 +69,15 @@ content forms. It does not communicate storage infrastructure.
 
 ## 3. Contributor discovery and resolution
 
-Each contributor owns a small interface over its storage. Two operations are
-needed.
+Each contributor owns one localized protocol document. It declares:
+
+$$
+B_c\subseteq D_c\times S_c\times F
+$$
+
+where domains $D_c$ and stores $S_c$ remain independent axes and $B_c$ binds
+the formats made available between them. Route inventories materialize target
+availability.
 
 Discovery reports what is currently available for a selector:
 
@@ -77,15 +85,16 @@ $$
 A_c:
 \operatorname{Selector}
 \longrightarrow
-\mathcal P(\operatorname{Format}\times\operatorname{Source}\times\operatorname{State})
+\mathcal P(\operatorname{Format}\times\operatorname{Store}\times\operatorname{State})
 $$
 
-Resolution returns locations matching a requested selector, format, and optional
-source:
+Resolution returns locations matching a requested selector, contributor
+domain, format, and optional store:
 
 $$
-R_c:
-\operatorname{Selector}\times\operatorname{Format}\times\operatorname{Source}?
+R:
+\operatorname{Selector}\times C\times D\times\operatorname{Format}
+\times\operatorname{Store}?
 \rightharpoonup
 \mathcal P(\operatorname{Location})
 $$
@@ -93,14 +102,11 @@ $$
 The result is a set because the same logical content may have several replicas.
 The mapping is partial because content may be unavailable or inaccessible.
 
-Conceptually:
+Tether evaluates the contributor protocol directly:
 
 ```text
-research content list --id <id>
-research content resolve --path <path> --format md --source drive
-
-studio content list --path <path>
-studio content resolve --id <id> --format mp4 --source youtube
+tether resource list <contributor> --id <id>
+tether resource resolve <contributor> --path <path> --format md
 ```
 
 Each resolved location should minimally identify:
@@ -109,7 +115,7 @@ Each resolved location should minimally identify:
 id
 path
 format
-source
+store
 uri
 ```
 
@@ -117,51 +123,57 @@ Useful optional fields are availability state, media type, version, checksum,
 and access class. Credentials and tokens remain inside the contributor's own
 storage boundary.
 
-Initial source plans are:
+Initial store plans are:
 
-| Contributor | Sources |
+| Contributor | Stores |
 |---|---|
 | Research | local directory, Google Drive |
 | Studio | local directory, Google Drive, YouTube |
 
 ## 4. Content identity
 
-Before fixing the contributor CLI contract, decide whether this tuple names one
-logical content object:
+Protocol version 1 settles one logical resource as:
 
 ```text
-(K id, contributor, format)
+(K id, contributor, domain, format)
 ```
 
-If a node may have several Markdown papers, videos, languages, or editions in
-the same format, the contract will also need a contributor-owned `content_ref`
-or `variant`. This decision should precede automation.
+There is no resource name or variant. Repeated physical locations are replicas
+of the same logical resource. If a future use case genuinely needs several
+same-format resources under one node, contributor, and domain, it requires a
+versioned identity extension rather than an implicit filename distinction.
 
 ## 5. Website snapshot
 
-The eventual Website content build can remain offline and reproducible:
+The initial Website content build can remain offline and reproducible without
+waiting for the unified K query interface:
 
 ```text
-query accepted K snapshot
+acquire the Git-versioned Directory Projection
 → discover contributor content
 → resolve selected replicas
 → fetch content
+→ create a consumer-local resolved projection
 → build static Website snapshot
 ```
 
-Versions or checksums in resolver responses would let a Website build record
-exactly which content snapshot it consumed.
+The resolved projection is generated and ignored by Git. It preserves each
+`(contributor, domain, format)` declaration and adds the selected store and
+URI; it never mutates authoritative K. Git commit ids can identify the current
+internal inputs. Per-resource digests remain a later integrity extension.
 
 ## Suggested order
 
-1. Continue manually maintaining the Directory and Neo4j mirrors.
-2. Extend the established Research local storage to Drive, and establish
-   Studio storage independently.
-3. Decide content multiplicity.
-4. Specify the K query interface.
-5. Specify the shared contributor discovery/resolution protocol.
-6. Implement the Research and Studio adapters separately.
-7. Connect the Website snapshot pipeline after the interfaces have real data.
+1. Stabilize the Directory authority and deterministically generated Neo4j
+   expression.
+2. Stabilize the Research and Studio contributor inventories through Tether.
+3. Migrate the Website build from legacy Foundations inputs to a local K and
+   contributor snapshot.
+4. Load and verify K in local Neo4j, then Aura when useful.
+5. Add the backend-agnostic K interface when more than one persistence must be
+   operated regularly.
+6. Add approved remote contributor maps and content digests when those stores
+   enter the publication flow.
 
 ## Reindexing
 

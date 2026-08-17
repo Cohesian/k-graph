@@ -1,6 +1,6 @@
 # k-graph contract
 
-Version: **0.5.0**
+Version: **0.6.0**
 
 Status: **draft**
 
@@ -8,7 +8,7 @@ Status: **draft**
 
 The k-graph is Cohesian's accepted knowledge registry. It provides stable
 knowledge-node identity, intrinsic node semantics, explicit topology, and
-contributor attribution without embedding contributed content bodies.
+accepted contributor resources without embedding contributed content bodies.
 
 The distinguished root is `K`, a Topic.
 
@@ -17,12 +17,18 @@ The distinguished root is `K`, a Topic.
 | Concern | Authority |
 |---|---|
 | Mathematical model | [`docs/TLF.md`](docs/TLF.md) |
+| Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
 | Authored graph | [`storage/local/`](storage/local/) |
 | Neo4j expression | [`storage/neo4j/`](storage/neo4j/) |
-| Storage and contributor registry | [`k-graph.toml`](k-graph.toml) |
+| Storage declarations and contributor registry | [`k-graph.toml`](k-graph.toml) |
+
+The repository is K's workspace. It owns the model and the means to validate,
+project, and eventually query K. The authored Directory graph is its current
+authoritative persistence; generated Neo4j Cypher is a derived persistence
+expression. Changing the active persistence must not change this contract.
 
 Translation must preserve node identity and semantics, the `g`, `l`, and `r`
-edge families, and contributor attribution.
+edge families, and the accepted resource overlay.
 
 ## 3. Node semantics
 
@@ -92,7 +98,7 @@ in this contract.
 `RELATED_TO` may connect any kinds, fan out, and form cycles. Its weight is
 optional and currently has no universal scale.
 
-## 5. Contributor overlay
+## 5. Resource overlay
 
 The registered contributor set is:
 
@@ -101,24 +107,40 @@ research
 studio
 ```
 
-A contributor relation records participation in a node. Its format list says
-which content forms that contributor supplied:
+The accepted resource relation is:
+
+$$
+P_{\mathcal K}
+\subseteq
+\bigcup_{c\in C}(V\times\{c\}\times D_c\times F)
+$$
+
+Each tuple $(v,c,d,f)$ registers one logical resource for a K node,
+contributor, contributor-owned domain, and format. Its durable identity is
+`(node id, contributor, domain, format)`. Stores expose replicas and are not
+part of that identity.
+
+The Directory projection expresses the relation directly:
 
 ```yaml
 contributors:
   research:
-    - md
+    documents:
+      - md
   studio:
-    - py
-    - mp4
+    scenes:
+      - py
+    videos:
+      - mp4
 ```
 
-An empty format list is meaningful: the contributor introduced or shaped the
-knowledge node without attaching a content form.
+Nodes with no accepted resources use `contributors: {}`. Empty resource lists
+do not encode proposal provenance.
 
-Contributor relations do not change TLF kind or topology. Exact change-level
-provenance belongs to a future accepted-proposal history; the node relation is
-the current compact attribution view. The full model is in
+Resource declarations do not change TLF kind or topology. Exact change-level
+provenance belongs to a future accepted-proposal history. The canonical
+resource model is in [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md);
+contributor responsibilities are in
 [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md).
 
 ## 6. Proposals
@@ -133,8 +155,9 @@ are described in [`docs/PROPOSALS.md`](docs/PROPOSALS.md).
 ## 7. Representation contract
 
 The repository manifest names the authoritative storage, the available
-projections, and the allowed contributor formats. It contains no credentials,
-machine-specific paths, external repository locations, or content URLs.
+projections, and the allowed contributor domains and formats. It contains no
+credentials, machine-specific paths, external repository locations, or
+content URLs.
 
 The Directory and Neo4j documents define how the same model is expressed:
 
