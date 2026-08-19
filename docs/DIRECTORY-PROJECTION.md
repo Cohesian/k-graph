@@ -67,7 +67,7 @@ contributors:
       - md
   studio:
     scenes:
-      - py
+      - loci-project
     videos:
       - mp4
 ```

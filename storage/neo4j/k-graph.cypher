@@ -198,7 +198,7 @@ SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
 MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
-SET r.formats = ["py"];
+SET r.formats = ["loci-project"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
 MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
@@ -210,7 +210,7 @@ SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
 MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
-SET r.formats = ["py"];
+SET r.formats = ["loci-project"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
 MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
@@ -222,7 +222,7 @@ SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
 MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
-SET r.formats = ["py"];
+SET r.formats = ["loci-project"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
 MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
@@ -234,7 +234,7 @@ SET r.formats = ["md"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
 MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
-SET r.formats = ["py"];
+SET r.formats = ["loci-project"];
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
 MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)

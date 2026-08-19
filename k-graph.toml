@@ -16,7 +16,7 @@ projection = "k-graph.cypher"
 formats = ["md", "ipynb"]
 
 [contributors.studio.domains.scenes]
-formats = ["py"]
+formats = ["loci-project"]
 
 [contributors.studio.domains.videos]
 formats = ["mp4"]

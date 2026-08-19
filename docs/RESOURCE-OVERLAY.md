@@ -84,7 +84,7 @@ contributors:
       - md
   studio:
     scenes:
-      - py
+      - loci-project
     videos:
       - mp4
 ```
@@ -113,13 +113,18 @@ where $U$ is the URI space. Local files and GitHub may be projected from a
 rooted path or UUID. Google Drive and YouTube may require contributor-owned
 maps. These are storage strategies; they do not alter $\rho$.
 
+A logical format need not be one file extension. Studio registers
+`loci-project` because an accepted scene resource is a self-contained project
+directory; its internal `scene.toml` identifies the `.py` entrypoint. Every
+store location for that resource therefore addresses the project boundary.
+
 K stores the accepted relation $P_{\mathcal K}$. Each contributor stores its
 domains, store descriptors, bindings, inventories, and credentials under its
 own rules. Credentials never enter K or the declarative protocol.
 
 ## Tether
 
-[Tether](../../draft/tether/README.md) is the common bridge between a K target
+[Tether](../../tether/README.md) is the common bridge between a K target
 $\tau$ and contributor-owned store declarations. It reads a contributor's
 `contributor.toml` and route inventories to:
 
@@ -147,4 +152,4 @@ but K continues to validate and accept every change to $P_{\mathcal K}$.
 
 Contributor responsibilities are summarized in
 [`CONTRIBUTORS.md`](CONTRIBUTORS.md). The complete declarative file contract is
-in [Tether's contributor protocol](../../draft/tether/docs/CONTRIBUTOR-PROTOCOL.md).
+in [Tether's contributor protocol](../../tether/docs/CONTRIBUTOR-PROTOCOL.md).

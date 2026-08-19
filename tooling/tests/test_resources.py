@@ -21,7 +21,9 @@ class ResourceProjectionTests(unittest.TestCase):
     def test_resources_are_domain_aware(self) -> None:
         node = self.graph.nodes[COMPOSITE_PATH]
         self.assertEqual(node.contributors["research"], {"documents": ["md"]})
-        self.assertEqual(node.contributors["studio"]["scenes"], ["py"])
+        self.assertEqual(
+            node.contributors["studio"]["scenes"], ["loci-project"]
+        )
         self.assertEqual(node.contributors["studio"]["videos"], ["mp4"])
 
     def test_current_graph_has_33_logical_resources(self) -> None:

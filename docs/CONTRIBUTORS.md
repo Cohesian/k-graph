@@ -9,7 +9,7 @@ $$
 | Contributor | Work |
 |---|---|
 | `research` | Research structure and formats such as `md` and `ipynb` |
-| `studio` | Visual structure and formats such as `py` and `mp4` |
+| `studio` | Visual structure and formats such as `loci-project` and `mp4` |
 
 Contributors are trusted by Cohesian but remain outside K's responsibility
 boundary. They own their work and persistence. K owns the accepted graph.
@@ -35,7 +35,7 @@ contributors:
       - md
   studio:
     scenes:
-      - py
+      - loci-project
     videos:
       - mp4
 ```
@@ -88,7 +88,7 @@ relevant structures and preservation laws are defined.
 
 K does not resolve contributor storage itself. Every contributor exposes one
 localized `contributor.toml` containing independent domain and store axes plus
-their explicit bindings. [Tether](../../draft/tether/README.md) reads that file
+their explicit bindings. [Tether](../../tether/README.md) reads that file
 directly; no contributor-specific bridge executable is required.
 
 A target keeps the K selector separate from contribution semantics:
@@ -105,7 +105,7 @@ Research can therefore be projected by id, rooted path, domain, format, store,
 or any intersection of those filters:
 
 ```bash
-tether resource resolve ../draft/research \
+tether resource resolve ../research \
   --domain documents \
   --format md
 ```
@@ -119,6 +119,6 @@ The remaining K-side migration is laid out in
 [`ROADMAP.md`](ROADMAP.md).
 
 The concrete contributor identity and inventory workflow is documented in
-[Tether's onboarding guide](../../draft/tether/docs/CONTRIBUTOR-ONBOARDING.md).
+[Tether's onboarding guide](../../tether/docs/CONTRIBUTOR-ONBOARDING.md).
 
 Contributors outside the current set require an explicit registry change.
