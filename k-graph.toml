@@ -13,7 +13,13 @@ schema = "schema.cypher"
 projection = "k-graph.cypher"
 
 [contributors.research.domains.documents]
-formats = ["md", "ipynb"]
+formats = ["md", "ipynb", "companions"]
+
+[contributors.research.domains.code]
+formats = ["python-project"]
+
+[contributors.research.domains.media]
+formats = ["mp4"]
 
 [contributors.studio.domains.scenes]
 formats = ["loci-project"]

@@ -1,0 +1,17 @@
+title: Patchy-particle Emergence
+description: A controlled particle study connecting local rules to macroscopic observables.
+kind: L
+id: 04475552-1433-4e6d-92f9-a44406c7ed18
+contributors: {}
+edges:
+  g:
+    - F-00-purpose-and-boundary
+    - F-01-microscopic-model
+    - F-02-local-rules-and-parameters
+    - F-03-macroscopic-observables
+    - F-04-experimental-laboratory
+    - F-05-findings-and-limitations
+  l:
+    prev: null
+    next: null
+  r: []

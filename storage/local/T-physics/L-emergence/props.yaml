@@ -1,0 +1,12 @@
+title: Emergence
+description: How local interactions produce observable collective structure.
+kind: L
+id: 1bdc520d-6211-4371-8ff0-2e7b3041aea4
+contributors: {}
+edges:
+  g:
+    - L-patchy-particle-emergence
+  l:
+    prev: null
+    next: null
+  r: []

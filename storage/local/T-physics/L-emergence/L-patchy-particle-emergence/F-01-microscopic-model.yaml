@@ -1,0 +1,14 @@
+title: The Patchy-particle Model
+description: Reduced-unit geometry, dynamics, interactions, and boundary conditions.
+kind: F
+id: 579fa81e-4a5a-4521-98d9-ea8b69a48e8d
+contributors:
+  research:
+    documents:
+      - md
+edges:
+  g: []
+  l:
+    prev: F-00-purpose-and-boundary
+    next: F-02-local-rules-and-parameters
+  r: []

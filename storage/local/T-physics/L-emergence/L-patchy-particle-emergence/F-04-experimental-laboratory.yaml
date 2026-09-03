@@ -1,0 +1,20 @@
+title: Experimental Laboratory
+description: Reproducible HOOMD-blue experiment, notebook, and rendered trajectory.
+kind: F
+id: 6281d965-093e-4aaa-9ce0-2f67b95c8bbc
+contributors:
+  research:
+    documents:
+      - md
+      - ipynb
+      - companions
+    code:
+      - python-project
+    media:
+      - mp4
+edges:
+  g: []
+  l:
+    prev: F-03-macroscopic-observables
+    next: F-05-findings-and-limitations
+  r: []

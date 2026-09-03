@@ -1,0 +1,14 @@
+title: Findings and Limitations
+description: Supported observations, uncertainty, limitations, and next experiments.
+kind: F
+id: 508419e1-a1ea-4863-82b7-3636e39e5ee4
+contributors:
+  research:
+    documents:
+      - md
+edges:
+  g: []
+  l:
+    prev: F-04-experimental-laboratory
+    next: null
+  r: []

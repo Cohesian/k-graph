@@ -1,0 +1,12 @@
+title: Physics
+description: Physical models, experiments, and observations across scales.
+kind: T
+id: d46fb5c1-449d-4561-a399-93d8ec8b543f
+contributors: {}
+edges:
+  g:
+    - L-emergence
+  l:
+    prev: null
+    next: null
+  r: []

@@ -8,7 +8,7 @@ $$
 
 | Contributor | Work |
 |---|---|
-| `research` | Research structure and formats such as `md` and `ipynb` |
+| `research` | Research documents, document companions, executable studies, and study media |
 | `studio` | Visual structure and formats such as `loci-project` and `mp4` |
 
 Contributors are trusted by Cohesian but remain outside K's responsibility
@@ -33,6 +33,12 @@ contributors:
   research:
     documents:
       - md
+      - ipynb
+      - companions
+    code:
+      - python-project
+    media:
+      - mp4
   studio:
     scenes:
       - loci-project
@@ -61,6 +67,11 @@ $$
 Protocol version 1 gives the resource no additional name. For one node,
 contributor, domain, and format there is at most one logical resource. Several
 stores may expose replicas of it.
+
+A format may identify a bounded aggregate rather than one file extension.
+For example, `research/documents/companions` identifies one directory of files
+referenced by a node's document. The files inside that aggregate do not become
+additional K resources or receive K node identities.
 
 This is a leaf of the contributor overlay, not necessarily a TLF File. Any
 `T`, `L`, `F`, or `Fd` node can have resources attached without changing TLF
