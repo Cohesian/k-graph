@@ -1,5 +1,11 @@
 # Contributors
 
+This document describes the active v1 contributor projection. Protocol v2's
+accepted semantic target—including hierarchical domains, named resource keys,
+protocols, digests, and the separation of Studio production from Research
+ownership—is defined in
+[`RESOURCE-CONTRACT-V2.md`](RESOURCE-CONTRACT-V2.md).
+
 K accepts proposals from a closed contributor set:
 
 $$

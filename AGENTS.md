@@ -21,6 +21,7 @@ representation still describes the same object.
 | Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
 | Contributor model | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |
 | Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
+| Resource contract v2 migration target | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
 | Proposal model | [`docs/PROPOSALS.md`](docs/PROPOSALS.md) |
 | Pending interfaces | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Tooling | [`tooling/README.md`](tooling/README.md) |
@@ -63,6 +64,11 @@ Preserve these invariants when changing the graph:
 - contributor ids, domains, and formats are registered in `k-graph.toml`;
 - the Directory and Neo4j representations remain equivalent; and
 - generated Cypher is regenerated through the tooling.
+
+The invariants and example above describe the active v1 graph. Work on
+`feat/resource-contract-v2` follows the frozen v2 contract, but authored node
+files remain v1 until the coordinated K migration. Do not mix v1
+`contributors` and v2 `contributions` inside the active graph.
 
 ## Validation
 

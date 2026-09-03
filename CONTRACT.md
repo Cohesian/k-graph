@@ -18,6 +18,7 @@ The distinguished root is `K`, a Topic.
 |---|---|
 | Mathematical model | [`docs/TLF.md`](docs/TLF.md) |
 | Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
+| Resource protocol v2 migration target | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
 | Authored graph | [`storage/local/`](storage/local/) |
 | Neo4j expression | [`storage/neo4j/`](storage/neo4j/) |
 | Storage declarations and contributor registry | [`k-graph.toml`](k-graph.toml) |
@@ -166,3 +167,15 @@ The Directory and Neo4j documents define how the same model is expressed:
 
 Generated Neo4j Cypher is derived and is regenerated through the repository
 tooling.
+
+## 8. Versioned migration target
+
+This version of the repository contract describes the active v1 graph files.
+The accepted target for the next resource migration is
+[`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md). It introduces
+hierarchical resource addresses, explicit resource keys, versioned protocols,
+and canonical SHA-256 digests without changing K's ownership of topology.
+
+The v2 document does not authorize mixed serialization inside the active
+graph. Directory nodes, Neo4j generation, contributor inventories, and
+validators move together in the explicit migration phases.

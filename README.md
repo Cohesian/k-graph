@@ -33,6 +33,7 @@ current contributors are `research` and `studio`.
 | Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
 | Contributors | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |
 | Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
+| Resource contract v2 migration target | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
 | Change proposals | [`docs/PROPOSALS.md`](docs/PROPOSALS.md) |
 | Pending interfaces | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Normative repository contract | [`CONTRACT.md`](CONTRACT.md) |
@@ -69,3 +70,15 @@ domain-aware, and both Research and Studio expose the shared Tether protocol.
 The Website may consume a Git snapshot of the Directory Projection before a
 backend-agnostic K interface exists. Remote K persistence, content digests,
 and automated contributor admission remain pending.
+
+## Protocol v2 migration
+
+The frozen target contract replaces the v1 `(node, contributor, domain,
+format)` leaf with the address `(node, contributor, hierarchy, resource key)`.
+Every accepted resource then carries a versioned protocol and canonical
+SHA-256 digest. Physical locations remain contributor-owned.
+
+The current graph data is still v1. See
+[`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) for the migration
+target; the active v1 documents remain accurate until the data migration is
+performed.

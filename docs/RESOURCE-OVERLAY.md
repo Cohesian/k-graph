@@ -1,5 +1,9 @@
 # Resource overlay
 
+This document describes the active resource protocol v1. The frozen v2
+migration target is [`RESOURCE-CONTRACT-V2.md`](RESOURCE-CONTRACT-V2.md).
+Current graph files remain v1 until the coordinated K migration.
+
 TLF defines the topology of accepted knowledge. The resource overlay records
 which contributor-owned content is accepted for each K node without turning
 storage locations into graph topology.
