@@ -1,11 +1,10 @@
 # Resource contract v2
 
-Status: **frozen for migration**
+Status: **active**
 
-This document defines the target semantic contract for accepted resources in
-K. It does not claim that the current Directory or Neo4j projections have
-already migrated. Protocol v1 remains readable until every repository has
-adopted this contract.
+This document defines the active semantic contract for accepted resources in
+K. The Directory projection, Neo4j generator, validator, and Research
+inventory implement this contract.
 
 ## 1. Separation of concerns
 
@@ -233,8 +232,8 @@ check unless the retrieved bytes independently match.
 
 ## 9. Production provenance
 
-Production and contribution ownership are different relations. Protocol v2's
-migration target has Research own accepted scientific resources. Studio is a
+Production and contribution ownership are different relations. Protocol v2
+has Research own accepted scientific resources. Studio is a
 production workstation and may produce a resource later accepted under
 `c_research`.
 
@@ -284,9 +283,9 @@ authoritative graphs.
 - Tether interprets the contract without owning K or contributor persistence.
 - Consumer layouts and compositions are derived and non-authoritative.
 
-## 12. Migration boundary
+## 12. Version boundary
 
-This contract changes the v1 identity:
+Protocol v2 replaced the v1 identity:
 
 $$
 (\operatorname{id}(v),c,d,f)
@@ -298,10 +297,9 @@ $$
 (\operatorname{id}(v),c,H,p).
 $$
 
-It also replaces format lists with named resources carrying a versioned
-protocol and digest. Tether must support both versions during migration. K's
-current node files remain v1 until the K migration phase explicitly rewrites
-them.
+It also replaced format lists with named resources carrying a versioned
+protocol and digest. Tether retains v1 parsing only as a compatibility path;
+K's authored graph is entirely v2 and rejects mixed serialization.
 
 The planned topology term `Entry` is independent of this contract. Renaming
 TLF to TLE is a separate graph migration; a resource is never synonymous with

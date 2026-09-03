@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import uuid
 from collections import Counter
@@ -17,10 +18,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from kgraph_config import contributor_domains, load_manifest, storage_path
+from kgraph_config import load_manifest, registered_contributors, storage_path
 
 try:
     import yaml
+    from yaml.constructor import ConstructorError
 except ModuleNotFoundError:
     sys.exit("pyyaml is required: python -m pip install pyyaml")
 
@@ -29,10 +31,22 @@ KINDS = frozenset({"T", "L", "F", "Fd"})
 COMPOSITES = frozenset({"T", "L"})
 LEAVES = frozenset({"F", "Fd"})
 NODE_FIELDS = frozenset(
-    {"id", "title", "description", "kind", "contributors", "edges"}
+    {"id", "title", "description", "kind", "contributions", "edges"}
 )
 EDGE_FIELDS = frozenset({"g", "l", "r"})
 LINEAR_FIELDS = frozenset({"prev", "next"})
+NAME_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9_-]*")
+PROTOCOL_RE = re.compile(r"[a-z][a-z0-9-]*@[1-9][0-9]*")
+SHA256_RE = re.compile(r"[0-9a-f]{64}")
+
+
+@dataclass(frozen=True)
+class AcceptedResource:
+    contributor: str
+    hierarchy: tuple[str, ...]
+    key: str
+    protocol: str
+    sha256: str
 
 
 @dataclass
@@ -45,7 +59,7 @@ class Node:
     description: str
     source_path: Path
     parent_dir: Path
-    contributors: dict[str, dict[str, list[str]]] = field(default_factory=dict)
+    contributions: list[AcceptedResource] = field(default_factory=list)
     edges: dict[str, Any] = field(default_factory=dict)
 
 
@@ -67,7 +81,7 @@ class RelatedEdge:
 class DirectoryGraph:
     source_root: Path
     tree_root: Path
-    contributor_domains: dict[str, dict[str, frozenset[str]]]
+    registered_contributors: frozenset[str]
     nodes: dict[str, Node] = field(default_factory=dict)
     groups: list[GroupEdge] = field(default_factory=list)
     linear: set[tuple[str, str]] = field(default_factory=set)
@@ -95,17 +109,41 @@ def as_list(value: Any) -> list[Any]:
     return value if isinstance(value, list) else [value]
 
 
-def unique_strings(values: list[Any]) -> list[str]:
-    out: list[str] = []
-    for value in values:
-        if isinstance(value, str) and value not in out:
-            out.append(value)
-    return out
+class UniqueKeyLoader(yaml.SafeLoader):
+    """Safe YAML loader that rejects duplicate mapping keys."""
+
+
+def _construct_unique_mapping(
+    loader: UniqueKeyLoader,
+    node: yaml.MappingNode,
+    deep: bool = False,
+) -> dict[Any, Any]:
+    mapping: dict[Any, Any] = {}
+    for key_node, value_node in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in mapping:
+            raise ConstructorError(
+                "while constructing a mapping",
+                node.start_mark,
+                f"found duplicate key {key!r}",
+                key_node.start_mark,
+            )
+        mapping[key] = loader.construct_object(value_node, deep=deep)
+    return mapping
+
+
+UniqueKeyLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
+    _construct_unique_mapping,
+)
 
 
 def load_yaml(path: Path, graph: DirectoryGraph) -> dict[str, Any]:
     try:
-        value = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+        value = yaml.load(
+            path.read_text(encoding="utf-8"),
+            Loader=UniqueKeyLoader,
+        ) or {}
     except (OSError, yaml.YAMLError) as exc:
         graph.error(path, f"cannot read YAML: {exc}")
         return {}
@@ -129,57 +167,133 @@ def path_for_leaf(tree_root: Path, leaf: Path) -> str:
     )
 
 
-def normalize_contributors(
+def _typed_name(
+    raw: object,
+    prefix: str,
+    *,
+    path: Path,
+    graph: DirectoryGraph,
+) -> str | None:
+    if not isinstance(raw, str) or not raw.startswith(prefix):
+        graph.error(path, f"contribution key must start with {prefix!r}: {raw!r}")
+        return None
+    value = raw[len(prefix) :]
+    if NAME_RE.fullmatch(value) is None:
+        graph.error(path, f"invalid typed contribution key {raw!r}")
+        return None
+    return value
+
+
+def _normalize_hierarchy(
+    raw: dict[str, Any],
+    *,
+    contributor: str,
+    prefix: tuple[str, ...],
+    path: Path,
+    graph: DirectoryGraph,
+    out: list[AcceptedResource],
+) -> None:
+    for typed_key, value in raw.items():
+        if isinstance(typed_key, str) and typed_key.startswith("h_"):
+            segment = _typed_name(
+                typed_key,
+                "h_",
+                path=path,
+                graph=graph,
+            )
+            if segment is None:
+                continue
+            if not isinstance(value, dict) or not value:
+                graph.error(path, f"{typed_key} must contain hierarchy or resources")
+                continue
+            _normalize_hierarchy(
+                value,
+                contributor=contributor,
+                prefix=(*prefix, segment),
+                path=path,
+                graph=graph,
+                out=out,
+            )
+            continue
+
+        if isinstance(typed_key, str) and typed_key.startswith("r_"):
+            key = _typed_name(
+                typed_key,
+                "r_",
+                path=path,
+                graph=graph,
+            )
+            if key is None:
+                continue
+            if not prefix:
+                graph.error(path, f"{typed_key} requires at least one h_ segment")
+                continue
+            if not isinstance(value, dict):
+                graph.error(path, f"{typed_key} must map to protocol and sha256")
+                continue
+            unknown = sorted(set(value) - {"protocol", "sha256"})
+            if unknown:
+                graph.error(
+                    path,
+                    f"{typed_key} has unsupported fields: {', '.join(unknown)}",
+                )
+            protocol = value.get("protocol")
+            sha256 = value.get("sha256")
+            if not isinstance(protocol, str) or PROTOCOL_RE.fullmatch(protocol) is None:
+                graph.error(path, f"{typed_key}.protocol is not a versioned protocol id")
+                continue
+            if not isinstance(sha256, str) or SHA256_RE.fullmatch(sha256) is None:
+                graph.error(path, f"{typed_key}.sha256 must be lowercase SHA-256")
+                continue
+            out.append(
+                AcceptedResource(
+                    contributor=contributor,
+                    hierarchy=prefix,
+                    key=key,
+                    protocol=protocol,
+                    sha256=sha256,
+                )
+            )
+            continue
+
+        graph.error(path, f"contribution key must start with 'h_' or 'r_': {typed_key!r}")
+
+
+def normalize_contributions(
     raw: dict[str, Any],
     *,
     path: Path,
     graph: DirectoryGraph,
-) -> dict[str, dict[str, list[str]]]:
-    raw_contributors = raw.get("contributors", {})
-    if not isinstance(raw_contributors, dict):
-        graph.error(path, "contributors must be a mapping")
-        return {}
+) -> list[AcceptedResource]:
+    raw_contributions = raw.get("contributions", {})
+    if not isinstance(raw_contributions, dict):
+        graph.error(path, "contributions must be a mapping")
+        return []
 
-    out: dict[str, dict[str, list[str]]] = {}
-    for contributor, raw_domains in raw_contributors.items():
-        allowed_domains = graph.contributor_domains.get(contributor)
-        if allowed_domains is None:
+    out: list[AcceptedResource] = []
+    for typed_contributor, hierarchy in raw_contributions.items():
+        contributor = _typed_name(
+            typed_contributor,
+            "c_",
+            path=path,
+            graph=graph,
+        )
+        if contributor is None:
+            continue
+        if contributor not in graph.registered_contributors:
             graph.error(path, f"unknown contributor {contributor!r}")
             continue
-        if not isinstance(raw_domains, dict):
-            graph.error(path, f"contributors.{contributor} must be a mapping")
+        if not isinstance(hierarchy, dict) or not hierarchy:
+            graph.error(path, f"{typed_contributor} must contain hierarchy entries")
             continue
-        domains: dict[str, list[str]] = {}
-        for domain, raw_formats in raw_domains.items():
-            allowed = allowed_domains.get(domain)
-            if allowed is None:
-                graph.error(
-                    path,
-                    f"unknown domain {domain!r} for contributor {contributor!r}",
-                )
-                continue
-            if not isinstance(raw_formats, list) or not raw_formats:
-                graph.error(
-                    path,
-                    f"contributors.{contributor}.{domain} must be a non-empty list",
-                )
-                continue
-            formats = unique_strings(as_list(raw_formats))
-            if len(formats) != len(as_list(raw_formats)):
-                graph.error(
-                    path,
-                    f"contributors.{contributor}.{domain} must contain unique strings",
-                )
-            for value in formats:
-                if value not in allowed:
-                    graph.error(
-                        path,
-                        f"contributor {contributor!r} domain {domain!r} "
-                        f"does not accept format {value!r}",
-                    )
-            domains[domain] = formats
-        if domains:
-            out[contributor] = domains
+        _normalize_hierarchy(
+            hierarchy,
+            contributor=contributor,
+            prefix=(),
+            path=path,
+            graph=graph,
+            out=out,
+        )
     return out
 
 
@@ -237,7 +351,7 @@ def add_node(
         graph.error(path, f"duplicate node id {node_id!r}")
         return
 
-    contributors = normalize_contributors(
+    contributions = normalize_contributions(
         raw,
         path=path,
         graph=graph,
@@ -274,7 +388,7 @@ def add_node(
         description=description.strip(),
         source_path=path,
         parent_dir=parent_dir,
-        contributors=contributors,
+        contributions=contributions,
         edges=edges,
     )
 
@@ -533,12 +647,12 @@ def load_directory_graph(source_root: Path) -> DirectoryGraph:
     try:
         manifest = load_manifest(source_root)
         tree_root = storage_path(source_root, manifest, "local")
-        domains = contributor_domains(manifest)
+        contributors = registered_contributors(manifest)
     except (OSError, ValueError) as exc:
         graph = DirectoryGraph(
             source_root=source_root,
             tree_root=source_root / "storage" / "directory",
-            contributor_domains={},
+            registered_contributors=frozenset(),
         )
         graph.errors.append(f"k-graph.toml: {exc}")
         return graph
@@ -546,7 +660,7 @@ def load_directory_graph(source_root: Path) -> DirectoryGraph:
     graph = DirectoryGraph(
         source_root=source_root,
         tree_root=tree_root,
-        contributor_domains=domains,
+        registered_contributors=contributors,
     )
     discover_nodes(graph)
     if graph.nodes:
@@ -613,7 +727,7 @@ def emit_cypher(graph: DirectoryGraph) -> str:
             ]
         )
 
-    for contributor in sorted(graph.contributor_domains):
+    for contributor in sorted(graph.registered_contributors):
         lines.extend(
             [
                 f"MERGE (:Contributor {{id: {cypher_value(contributor)}}});",
@@ -622,22 +736,30 @@ def emit_cypher(graph: DirectoryGraph) -> str:
         )
 
     for node in sorted(graph.nodes.values(), key=lambda item: item.path):
-        for contributor, domains in sorted(node.contributors.items()):
-            for domain, formats in sorted(domains.items()):
-                lines.extend(
-                    [
-                        (
-                            f"MATCH (c:Contributor {{id: {cypher_value(contributor)}}}), "
-                            f"(n:KNode {{id: {cypher_value(node.id)}}})"
-                        ),
-                        (
-                            "MERGE (c)-[r:PROVIDES "
-                            f"{{domain: {cypher_value(domain)}}}]->(n)"
-                        ),
-                        f"SET r.formats = {cypher_value(formats)};",
-                        "",
-                    ]
-                )
+        for resource in sorted(
+            node.contributions,
+            key=lambda item: (item.contributor, item.hierarchy, item.key),
+        ):
+            lines.extend(
+                [
+                    (
+                        f"MATCH (c:Contributor {{id: {cypher_value(resource.contributor)}}}), "
+                        f"(n:KNode {{id: {cypher_value(node.id)}}})"
+                    ),
+                    (
+                        "MERGE (c)-[r:PROVIDES {"
+                        f"hierarchy: {cypher_value(list(resource.hierarchy))}, "
+                        f"key: {cypher_value(resource.key)}"
+                        "}]->(n)"
+                    ),
+                    (
+                        "SET "
+                        f"r.protocol = {cypher_value(resource.protocol)}, "
+                        f"r.sha256 = {cypher_value(resource.sha256)};"
+                    ),
+                    "",
+                ]
+            )
 
     for edge in sorted(graph.groups, key=lambda item: (item.origin, item.position)):
         origin_id = graph.nodes[edge.origin].id
@@ -693,12 +815,7 @@ def emit_cypher(graph: DirectoryGraph) -> str:
 
 
 def print_report(graph: DirectoryGraph) -> None:
-    resources = sum(
-        len(formats)
-        for node in graph.nodes.values()
-        for domains in node.contributors.values()
-        for formats in domains.values()
-    )
+    resources = sum(len(node.contributions) for node in graph.nodes.values())
     print(
         "directory graph: "
         f"{len(graph.nodes)} nodes, "

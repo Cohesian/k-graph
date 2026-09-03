@@ -2,10 +2,12 @@ title: Semantic Data Packets
 description: Agent prompts and semantic data packets.
 kind: F
 id: 0fa7348d-69f2-487a-a684-71eada16a96d
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 62ebb329955bdd27158918b1eb76ca87aac7656c6cc9e063ef2ff8195126bfdc
 edges:
   g: []
   l:

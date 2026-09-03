@@ -229,164 +229,172 @@ MERGE (:Contributor {id: "research"});
 MERGE (:Contributor {id: "studio"});
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "57b3119069e3ac0a81a3384daed94cf076209b26b3c9eba9b9c943166ba51c00";
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
-MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
-SET r.formats = ["loci-project"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["scenes"], key: "loci-project"}]->(n)
+SET r.protocol = "loci-project@1", r.sha256 = "f576e6afd1f2013c99b97190a1d6cf10b7b25162728eec41260270a06b6e185c";
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
-MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
-SET r.formats = ["mp4"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["videos"], key: "mp4"}]->(n)
+SET r.protocol = "mp4-file@1", r.sha256 = "71a89456adec6f26dda3282f93382076de615e36e276f53ed169d74e28d8ddb0";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "6f83353e4560651dd1f6db2b7367075807fe5b3527b1cd92098ca4b0d4978854";
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
-MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
-SET r.formats = ["loci-project"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["scenes"], key: "loci-project"}]->(n)
+SET r.protocol = "loci-project@1", r.sha256 = "3993a04963ceb95fcbbc713fe57e235d06485a2155ae5683b36b18c7c2d024a3";
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
-MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
-SET r.formats = ["mp4"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["videos"], key: "mp4"}]->(n)
+SET r.protocol = "mp4-file@1", r.sha256 = "286fc32045a34e29b4982f916f234232ee90ef9607d291d6836df45a221e20d1";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "48aca6acaf797ff25abc7211572140f46f26a9a7fc59fe70785ce968ad576f3d";
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
-MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
-SET r.formats = ["loci-project"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["scenes"], key: "loci-project"}]->(n)
+SET r.protocol = "loci-project@1", r.sha256 = "c5b02d81ae3d1620ebc3eac982baeb5b64266196baa07408afe7d745f91b4445";
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
-MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
-SET r.formats = ["mp4"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["videos"], key: "mp4"}]->(n)
+SET r.protocol = "mp4-file@1", r.sha256 = "a4f76cac042ea194965181e08b4943f96d0338106c19964c6ebb714d6eda7bbb";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "ac55bcff9acabcc2ed7890fa572edc06fc260212956043e9bc0a7278884d4c5e";
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
-MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)
-SET r.formats = ["loci-project"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["scenes"], key: "loci-project"}]->(n)
+SET r.protocol = "loci-project@1", r.sha256 = "42d070e8479cc2ffee5fccad32a5aa6cbd6ccbccf1bd426f4a1c609a1b53dd42";
 
 MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
-MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)
-SET r.formats = ["mp4"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["videos"], key: "mp4"}]->(n)
+SET r.protocol = "mp4-file@1", r.sha256 = "e24ad15c57fcb90156b5aaa0b461218bfdf1b587cfa4529cc124bdddad0e1294";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "499ff1af-eed7-425d-9fed-e357ec2e0b97"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "aaacecaa42528397cc3cca3c88141863d7f381a50bec28bdacf6492dc1472386";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "9d406912-c737-416c-94f2-4edb90db3ee7"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "f0ea980f00faf605b704dda44044d77a4cb6276cd754da98150068589a2ce641";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "1e650360-f987-42c8-ab37-d2e928b82b32"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "f28b62124e8521afbfe722579a013052109a91a6923d5869fa3b9c6dd75e753d";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "7bd2455a-1fe5-4972-9c36-78d6a4f0df9b"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "cab090f6e9589ae52fb84276a527218df3ae925a75f8faea3d8d738323f498a8";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "9e9629bd-eb94-40fc-ba6e-922420cd13f7"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "bccf5bc84d685f710a4037d539c7e7b0991f34f6da7e34c501c0e8c5947e5d69";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f776b280-d6fa-4bbd-b213-4978165137eb"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "fd6042869f969d29e491ab7131d881697404be9593315e518de5ebc9e8a15938";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "08113955-1ff0-4131-877e-4466e614bd1b"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "1ba23fb01fba33acf2e515d796b9ee803f662ce0e864f2d0726443a3fc7a762f";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "bb00a29b-d851-4395-9e20-bce895bb379e"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "91c23f04317a3bcbef9d90948c491a4c9342dc156f78784aca55346f2f9dcf31";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "39b82207-e234-4352-bc3c-01d84362a7eb"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "473a11a548b6cf1e09d3ce2b222e0a02635bc4bb9801508dc9f2f8bcdf31f259";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "5da0c374-473b-40d6-a7dd-659dc4f5211d"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "8e1aa0172a3f21d8a88ebec00f2dfb261d754efa1ac16d4ad968585c1cecdd69";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "0fa7348d-69f2-487a-a684-71eada16a96d"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "62ebb329955bdd27158918b1eb76ca87aac7656c6cc9e063ef2ff8195126bfdc";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff73c9d4-922b-471e-beb5-3dde7c4a415f"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md", "ipynb"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "95f81c60107724ecbd84806466ff48a7883e581d82882dd988c86db16fc54136";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff73c9d4-922b-471e-beb5-3dde7c4a415f"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "9dfffb2d7135825abd9dc41b5eaef698a09eb39d028c74ec9588f68f530c8a4e";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f2b1b8c2-86c8-484c-bb44-92c711ac607e"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "c5588b909ea1117d8bbb73acef1a2d9ee76117b4f4b30c305f818e5c8d6091dd";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff647a5d-44f0-42af-9f01-abcadd04fb37"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "63e9592b7d4a6d723647c6071bcdac5553232e1e31e4a8dd73df68a12d35a5c3";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "1497eefc-aa3d-4444-a426-9ccb0410b0bf"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "1d93b58e1a311b0910886a0d04ff843c48ba681dc3e51627dd4f67a1e40ddd98";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff7c99b6-ce1f-4973-9d3c-89f1f12a1f69"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "67188fb7e37a0c1eb0bb034e3398843908c90cf1e84be0a69a07c2247bddb141";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f1504ef9-d65e-4753-8032-27672b2ffa6a"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "2f75a818a6a4349e1f96c821aa9bef11c6eaf11d7cbc1ea784ecece286b2687a";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "c6d131b8-0ba5-4ab4-bfdb-c871b95b98e6"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["ipynb"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "4c177a1f56637d9715652df28902f98244291e2973d383e2e78448041d56a870";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "edba87bc-3359-4ea1-bfb7-7bb5d4762963"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "63e9592b7d4a6d723647c6071bcdac5553232e1e31e4a8dd73df68a12d35a5c3";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "07ff1a0b-e84f-40bb-996f-467a03d2bf3c"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "63e9592b7d4a6d723647c6071bcdac5553232e1e31e4a8dd73df68a12d35a5c3";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "440e4d3d-ea9f-4915-97e6-2b6b7c09c6c4"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "820e6e7f12c18ad02629e143c66ef3f5ecb5738aee663e66e0d22198a4bb85cb";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "579fa81e-4a5a-4521-98d9-ea8b69a48e8d"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "6ef42cc9793fec56f85bd59632c07fe50638efc1f25af9f7e79e0bdd92a2488d";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "65cecd50-0570-42ca-bf41-6b5ad967a0cf"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "232d9cda944583ab77d7e1ecd40610be6dcc41a81c55bc39ccf124b38a1b4544";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "d01f2da8-c079-4665-b0cf-cd78f5c9727e"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "6f63aa67de4a6b86b5d7b051d4bf09d03d81319a846ca784a06aaf7069eee1d5";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
-MERGE (c)-[r:PROVIDES {domain: "code"}]->(n)
-SET r.formats = ["python-project"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["code"], key: "hoomd"}]->(n)
+SET r.protocol = "python-project@1", r.sha256 = "54afb496c757d0e0434686dd85ecf7464cba6b24253607e3e79caf710eae5285";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md", "ipynb", "companions"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "0a870281e08909b4552c16b106f34425e78e203a3d53c7483a088f0a830760de";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
-MERGE (c)-[r:PROVIDES {domain: "media"}]->(n)
-SET r.formats = ["mp4"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-bundle@1", r.sha256 = "a62a9391a6e2bc341aaf68ee5ef0307d9f0c73a0a2648aabd5766be51b70df26";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "emergence-video"}]->(n)
+SET r.protocol = "mp4-file@1", r.sha256 = "1a233fd8f919d8a2bc3251c477c1d96f42d3a5f31af4ff626c9c254e8eb6dc7e";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "508419e1-a1ea-4863-82b7-3636e39e5ee4"})
-MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)
-SET r.formats = ["md"];
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "4fe07d68bc33fae4d5458eb1a06928ab4ce52962361d6c968cdda5b5dd6cfb38";
 
 MATCH (a:KNode {id: "563523fd-87cd-41c4-a0f6-00b54f0f7bdd"}), (b:KNode {id: "61def28d-378b-421d-bd96-42281ecc5570"})
 MERGE (a)-[r:GROUPS]->(b)

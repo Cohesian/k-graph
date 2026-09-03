@@ -20,9 +20,10 @@ description: Concise meaning of this node
 ```
 
 Its grouping, linear, and related connections are graph relationships. A
-separate resource overlay records which accepted formats registered
-contributors provide for it, categorized by contributor and domain. The
-current contributors are `research` and `studio`.
+separate resource overlay records accepted contributor resources by hierarchy
+and key. Each accepted resource names a versioned protocol and canonical
+SHA-256 digest. The current registry contains `research` and `studio`; Studio's
+entries remain transitional until production ownership is migrated.
 
 ## Read first
 
@@ -33,7 +34,7 @@ current contributors are `research` and `studio`.
 | Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
 | Contributors | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |
 | Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
-| Resource contract v2 migration target | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
+| Resource contract | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
 | Change proposals | [`docs/PROPOSALS.md`](docs/PROPOSALS.md) |
 | Pending interfaces | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Normative repository contract | [`CONTRACT.md`](CONTRACT.md) |
@@ -64,21 +65,10 @@ tree. A query interface may use either selector or require both to agree.
 
 ## Current scope
 
-Proposals and acceptance are manual. Contributor-specific storage remains
-outside this registry manifest. The Directory and Neo4j projections are
-domain-aware, and both Research and Studio expose the shared Tether protocol.
-The Website may consume a Git snapshot of the Directory Projection before a
-backend-agnostic K interface exists. Remote K persistence, content digests,
-and automated contributor admission remain pending.
-
-## Protocol v2 migration
-
-The frozen target contract replaces the v1 `(node, contributor, domain,
-format)` leaf with the address `(node, contributor, hierarchy, resource key)`.
-Every accepted resource then carries a versioned protocol and canonical
-SHA-256 digest. Physical locations remain contributor-owned.
-
-The current graph data is still v1. See
-[`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) for the migration
-target; the active v1 documents remain accurate until the data migration is
-performed.
+Proposals and acceptance are manual. Contributor bytes, stores, credentials,
+and physical locations remain outside K. The Directory and Neo4j projections
+preserve the same accepted resource records, and Tether validates those
+records against contributor inventories. The Website may consume a Git
+snapshot of the Directory Projection before a backend-agnostic K interface
+exists. Remote K persistence and automated contributor admission remain
+pending.

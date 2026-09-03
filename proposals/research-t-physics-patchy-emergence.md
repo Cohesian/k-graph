@@ -1,6 +1,6 @@
 # Research proposal: patchy-particle emergence
 
-Status: **prepared**
+Status: **accepted**
 
 ## Envelope
 
@@ -44,11 +44,17 @@ edges are requested.
 
 ## Resource overlay
 
-Every File provides `research/documents/md`. The Experimental Laboratory also
-provides `research/documents/ipynb`, `research/documents/companions`,
-`research/code/python-project`, and `research/media/mp4`. Its `companions`
-resource is the bounded directory containing the three figures referenced by
-the Markdown paper.
+Every File provides the `r_md` resource under
+`c_research/h_documents`. The Experimental Laboratory's Markdown resource
+uses `markdown-bundle@1`, so its referenced figures are part of the same
+accepted boundary. That node also provides:
+
+- `c_research/h_documents/r_ipynb`;
+- `c_research/h_code/r_hoomd`; and
+- `c_research/h_media/r_emergence-video`.
+
+Every accepted resource carries its protocol-derived SHA-256 in the node
+declaration.
 
 Store locations are deliberately absent. Research owns persistence and maps
 these canonical selectors through its contributor inventory.
@@ -58,6 +64,7 @@ these canonical selectors through its contributor inventory.
 - all nine UUIDs are unique;
 - the grouping projection remains rooted, ordered, and acyclic;
 - the File chain has reciprocal `prev` and `next` declarations;
-- every declared contributor domain and format is registered;
+- every declared contributor, hierarchy, resource key, protocol, and digest
+  is valid;
 - Directory and generated Neo4j projections are equivalent; and
 - Research uses these same UUIDs and rooted paths in its route maps.

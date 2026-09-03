@@ -264,18 +264,23 @@ their incidences form the node's local view.
 
 ### Resource overlay
 
-Contributor resources are separate from TLF topology. Their accepted relation
-is:
+Contributor resources are separate from TLF topology. For contributor $c$,
+non-empty hierarchy $H$, and resource key $p$, one accepted resource has the
+durable address:
 
 $$
-P_{\mathcal K}
-\subseteq
-\bigcup_{c\in C}(V\times\{c\}\times D_c\times F)
+\bar a=(\operatorname{id}(v),c,H,p).
 $$
 
-An element $\rho=(v,c,d,f)$ is one logical resource leaf for node $v$,
-contributor $c$, domain $d$, and format $f$. It does not add an edge to
-$E_g$, $E_l$, or $E_r$, and it is not synonymous with a TLF `F` node.
+K associates that address with a versioned protocol $q$ and canonical digest
+$z$:
+
+$$
+K(\bar a)=(q,z).
+$$
+
+This accepted record does not add an edge to $E_g$, $E_l$, or $E_r$, and its
+resource key is not synonymous with a TLF `F` node.
 
 The complete identity, storage, and bridge contract is defined in
 [`RESOURCE-OVERLAY.md`](RESOURCE-OVERLAY.md).

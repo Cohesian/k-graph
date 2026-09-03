@@ -2,10 +2,12 @@ title: Agent Architecture
 description: Agent structure for inference over semantic data.
 kind: F
 id: 08113955-1ff0-4131-877e-4466e614bd1b
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 1ba23fb01fba33acf2e515d796b9ee803f662ce0e864f2d0726443a3fc7a762f
 edges:
   g: []
   l:

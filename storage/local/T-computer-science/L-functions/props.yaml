@@ -2,7 +2,7 @@ title: Functions
 description: Functions as bounded nodes — composition, execution, networks, and wrappers.
 kind: L
 id: d9cc0386-2ec5-4b6f-be72-24e75594598d
-contributors: {}
+contributions: {}
 edges:
   g:
     - F-01-function

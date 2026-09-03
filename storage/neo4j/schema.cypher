@@ -1,4 +1,4 @@
-// Cohesian k-graph schema 0.6.0
+// Cohesian k-graph schema 0.7.0
 
 DROP CONSTRAINT k_node_path IF EXISTS;
 

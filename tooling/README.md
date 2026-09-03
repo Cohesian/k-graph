@@ -18,9 +18,9 @@ python3 -m venv .venv
 .venv/bin/kgraph-validate
 ```
 
-Validation covers UUID identities, intrinsic fields, contributor domains and
-formats, grouping coverage and reachability, linear reciprocity and degree,
-and related targets.
+Validation covers UUID identities, intrinsic fields, registered contributors,
+typed resource hierarchies and keys, protocols and SHA-256 digests, grouping
+coverage and reachability, linear reciprocity and degree, and related targets.
 
 ## Generate Neo4j Cypher
 
@@ -29,7 +29,7 @@ and related targets.
 ```
 
 The command emits `KNode`, `Contributor`, `GROUPS`, `NEXT`, `RELATED_TO`, and
-domain-aware `PROVIDES` statements. It reads paths and allowed contributor
-domains and formats from `k-graph.toml`; it does not connect to a database.
+resource-level `PROVIDES` statements. It reads persistence paths and registered
+contributors from `k-graph.toml`; it does not connect to a database.
 
 The generated Cypher is derived. Regenerate it rather than editing it.

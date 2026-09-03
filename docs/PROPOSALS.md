@@ -18,7 +18,7 @@ A proposal identifies:
 contributor
 base_revision
 requested_changes
-content_references (optional)
+resource_acceptances (optional)
 rationale
 ```
 
@@ -66,8 +66,11 @@ Validation covers:
 - TLF kinds and intrinsic node properties;
 - grouping reachability, acyclicity, and sibling order;
 - incoming and outgoing `NEXT` degree;
-- relationship targets and contributor domains and formats; and
-- later, content, licensing, and policy checks.
+- relationship targets;
+- registered contributor ids and typed resource hierarchies;
+- resource-key uniqueness and versioned protocols;
+- protocol-derived SHA-256 agreement; and
+- later, licensing and policy checks.
 
 Review and application are manual today. This document defines the boundary
 that a future automated pipeline may implement; it does not claim that the

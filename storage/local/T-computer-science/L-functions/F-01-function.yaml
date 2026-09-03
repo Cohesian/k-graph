@@ -2,10 +2,12 @@ title: Functions
 description: One lens on functions as bounded executable nodes.
 kind: F
 id: 499ff1af-eed7-425d-9fed-e357ec2e0b97
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: aaacecaa42528397cc3cca3c88141863d7f381a50bec28bdacf6492dc1472386
 edges:
   g: []
   l:

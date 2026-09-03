@@ -2,10 +2,12 @@ title: Emergence from Local Rules to Global Observation
 description: Purpose, scope, and evidential boundary of the emergence study.
 kind: F
 id: 440e4d3d-ea9f-4915-97e6-2b6b7c09c6c4
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 820e6e7f12c18ad02629e143c66ef3f5ecb5738aee663e66e0d22198a4bb85cb
 edges:
   g: []
   l:

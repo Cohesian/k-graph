@@ -2,10 +2,12 @@ title: JSON Representation
 description: JSON as a representation layer for semantic data.
 kind: F
 id: 5da0c374-473b-40d6-a7dd-659dc4f5211d
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 8e1aa0172a3f21d8a88ebec00f2dfb261d754efa1ac16d4ad968585c1cecdd69
 edges:
   g: []
   l:

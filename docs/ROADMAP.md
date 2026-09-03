@@ -1,190 +1,82 @@
 # Pending work
 
-The graph model and its Directory and Neo4j representations are established.
-K now stores domain-aware resources, and the shared Tether bridge is validated
-against both Research and Studio. The Directory Projection remains the current
-Git-versioned authority. Website migration can consume that representation
-directly while a unified K interface and remote persistence remain pending.
+K's topology and resource protocol v2 are active in the Directory and Neo4j
+projections. The Directory Projection remains the Git-versioned authority.
 
-## Established identity
+## 1. Unified K interface
 
-Every current node now materializes a UUIDv4 `id`. The Directory tree and
-Neo4j `GROUPS` relationships each derive the rooted address; Neo4j does not
-persist it as a node property.
+Provide one read and proposal interface independent of persistence:
 
 ```text
-id        stable identity
-path      current address derived from the g projection
-local_id  local readable name
+caller → K interface → Directory | Neo4j
 ```
 
-`path` is unique within one accepted graph revision. `id` is immutable across
-moves and revisions.
+The interface should expose graph semantics—node selection, rooted paths,
+ordered children, bounded Topic or Lecture views, relations, and accepted
+resources—without leaking backend-specific commands.
 
-The future selector contract is:
+## 2. Accepted-resource queries
 
-```text
-selector := id | path | (id, path)
-```
-
-When both values are supplied, they must identify the same node. Contributors
-may index storage by either selector, but `id` is the durable choice and `path`
-is the readable lookup address.
-
-## 1. Unified K query interface
-
-Define one read interface independent of graph persistence, with adapters for:
-
-- the Directory Projection; and
-- Neo4j, whether local or Aura.
-
-The eventual CLI should expose graph meaning rather than backend-specific
-commands—for example node lookup, root paths, ordered children, contributor
-relations, and bounded Topic or Lecture views.
-
-```text
-caller → K query interface → Directory | Neo4j
-```
-
-Directory remains authoritative for now. Cypher generation and loading into
-local Neo4j or Aura remain manual.
-
-## 2. Contributor projection
-
-For each contributor $c$, K can expose the portion of its accepted registry
-relevant to that contributor:
+For contributor $c$, K can expose:
 
 $$
 \pi_c(K)
 =
-\left\{
-(\operatorname{id}(v),\operatorname{path}(v),d,f)
-\;\middle|\;
-(v,c,d,f)\in P_K
-\right\}
+\{(\operatorname{id}(v),\operatorname{path}(v),H,p,q,z)\}.
 $$
 
-This projection communicates accepted identities, current paths, and declared
-content forms. It does not communicate storage infrastructure.
+This communicates accepted identity and integrity, not contributor storage.
+Tether can join that projection with a contributor inventory to report exact
+matches, missing resources, unregistered resources, and mismatched protocols
+or digests.
 
-## 3. Contributor discovery and resolution
+## 3. Proposal pipeline
 
-Each contributor owns one localized protocol document. It declares:
-
-$$
-B_c\subseteq D_c\times S_c\times F
-$$
-
-where domains $D_c$ and stores $S_c$ remain independent axes and $B_c$ binds
-the formats made available between them. Route inventories materialize target
-availability.
-
-Discovery reports what is currently available for a selector:
-
-$$
-A_c:
-\operatorname{Selector}
-\longrightarrow
-\mathcal P(\operatorname{Format}\times\operatorname{Store}\times\operatorname{State})
-$$
-
-Resolution returns locations matching a requested selector, contributor
-domain, format, and optional store:
-
-$$
-R:
-\operatorname{Selector}\times C\times D\times\operatorname{Format}
-\times\operatorname{Store}?
-\rightharpoonup
-\mathcal P(\operatorname{Location})
-$$
-
-The result is a set because the same logical content may have several replicas.
-The mapping is partial because content may be unavailable or inaccessible.
-
-Tether evaluates the contributor protocol directly:
+Turn the manual proposal envelope into an atomic workflow:
 
 ```text
-tether resource list <contributor> --id <id>
-tether resource resolve <contributor> --path <path> --format md
+prepare → submit → validate → review → accept | reject
 ```
 
-Each resolved location should minimally identify:
+Validation should cover the complete candidate graph and protocol-derived
+resource digests. Accepted history may later record proposal authorship,
+licensing decisions, and path changes.
+
+## 4. Persistence
+
+Load and verify generated Cypher in local Neo4j and Aura when useful. The same
+K interface should operate either persistence. Backup and remote credentials
+belong to infrastructure configuration, not the graph contract.
+
+## 5. Consumer snapshots
+
+Consumers may join a selected K revision with contributor inventories and
+materialize their own resolved view:
 
 ```text
-id
-path
-format
-store
-uri
+K revision + accepted contributor resources
+→ select exact replicas or publications
+→ resolve or fetch
+→ build consumer-local snapshot
 ```
 
-Useful optional fields are availability state, media type, version, checksum,
-and access class. Credentials and tokens remain inside the contributor's own
-storage boundary.
+Such snapshots are derived and non-authoritative. Consumers decide layout and
+composition; K does not encode Website- or renderer-specific structure.
 
-Initial store plans are:
+## 6. Reindexing
 
-| Contributor | Stores |
-|---|---|
-| Research | local directory, Google Drive |
-| Studio | local directory, Google Drive, YouTube |
-
-## 4. Content identity
-
-Protocol version 1 settles one logical resource as:
-
-```text
-(K id, contributor, domain, format)
-```
-
-There is no resource name or variant. Repeated physical locations are replicas
-of the same logical resource. If a future use case genuinely needs several
-same-format resources under one node, contributor, and domain, it requires a
-versioned identity extension rather than an implicit filename distinction.
-
-## 5. Website snapshot
-
-The initial Website content build can remain offline and reproducible without
-waiting for the unified K query interface:
-
-```text
-acquire the Git-versioned Directory Projection
-→ discover contributor content
-→ resolve selected replicas
-→ fetch content
-→ create a consumer-local resolved projection
-→ build static Website snapshot
-```
-
-The resolved projection is generated and ignored by Git. It preserves each
-`(contributor, domain, format)` declaration and adds the selected store and
-URI; it never mutates authoritative K. Git commit ids can identify the current
-internal inputs. Per-resource digests remain a later integrity extension.
-
-## Suggested order
-
-1. Stabilize the Directory authority and deterministically generated Neo4j
-   expression.
-2. Stabilize the Research and Studio contributor inventories through Tether.
-3. Migrate the Website build from legacy Foundations inputs to a local K and
-   contributor snapshot.
-4. Load and verify K in local Neo4j, then Aura when useful.
-5. Add the backend-agnostic K interface when more than one persistence must be
-   operated regularly.
-6. Add approved remote contributor maps and content digests when those stores
-   enter the publication flow.
-
-## Reindexing
-
-A change to the grouping projection may change one path and every descendant
-path below it. K should eventually publish the accepted path changes as:
+A grouping change may alter a path and every descendant path. K should expose:
 
 ```text
 (id, old_path, new_path)
 ```
 
-Contributor content indexed by `id` remains reachable without moving its
-storage. Contributors that mirror paths can consume the change set and update
-their local indexes. This avoids treating a topology rearrangement as a change
-of content identity.
+Contributor resources remain durably joined by UUID. Path-mirroring stores may
+consume the change set without treating topology movement as content change.
+
+## 7. Independent terminology migration
+
+Renaming TLF's leaf kind from File to Entry is independent of resource
+protocol v2. If adopted, TLF-to-TLE must update topology terminology,
+representations, tooling, and consumers atomically; resource keys and
+protocols remain unchanged.

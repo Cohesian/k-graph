@@ -1,8 +1,8 @@
 # k-graph contract
 
-Version: **0.6.0**
+Version: **0.7.0**
 
-Status: **draft**
+Status: **active**
 
 ## 1. Purpose
 
@@ -17,165 +17,119 @@ The distinguished root is `K`, a Topic.
 | Concern | Authority |
 |---|---|
 | Mathematical model | [`docs/TLF.md`](docs/TLF.md) |
-| Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
-| Resource protocol v2 migration target | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
+| Accepted resource model | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
 | Authored graph | [`storage/local/`](storage/local/) |
 | Neo4j expression | [`storage/neo4j/`](storage/neo4j/) |
-| Storage declarations and contributor registry | [`k-graph.toml`](k-graph.toml) |
+| Persistence and contributor registry | [`k-graph.toml`](k-graph.toml) |
 
-The repository is K's workspace. It owns the model and the means to validate,
-project, and eventually query K. The authored Directory graph is its current
-authoritative persistence; generated Neo4j Cypher is a derived persistence
-expression. Changing the active persistence must not change this contract.
+The repository is K's workspace. The authored Directory graph is its current
+authority; generated Neo4j Cypher is a derived expression. Translation must
+preserve node identity, semantics, the `g`, `l`, and `r` edge families, and
+every accepted resource record.
 
-Translation must preserve node identity and semantics, the `g`, `l`, and `r`
-edge families, and the accepted resource overlay.
-
-## 3. Node semantics
+## 3. Node semantics and identity
 
 Every node has:
 
 ```yaml
-id: 42292902-3874-4d54-87ec-0e1b7362af13
+id: 499ff1af-eed7-425d-9fed-e357ec2e0b97
 kind: T | L | F | Fd
 title: Human-facing title
 description: Concise local description
 ```
 
-`kind` is a semantic property even when a concrete representation can derive
-it. The current Directory Projection stores it explicitly. `title` and
-`description` identify and explain the knowledge node; they are not the full
-research or media body.
+Kinds are Topic composite (`T`), Lecture composite (`L`), File leaf (`F`),
+and draft File leaf (`Fd`). `kind` remains semantic even when a representation
+can derive it.
 
-Kinds are:
-
-| Kind | Meaning |
-|---|---|
-| `T` | Topic composite |
-| `L` | Lecture composite |
-| `F` | File leaf |
-| `Fd` | Draft File leaf |
-
-`Fd` is a flat kind with the same graph capabilities as `F`.
-
-The identity model has two selectors:
+A node has two selectors:
 
 | Selector | Meaning |
 |---|---|
-| `id` | Immutable identity, stable across graph revisions and moves |
-| `path` | Root-derived address in one accepted `g` projection |
+| `id` | Immutable UUID, stable across moves and revisions |
+| `path` | Address derived from the current grouping projection |
 
-`path` is unique inside a graph revision but may change when grouping is
-reorganized. `id` remains fixed. A query may provide either selector; when it
-provides both, they must resolve to the same node.
-
-K currently materializes `id` as a canonical UUIDv4 in every Directory node
-and as a unique Neo4j property. Neo4j internal element ids are never portable
-identity.
-
-`path` is derived, not persisted as a Neo4j node property. The Local Directory
-Projection derives it from containment; Neo4j derives it from the unique
-`GROUPS` route starting at `K`. A later cache may materialize paths as derived
-data without making them authoritative.
+When both are supplied, they must resolve to the same node. Neo4j stores the
+UUID and derives the rooted path through `GROUPS`; internal Neo4j element ids
+are never portable identity.
 
 ## 4. Topology
-
-Topology is represented by three disjoint edge families:
 
 | Axis | Neo4j expression | Meaning |
 |---|---|---|
 | `g` | `GROUPS {position}` | Structural grouping and authored order |
 | `l` | `NEXT` | Linear traversal; reverse traversal is `prev` |
-| `r` | `RELATED_TO {weight?}` | Directed, optional weighted relation |
+| `r` | `RELATED_TO {weight?}` | Directed, optionally weighted relation |
 
 The `g` projection is a rooted ordered tree and therefore a DAG. Every
-non-root node has exactly one grouping parent. Only `T` and `L` may group
-children.
+non-root node has exactly one grouping parent; only `T` and `L` group children.
+Each node has at most one incoming and one outgoing `NEXT`, and the linear
+projection is acyclic. `RELATED_TO` may fan out and form cycles.
 
-Each node has at most one incoming and one outgoing `NEXT`. A single physical
-relationship represents both `prev` and `next`; linear components are acyclic
-in this contract.
+## 5. Accepted resources
 
-`RELATED_TO` may connect any kinds, fan out, and form cycles. Its weight is
-optional and currently has no universal scale.
-
-## 5. Resource overlay
-
-The registered contributor set is:
-
-```text
-research
-studio
-```
-
-The accepted resource relation is:
+For a K node $v$, registered contributor $c$, non-empty hierarchy $H$, and
+resource key $p$, the durable address is:
 
 $$
-P_{\mathcal K}
-\subseteq
-\bigcup_{c\in C}(V\times\{c\}\times D_c\times F)
+\bar a=(\operatorname{id}(v),c,H,p).
 $$
 
-Each tuple $(v,c,d,f)$ registers one logical resource for a K node,
-contributor, contributor-owned domain, and format. Its durable identity is
-`(node id, contributor, domain, format)`. Stores expose replicas and are not
-part of that identity.
+K accepts exactly one record at that address:
 
-The Directory projection expresses the relation directly:
+$$
+K(\bar a)=(q,z),
+$$
+
+where $q$ is a versioned protocol and $z$ is its canonical lowercase SHA-256.
+The Directory expression is:
 
 ```yaml
-contributors:
-  research:
-    documents:
-      - md
-  studio:
-    scenes:
-      - loci-project
-    videos:
-      - mp4
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: aaacecaa42528397cc3cca3c88141863d7f381a50bec28bdacf6492dc1472386
 ```
 
-Nodes with no accepted resources use `contributors: {}`. Empty resource lists
-do not encode proposal provenance.
+The `c_`, `h_`, and `r_` prefixes mark contributor, hierarchy segment, and
+resource key. Hierarchies may have arbitrary depth. A hierarchy may contain
+both nested `h_` entries and local `r_` entries. Nodes without resources use
+`contributions: {}`.
 
-Resource declarations do not change TLF kind or topology. Exact change-level
-provenance belongs to a future accepted-proposal history. The canonical
-resource model is in [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md);
-contributor responsibilities are in
-[`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md).
+K stores neither content bytes nor physical locations. Contributors own those
+and expose them through Tether-compatible inventories. Tether interprets the
+protocol, computes digests, validates exact replicas, and resolves locations.
+A hosted transformation is a publication, not an exact byte replica.
+
+The active contract is fully specified in
+[`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md).
 
 ## 6. Proposals
 
-Registered contributors may asynchronously propose node or relationship
-creation, replacement, patching, or deletion against a known graph revision.
-The combined candidate graph is validated and accepted or rejected atomically.
-
-The current workflow is manual. Its conceptual envelope and validation stages
-are described in [`docs/PROPOSALS.md`](docs/PROPOSALS.md).
+Registered contributors may asynchronously propose node, relationship, or
+resource changes against a known graph revision. K evaluates the complete
+candidate graph and accepts or rejects it atomically. The current workflow is
+manual and is described in [`docs/PROPOSALS.md`](docs/PROPOSALS.md).
 
 ## 7. Representation contract
 
-The repository manifest names the authoritative storage, the available
-projections, and the allowed contributor domains and formats. It contains no
-credentials, machine-specific paths, external repository locations, or
+`k-graph.toml` names persistence paths and the registered contributor set. It
+contains no credentials, machine-specific roots, contributor locations, or
 content URLs.
 
-The Directory and Neo4j documents define how the same model is expressed:
+The Directory and Neo4j projections describe the same graph:
 
 - [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md)
 - [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md)
 
-Generated Neo4j Cypher is derived and is regenerated through the repository
-tooling.
+Generated Cypher is always regenerated through the repository tooling.
 
-## 8. Versioned migration target
+## 8. Version boundary
 
-This version of the repository contract describes the active v1 graph files.
-The accepted target for the next resource migration is
-[`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md). It introduces
-hierarchical resource addresses, explicit resource keys, versioned protocols,
-and canonical SHA-256 digests without changing K's ownership of topology.
-
-The v2 document does not authorize mixed serialization inside the active
-graph. Directory nodes, Neo4j generation, contributor inventories, and
-validators move together in the explicit migration phases.
+Protocol v2 replaced the v1 `(node id, contributor, domain, format)` identity
+with `(node id, contributor, hierarchy, resource key)` and added protocol-bound
+digests. The active graph is entirely v2; mixed v1/v2 node serialization is
+invalid. A later TLF-to-TLE terminology change is an independent topology
+migration.

@@ -2,10 +2,12 @@ title: Inference Theorem
 description: Inducing a common semantic backbone from a family of input files.
 kind: F
 id: f776b280-d6fa-4bbd-b213-4978165137eb
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: fd6042869f969d29e491ab7131d881697404be9593315e518de5ebc9e8a15938
 edges:
   g: []
   l:

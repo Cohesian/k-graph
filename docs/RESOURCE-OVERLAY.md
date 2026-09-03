@@ -1,159 +1,100 @@
 # Resource overlay
 
-This document describes the active resource protocol v1. The frozen v2
-migration target is [`RESOURCE-CONTRACT-V2.md`](RESOURCE-CONTRACT-V2.md).
-Current graph files remain v1 until the coordinated K migration.
-
-TLF defines the topology of accepted knowledge. The resource overlay records
-which contributor-owned content is accepted for each K node without turning
+TLF defines accepted knowledge topology. The resource overlay records which
+contributor-owned resources K accepts at each node without turning content or
 storage locations into graph topology.
 
-## Separation from TLF
+## Address
 
-Let the accepted K graph be:
-
-$$
-G_{\mathcal K}
-=
-(V,E_g\sqcup E_l\sqcup E_r,\iota,\kappa,\mu)
-$$
-
-Its edge families express grouping, linear order, and semantic relation. They
-do not express contributed content or physical storage.
-
-Let:
+Let the accepted graph be:
 
 $$
-C=\{\texttt{research},\texttt{studio}\}
+G_{\mathcal K}=(V,E_g\sqcup E_l\sqcup E_r,\iota,\kappa,\mu).
 $$
 
-be the current contributor registry, $D_c$ the domains owned by contributor
-$c$, and $F$ the set of logical content formats. K's accepted resource
-relation is:
+A caller selects a node by immutable id, current rooted path, or both:
 
 $$
-P_{\mathcal K}
-\subseteq
-\bigcup_{c\in C}(V\times\{c\}\times D_c\times F)
+\sigma\in I\sqcup P\sqcup(I\times P).
 $$
 
-Each element is one logical resource leaf:
+For contributor $c$, finite non-empty hierarchy $H$, and local resource key
+$p$, the selectable resource address is:
 
 $$
-\rho=(v,c,d,f)
+a=(\sigma,c,H,p).
 $$
 
-It says that contributor $c$ provides format $f$ in domain $d$ for K node
-$v$. The resource leaf belongs to this overlay. It is not necessarily a TLF
-`F` node and it does not add a `GROUPS`, `NEXT`, or `RELATED_TO` edge.
-
-## Identity and selection
-
-The durable identity of a resource is:
+Its durable identity uses the node UUID:
 
 $$
-(\operatorname{id}(v),c,d,f)
+\bar a=(\operatorname{id}(v),c,H,p).
 $$
 
-Protocol version 1 permits at most one logical resource for a given tuple. A
-second store is a replica of that resource, not a second resource.
+The hierarchy categorizes contributor ownership; it need not mirror K's
+grouping tree or a physical directory. The resource key is unique inside one
+$(v,c,H)$ namespace and is not necessarily a filename or extension.
 
-A consumer selects the K node by immutable id, rooted path, or both:
+## Acceptance and location
 
-$$
-\sigma
-\in
-\Sigma
-=
-I\sqcup P\sqcup(I\times P)
-$$
-
-and forms the complete target:
+K stores:
 
 $$
-\tau=(\sigma,(c,d,f))
+K(\bar a)=(q,z),
 $$
 
-The id survives graph reorganization. The rooted path is human-readable and
-revision-relative. When both are supplied, they must identify the same node.
+where $q$ is a versioned resource protocol and $z$ its canonical SHA-256.
+The contributor separately exposes locations:
+
+$$
+L_c(\bar a)=\{s\mapsto\lambda_s\}.
+$$
+
+Thus protocol and digest are accepted registry facts; bytes, stores,
+credentials, and location descriptors remain contributor-owned. A protocol
+defines whether the resource is a file or bounded tree and exactly how its
+digest is computed.
 
 ## Node-local expression
 
-The Directory projection uses the domain-aware form:
-
 ```yaml
-contributors:
-  research:
-    documents:
-      - md
-  studio:
-    scenes:
-      - loci-project
-    videos:
-      - mp4
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-bundle@1
+        sha256: 7e40c9a693f4c3b118ed77c250f0dc037f291f2141f438abe7bda7e270e74b13
 ```
 
-Here, `(contributor, domain)` is the ownership namespace and `format` selects
-the logical leaf. Nodes without accepted resources use `contributors: {}`.
-Proposal provenance is a separate concern and is not represented by empty
-resource declarations.
+This accepted record is neither a TLF node nor an edge in $E_g$, $E_l$, or
+$E_r$. Nodes with no accepted resources use `contributions: {}`.
 
-## Stores and replicas
+## Exact replicas and publications
 
-Contributors own persistence. For contributor $c$, explicit bindings relate
-domains, stores, and formats:
+An exact location must reproduce the accepted digest under protocol $q$:
 
 $$
-B_c\subseteq D_c\times S_c\times F
+\operatorname{SHA256}_q(\lambda_s)=z.
 $$
 
-For a resource $\rho$, the available physical locations are:
+A publication may transform the accepted bytes—for example, YouTube may
+transcode an MP4. It remains linked to the accepted resource but does not
+claim byte identity.
+
+## Tether and consumers
+
+[Tether](../../tether/README.md) reads contributor inventories to validate
+resources, compare them with K, discover locations, and resolve selected
+addresses. It owns neither K nor contributor persistence.
+
+A consumer may derive an enriched snapshot:
 
 $$
-\operatorname{Rep}(\rho)\subseteq S_c\times U
+\widetilde G=G_{\mathcal K}\Join_{\operatorname{id}(v)}I_c.
 $$
 
-where $U$ is the URI space. Local files and GitHub may be projected from a
-rooted path or UUID. Google Drive and YouTube may require contributor-owned
-maps. These are storage strategies; they do not alter $\rho$.
+Layouts grouped by contributor, hierarchy, protocol, or store are projections
+of that join. They are useful consumer views, not new authoritative graphs.
 
-A logical format need not be one file extension. Studio registers
-`loci-project` because an accepted scene resource is a self-contained project
-directory; its internal `scene.toml` identifies the `.py` entrypoint. Every
-store location for that resource therefore addresses the project boundary.
-
-K stores the accepted relation $P_{\mathcal K}$. Each contributor stores its
-domains, store descriptors, bindings, inventories, and credentials under its
-own rules. Credentials never enter K or the declarative protocol.
-
-## Tether
-
-[Tether](../../tether/README.md) is the common bridge between a K target
-$\tau$ and contributor-owned store declarations. It reads a contributor's
-`contributor.toml` and route inventories to:
-
-- validate the contributor package;
-- discover resources and available stores;
-- project targets to URIs; and
-- identify targets from known URIs.
-
-These resolution operations perform no download, upload, or graph mutation.
-Tether also offers an explicit `pull` operation that a consumer may use to
-materialize one selected store as a rooted-path directory or URI map. The
-result is a consumer snapshot; it does not mutate K or contributor storage.
-Proposal support may later prepare or submit resource-registration requests,
-but K continues to validate and accept every change to $P_{\mathcal K}$.
-
-## Invariants
-
-- TLF topology and resource registration are distinct relations.
-- Every resource belongs to one registered contributor and one of its domains.
-- `(id, contributor, domain, format)` is durable resource identity.
-- Stores are replicas or locations, not resource identities.
-- Contributors own persistence; K owns accepted registration.
-- Tether interprets the shared bridge protocol without taking ownership from
-  K or contributors.
-
-Contributor responsibilities are summarized in
-[`CONTRIBUTORS.md`](CONTRIBUTORS.md). The complete declarative file contract is
-in [Tether's contributor protocol](../../tether/docs/CONTRIBUTOR-PROTOCOL.md).
+The complete grammar and protocol boundary are defined in
+[`RESOURCE-CONTRACT-V2.md`](RESOURCE-CONTRACT-V2.md).

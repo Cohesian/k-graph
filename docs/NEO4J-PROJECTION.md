@@ -70,14 +70,19 @@ out or cycle, and may carry an optional weight.
 
 ```cypher
 (:Contributor {id: 'research'})
-  -[:PROVIDES {domain: 'documents', formats: ['md']}]->
+  -[:PROVIDES {
+    hierarchy: ['documents'],
+    key: 'md',
+    protocol: 'markdown-file@1',
+    sha256: 'aaacecaa42528397cc3cca3c88141863d7f381a50bec28bdacf6492dc1472386'
+  }]->
 (:KNode {id: $id})
 ```
 
-One `PROVIDES` relationship represents the accepted format set for one
-`(contributor, domain, K node)` tuple. Each format in that set identifies one
-logical resource. Resource relationships are not TLF topology, and physical
-stores remain outside Neo4j.
+One `PROVIDES` relationship represents one accepted resource at
+`(K node id, contributor, hierarchy, key)`. Its protocol defines the resource
+boundary and digest procedure; `sha256` fixes the accepted bytes. Resource
+relationships are not TLF topology, and physical stores remain outside Neo4j.
 
 ## 5. Schema
 
@@ -171,13 +176,16 @@ MATCH (n:KNode {id: $id})-[r:RELATED_TO]-(other:KNode)
 RETURN other, r.weight, startNode(r).id = n.id AS outgoing;
 ```
 
-Resources by contributor, domain, and format:
+Resources by contributor, hierarchy, and key:
 
 ```cypher
 MATCH (c:Contributor)-[r:PROVIDES]->(n:KNode {id: $id})
-UNWIND r.formats AS format
-RETURN c.id AS contributor, r.domain AS domain, format
-ORDER BY contributor, domain, format;
+RETURN c.id AS contributor,
+       r.hierarchy AS hierarchy,
+       r.key AS resource_key,
+       r.protocol AS protocol,
+       r.sha256 AS sha256
+ORDER BY contributor, hierarchy, resource_key;
 ```
 
 ## 7. Representation summary
@@ -192,4 +200,4 @@ ORDER BY contributor, domain, format;
 | Linear | `[:NEXT]` |
 | Related | `[:RELATED_TO {weight?}]` |
 | Contributor | `(:Contributor)` |
-| Resource overlay | `[:PROVIDES {domain, formats}]` |
+| Resource overlay | `[:PROVIDES {hierarchy, key, protocol, sha256}]` |

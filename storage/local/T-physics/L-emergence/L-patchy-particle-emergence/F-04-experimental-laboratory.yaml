@@ -2,16 +2,23 @@ title: Experimental Laboratory
 description: Reproducible HOOMD-blue experiment, notebook, and rendered trajectory.
 kind: F
 id: 6281d965-093e-4aaa-9ce0-2f67b95c8bbc
-contributors:
-  research:
-    documents:
-      - md
-      - ipynb
-      - companions
-    code:
-      - python-project
-    media:
-      - mp4
+contributions:
+  c_research:
+    h_code:
+      r_hoomd:
+        protocol: python-project@1
+        sha256: 54afb496c757d0e0434686dd85ecf7464cba6b24253607e3e79caf710eae5285
+    h_documents:
+      r_ipynb:
+        protocol: jupyter-notebook-file@1
+        sha256: 0a870281e08909b4552c16b106f34425e78e203a3d53c7483a088f0a830760de
+      r_md:
+        protocol: markdown-bundle@1
+        sha256: a62a9391a6e2bc341aaf68ee5ef0307d9f0c73a0a2648aabd5766be51b70df26
+    h_media:
+      r_emergence-video:
+        protocol: mp4-file@1
+        sha256: 1a233fd8f919d8a2bc3251c477c1d96f42d3a5f31af4ff626c9c254e8eb6dc7e
 edges:
   g: []
   l:

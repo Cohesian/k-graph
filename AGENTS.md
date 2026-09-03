@@ -21,7 +21,7 @@ representation still describes the same object.
 | Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
 | Contributor model | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |
 | Resource overlay | [`docs/RESOURCE-OVERLAY.md`](docs/RESOURCE-OVERLAY.md) |
-| Resource contract v2 migration target | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
+| Resource contract | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
 | Proposal model | [`docs/PROPOSALS.md`](docs/PROPOSALS.md) |
 | Pending interfaces | [`docs/ROADMAP.md`](docs/ROADMAP.md) |
 | Tooling | [`tooling/README.md`](tooling/README.md) |
@@ -31,14 +31,16 @@ representation still describes the same object.
 A Directory node looks like:
 
 ```yaml
-title: Function
-description: Functions as bounded nodes and transformations.
+title: Functions
+description: One lens on functions as bounded executable nodes.
 kind: F
-id: 42292902-3874-4d54-87ec-0e1b7362af13
-contributors:
-  research:
-    documents:
-      - md
+id: 499ff1af-eed7-425d-9fed-e357ec2e0b97
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: aaacecaa42528397cc3cca3c88141863d7f381a50bec28bdacf6492dc1472386
 edges:
   g: []
   l:
@@ -48,8 +50,9 @@ edges:
 ```
 
 The intrinsic fields describe the node. `edges` expresses its local graph
-neighborhood. `contributors` expresses accepted resources by contributor,
-domain, and format.
+neighborhood. `contributions` records accepted resources by contributor,
+hierarchy, and resource key. Each accepted leaf carries the protocol that
+defines its shape and the canonical SHA-256 of its accepted bytes.
 
 Preserve these invariants when changing the graph:
 
@@ -61,14 +64,13 @@ Preserve these invariants when changing the graph:
 - `GROUPS.position` preserves authored child order;
 - Neo4j derives rooted paths through `GROUPS` rather than persisting them as
   node properties;
-- contributor ids, domains, and formats are registered in `k-graph.toml`;
+- every `c_` key names a contributor registered in `k-graph.toml`;
+- `h_` keys form a non-empty hierarchy of arbitrary depth;
+- every `r_` key is unique inside one `(node, contributor, hierarchy)`
+  namespace and carries exactly `protocol` and `sha256`;
+- K stores acceptance metadata, while contributors retain locations and bytes;
 - the Directory and Neo4j representations remain equivalent; and
 - generated Cypher is regenerated through the tooling.
-
-The invariants and example above describe the active v1 graph. Work on
-`feat/resource-contract-v2` follows the frozen v2 contract, but authored node
-files remain v1 until the coordinated K migration. Do not mix v1
-`contributors` and v2 `contributions` inside the active graph.
 
 ## Validation
 

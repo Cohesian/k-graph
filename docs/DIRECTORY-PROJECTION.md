@@ -61,25 +61,27 @@ T-computer-science/L-composite/F-04-TLF-composite
 Accepted contributor resources are local to the node:
 
 ```yaml
-contributors:
-  research:
-    documents:
-      - md
-  studio:
-    scenes:
-      - loci-project
-    videos:
-      - mp4
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: aaacecaa42528397cc3cca3c88141863d7f381a50bec28bdacf6492dc1472386
 ```
 
-Contributor keys, domain keys, and formats must be admitted by `k-graph.toml`.
-Nodes without accepted resources use:
+`c_` introduces a registered contributor, each `h_` adds one hierarchy
+segment, and `r_` introduces a resource key. Hierarchies may have arbitrary
+depth and may contain both resources and deeper hierarchy segments. Every
+resource carries a versioned protocol and its canonical lowercase SHA-256.
+
+Contributor ids must be registered in `k-graph.toml`. Nodes without accepted
+resources use:
 
 ```yaml
-contributors: {}
+contributions: {}
 ```
 
-Proposal provenance, contributor storage locations, and URI resolution are not
+Contributor bytes, physical locations, credentials, and URI resolution are not
 encoded here.
 
 ## 5. Local edges
@@ -147,7 +149,7 @@ As with linear edges, cross-group targets use their rooted paths.
 A node's local declaration contains:
 
 - its intrinsic `kind`, `title`, and `description`;
-- its accepted resources by contributor, domain, and format; and
+- its accepted resources by contributor, hierarchy, and resource key; and
 - its incoming/outgoing neighborhood as expressed through `g`, `l`, and `r`.
 
 Some incoming facts are declared reciprocally or by a neighboring composite,
@@ -156,7 +158,7 @@ then become visible after the local declarations are composed. The loader:
 1. discovers every composite and leaf;
 2. validates immutable UUID ids and derives rooted paths;
 3. resolves local edge references;
-4. validates the TLF and contributor laws; and
+4. validates the TLF and accepted-resource laws; and
 5. composes the complete graph.
 
 Formally, for each edge family $x\in\{g,l,r\}$:
@@ -187,7 +189,7 @@ No individual YAML node contains the whole graph.
 | Draft File | `Fd-*.yaml` |
 | Stable identity | `id` UUID property |
 | Intrinsic semantics | `kind`, `title`, `description` |
-| Resource overlay | `contributors.<contributor>.<domain>[]` |
+| Resource overlay | recursive `contributions.c_*.h_*.r_*` mappings |
 | Grouping | containment + ordered `edges.g` |
 | Linear | `edges.l.prev` / `edges.l.next` |
 | Related | `edges.r` |

@@ -2,10 +2,12 @@ title: Branching Depth Resolution
 description: Base as branching factor; exponent as depth coordinate.
 kind: F
 id: 1497eefc-aa3d-4444-a426-9ccb0410b0bf
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 1d93b58e1a311b0910886a0d04ff843c48ba681dc3e51627dd4f67a1e40ddd98
 edges:
   g: []
   l:

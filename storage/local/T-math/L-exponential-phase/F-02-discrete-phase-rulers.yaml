@@ -3,10 +3,12 @@ description: Phase rulers that inspect coarse exponential jumps without changing
   base.
 kind: F
 id: ff7c99b6-ce1f-4973-9d3c-89f1f12a1f69
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 67188fb7e37a0c1eb0bb034e3398843908c90cf1e84be0a69a07c2247bddb141
 edges:
   g: []
   l:

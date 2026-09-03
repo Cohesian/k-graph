@@ -2,15 +2,21 @@ title: Carbon Binder
 description: A common binder interface that generates many structures.
 kind: F
 id: 2a05068f-d48c-4fdd-915c-778bc8f42211
-contributors:
-  research:
-    documents:
-      - md
-  studio:
-    scenes:
-      - loci-project
-    videos:
-      - mp4
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 57b3119069e3ac0a81a3384daed94cf076209b26b3c9eba9b9c943166ba51c00
+  c_studio:
+    h_scenes:
+      r_loci-project:
+        protocol: loci-project@1
+        sha256: f576e6afd1f2013c99b97190a1d6cf10b7b25162728eec41260270a06b6e185c
+    h_videos:
+      r_mp4:
+        protocol: mp4-file@1
+        sha256: 71a89456adec6f26dda3282f93382076de615e36e276f53ed169d74e28d8ddb0
 edges:
   g: []
   l:

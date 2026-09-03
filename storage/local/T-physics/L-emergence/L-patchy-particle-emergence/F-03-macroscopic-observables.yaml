@@ -2,10 +2,12 @@ title: From Trajectories to Macroscopic Observables
 description: Contact-graph projection and ensemble observables derived from trajectories.
 kind: F
 id: d01f2da8-c079-4665-b0cf-cd78f5c9727e
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 6f63aa67de4a6b86b5d7b051d4bf09d03d81319a846ca784a06aaf7069eee1d5
 edges:
   g: []
   l:

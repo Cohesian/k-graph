@@ -2,10 +2,12 @@ title: Function Orchestration
 description: Internal process coordination behind a function boundary (draft).
 kind: Fd
 id: 9e9629bd-eb94-40fc-ba6e-922420cd13f7
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: bccf5bc84d685f710a4037d539c7e7b0991f34f6da7e34c501c0e8c5947e5d69
 edges:
   g: []
   l:

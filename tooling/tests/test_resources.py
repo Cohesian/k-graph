@@ -18,28 +18,38 @@ class ResourceProjectionTests(unittest.TestCase):
     def test_current_graph_is_valid(self) -> None:
         self.assertEqual(self.graph.errors, [])
 
-    def test_resources_are_domain_aware(self) -> None:
+    def test_resources_have_v2_addresses_and_integrity(self) -> None:
         node = self.graph.nodes[COMPOSITE_PATH]
-        self.assertEqual(node.contributors["research"], {"documents": ["md"]})
+        resources = {
+            (item.contributor, item.hierarchy, item.key): item.protocol
+            for item in node.contributions
+        }
         self.assertEqual(
-            node.contributors["studio"]["scenes"], ["loci-project"]
+            resources[("research", ("documents",), "md")],
+            "markdown-file@1",
         )
-        self.assertEqual(node.contributors["studio"]["videos"], ["mp4"])
-
-    def test_current_graph_has_33_logical_resources(self) -> None:
-        resources = sum(
-            len(formats)
-            for node in self.graph.nodes.values()
-            for domains in node.contributors.values()
-            for formats in domains.values()
+        self.assertEqual(
+            resources[("studio", ("scenes",), "loci-project")],
+            "loci-project@1",
         )
-        self.assertEqual(resources, 33)
+        self.assertEqual(
+            resources[("studio", ("videos",), "mp4")],
+            "mp4-file@1",
+        )
+        self.assertTrue(all(len(item.sha256) == 64 for item in node.contributions))
 
-    def test_neo4j_projection_preserves_domains(self) -> None:
+    def test_current_graph_has_42_accepted_resources(self) -> None:
+        resources = sum(len(node.contributions) for node in self.graph.nodes.values())
+        self.assertEqual(resources, 42)
+
+    def test_neo4j_projection_preserves_v2_acceptance_records(self) -> None:
         cypher = emit_cypher(self.graph)
-        self.assertIn('MERGE (c)-[r:PROVIDES {domain: "documents"}]->(n)', cypher)
-        self.assertIn('MERGE (c)-[r:PROVIDES {domain: "scenes"}]->(n)', cypher)
-        self.assertIn('MERGE (c)-[r:PROVIDES {domain: "videos"}]->(n)', cypher)
+        self.assertIn(
+            'MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)',
+            cypher,
+        )
+        self.assertIn('r.protocol = "markdown-file@1"', cypher)
+        self.assertIn("r.sha256 = ", cypher)
         self.assertNotIn("MERGE (c)-[r:CONTRIBUTED]->(n)", cypher)
 
 

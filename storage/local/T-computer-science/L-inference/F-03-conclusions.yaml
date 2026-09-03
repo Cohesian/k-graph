@@ -2,10 +2,12 @@ title: Conclusions
 description: Conclusions from the inference exploration.
 kind: F
 id: bb00a29b-d851-4395-9e20-bce895bb379e
-contributors:
-  research:
-    documents:
-      - md
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 91c23f04317a3bcbef9d90948c491a4c9342dc156f78784aca55346f2f9dcf31
 edges:
   g: []
   l:

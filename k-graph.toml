@@ -1,4 +1,4 @@
-version = 1
+version = 2
 
 [graph]
 root = "K"
@@ -12,17 +12,5 @@ path = "storage/neo4j"
 schema = "schema.cypher"
 projection = "k-graph.cypher"
 
-[contributors.research.domains.documents]
-formats = ["md", "ipynb", "companions"]
-
-[contributors.research.domains.code]
-formats = ["python-project"]
-
-[contributors.research.domains.media]
-formats = ["mp4"]
-
-[contributors.studio.domains.scenes]
-formats = ["loci-project"]
-
-[contributors.studio.domains.videos]
-formats = ["mp4"]
+[contributors]
+registered = ["research", "studio"]

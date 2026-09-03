@@ -2,7 +2,7 @@ title: Mechanics
 description: Computational mechanics and ticker-like systems.
 kind: T
 id: e6217c42-963a-4fbf-9e0a-f224cb826639
-contributors: {}
+contributions: {}
 edges:
   g:
     - L-sparse-ticker-state
