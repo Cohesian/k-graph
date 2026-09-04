@@ -13,4 +13,4 @@ schema = "schema.cypher"
 projection = "k-graph.cypher"
 
 [contributors]
-registered = ["research", "studio"]
+registered = ["research"]

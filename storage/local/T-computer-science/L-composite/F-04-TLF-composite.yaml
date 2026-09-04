@@ -8,12 +8,10 @@ contributions:
       r_md:
         protocol: markdown-file@1
         sha256: ac55bcff9acabcc2ed7890fa572edc06fc260212956043e9bc0a7278884d4c5e
-  c_studio:
-    h_scenes:
+    h_media:
       r_loci-project:
         protocol: loci-project@1
         sha256: 42d070e8479cc2ffee5fccad32a5aa6cbd6ccbccf1bd426f4a1c609a1b53dd42
-    h_videos:
       r_mp4:
         protocol: mp4-file@1
         sha256: e24ad15c57fcb90156b5aaa0b461218bfdf1b587cfa4529cc124bdddad0e1294

@@ -7,13 +7,13 @@ the contributor ownership of K topology.
 The current set is:
 
 $$
-C_{\mathcal K}=\{\texttt{research},\texttt{studio}\}.
+C_{\mathcal K}=\{\texttt{research}\}.
 $$
 
 Research is the active v2 owner of scientific documents, executable studies,
-and study media. Studio's existing accepted records are preserved in v2 during
-the production-to-contribution ownership transition; their later transfer is
-a separate graph change.
+and study media. Studio is a production workstation, not a K contributor.
+Resources it produces for Research remain addressed under `c_research` and may
+record `produced_by = "studio"` in Research's inventory.
 
 ## Accepted relation
 

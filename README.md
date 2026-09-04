@@ -22,8 +22,9 @@ description: Concise meaning of this node
 Its grouping, linear, and related connections are graph relationships. A
 separate resource overlay records accepted contributor resources by hierarchy
 and key. Each accepted resource names a versioned protocol and canonical
-SHA-256 digest. The current registry contains `research` and `studio`; Studio's
-entries remain transitional until production ownership is migrated.
+SHA-256 digest. The current registered contributor is `research`. Studio may
+produce media recorded with `produced_by = "studio"`, but Research owns the
+accepted resource and its locations.
 
 ## Read first
 

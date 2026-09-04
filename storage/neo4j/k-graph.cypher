@@ -226,54 +226,52 @@ SET n:File;
 
 MERGE (:Contributor {id: "research"});
 
-MERGE (:Contributor {id: "studio"});
-
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
 SET r.protocol = "markdown-file@1", r.sha256 = "57b3119069e3ac0a81a3384daed94cf076209b26b3c9eba9b9c943166ba51c00";
 
-MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
-MERGE (c)-[r:PROVIDES {hierarchy: ["scenes"], key: "loci-project"}]->(n)
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "loci-project"}]->(n)
 SET r.protocol = "loci-project@1", r.sha256 = "f576e6afd1f2013c99b97190a1d6cf10b7b25162728eec41260270a06b6e185c";
 
-MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
-MERGE (c)-[r:PROVIDES {hierarchy: ["videos"], key: "mp4"}]->(n)
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "mp4"}]->(n)
 SET r.protocol = "mp4-file@1", r.sha256 = "71a89456adec6f26dda3282f93382076de615e36e276f53ed169d74e28d8ddb0";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
 SET r.protocol = "markdown-file@1", r.sha256 = "6f83353e4560651dd1f6db2b7367075807fe5b3527b1cd92098ca4b0d4978854";
 
-MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
-MERGE (c)-[r:PROVIDES {hierarchy: ["scenes"], key: "loci-project"}]->(n)
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "loci-project"}]->(n)
 SET r.protocol = "loci-project@1", r.sha256 = "3993a04963ceb95fcbbc713fe57e235d06485a2155ae5683b36b18c7c2d024a3";
 
-MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
-MERGE (c)-[r:PROVIDES {hierarchy: ["videos"], key: "mp4"}]->(n)
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "mp4"}]->(n)
 SET r.protocol = "mp4-file@1", r.sha256 = "286fc32045a34e29b4982f916f234232ee90ef9607d291d6836df45a221e20d1";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
 SET r.protocol = "markdown-file@1", r.sha256 = "48aca6acaf797ff25abc7211572140f46f26a9a7fc59fe70785ce968ad576f3d";
 
-MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
-MERGE (c)-[r:PROVIDES {hierarchy: ["scenes"], key: "loci-project"}]->(n)
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "loci-project"}]->(n)
 SET r.protocol = "loci-project@1", r.sha256 = "c5b02d81ae3d1620ebc3eac982baeb5b64266196baa07408afe7d745f91b4445";
 
-MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
-MERGE (c)-[r:PROVIDES {hierarchy: ["videos"], key: "mp4"}]->(n)
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "mp4"}]->(n)
 SET r.protocol = "mp4-file@1", r.sha256 = "a4f76cac042ea194965181e08b4943f96d0338106c19964c6ebb714d6eda7bbb";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
 SET r.protocol = "markdown-file@1", r.sha256 = "ac55bcff9acabcc2ed7890fa572edc06fc260212956043e9bc0a7278884d4c5e";
 
-MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
-MERGE (c)-[r:PROVIDES {hierarchy: ["scenes"], key: "loci-project"}]->(n)
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "loci-project"}]->(n)
 SET r.protocol = "loci-project@1", r.sha256 = "42d070e8479cc2ffee5fccad32a5aa6cbd6ccbccf1bd426f4a1c609a1b53dd42";
 
-MATCH (c:Contributor {id: "studio"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
-MERGE (c)-[r:PROVIDES {hierarchy: ["videos"], key: "mp4"}]->(n)
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "mp4"}]->(n)
 SET r.protocol = "mp4-file@1", r.sha256 = "e24ad15c57fcb90156b5aaa0b461218bfdf1b587cfa4529cc124bdddad0e1294";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "499ff1af-eed7-425d-9fed-e357ec2e0b97"})

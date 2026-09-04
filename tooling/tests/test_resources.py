@@ -29,11 +29,11 @@ class ResourceProjectionTests(unittest.TestCase):
             "markdown-file@1",
         )
         self.assertEqual(
-            resources[("studio", ("scenes",), "loci-project")],
+            resources[("research", ("media",), "loci-project")],
             "loci-project@1",
         )
         self.assertEqual(
-            resources[("studio", ("videos",), "mp4")],
+            resources[("research", ("media",), "mp4")],
             "mp4-file@1",
         )
         self.assertTrue(all(len(item.sha256) == 64 for item in node.contributions))
