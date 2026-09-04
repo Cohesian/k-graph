@@ -301,6 +301,5 @@ It also replaced format lists with named resources carrying a versioned
 protocol and digest. Tether retains v1 parsing only as a compatibility path;
 K's authored graph is entirely v2 and rejects mixed serialization.
 
-The planned topology term `Entry` is independent of this contract. Renaming
-TLF to TLE is a separate graph migration; a resource is never synonymous with
-either a File or an Entry node.
+The topology term `Entry` is independent of this contract. A contributed
+resource is never synonymous with an Entry node.

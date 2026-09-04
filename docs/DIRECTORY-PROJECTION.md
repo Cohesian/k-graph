@@ -2,7 +2,7 @@
 
 ## 1. Meaning
 
-The Directory Projection expresses the TLF graph with directories and YAML.
+The Directory Projection expresses the TLE graph with directories and YAML.
 It is human-readable, Git-versioned, and composed from node-local declarations.
 
 The complete projection lives in:
@@ -20,14 +20,14 @@ storage/local/
 │   ├── props.yaml
 │   ├── L-lecture/
 │   │   ├── props.yaml
-│   │   └── F-file.yaml
+│   │   └── E-entry.yaml
 │   └── T-nested-topic/
 │       └── props.yaml
-└── F-direct-file.yaml
+└── E-direct-entry.yaml
 ```
 
 `T` and `L` are composites represented by directories containing
-`props.yaml`. They may group any TLF kind. `F` and `Fd` are leaves represented
+`props.yaml`. They may group any TLE kind. `E` and `Ed` are leaves represented
 by YAML files.
 
 The root is `storage/local/props.yaml`; its rooted path is `K` and its kind
@@ -38,9 +38,9 @@ is `T`.
 Every node declares its intrinsic semantics:
 
 ```yaml
-title: TLF Composite
-description: Topic / Lecture / File composite pattern for a knowledge corpus.
-kind: F
+title: TLE Composite
+description: Topic / Lecture / Entry composite pattern for a knowledge corpus.
+kind: E
 id: 42292902-3874-4d54-87ec-0e1b7362af13
 ```
 
@@ -53,7 +53,7 @@ local id. The rooted `path` is derived from the relative grouping path, for
 example:
 
 ```text
-T-computer-science/L-composite/F-04-TLF-composite
+T-computer-science/L-composite/E-04-TLE-composite
 ```
 
 ## 4. Resource declaration
@@ -104,8 +104,8 @@ For a composite, `edges.g` lists its immediate children in authored order:
 ```yaml
 edges:
   g:
-    - F-01-carbon-binder
-    - F-02-type-binder
+    - E-01-carbon-binder
+    - E-02-type-binder
   l:
     prev: null
     next: null
@@ -121,8 +121,8 @@ orders them. Every immediate directory child appears exactly once.
 
 ```yaml
 l:
-  prev: F-01-function
-  next: F-03-function-network
+  prev: E-01-function
+  next: E-03-function-network
 ```
 
 Reciprocal declarations must agree. Together they represent one directed
@@ -136,7 +136,7 @@ written as a string; a weighted relation may be written as a mapping:
 
 ```yaml
 r:
-  - F-other
+  - E-other
   - target: T-neighbor
     weight: 0.72
 ```
@@ -158,7 +158,7 @@ then become visible after the local declarations are composed. The loader:
 1. discovers every composite and leaf;
 2. validates immutable UUID ids and derives rooted paths;
 3. resolves local edge references;
-4. validates the TLF and accepted-resource laws; and
+4. validates the TLE and accepted-resource laws; and
 5. composes the complete graph.
 
 Formally, for each edge family $x\in\{g,l,r\}$:
@@ -171,7 +171,7 @@ No individual YAML node contains the whole graph.
 
 ## 7. Structural laws
 
-- `T` and `L` nodes are composites; `F` and `Fd` nodes are leaves.
+- `T` and `L` nodes are composites; `E` and `Ed` nodes are leaves.
 - Leaves have no outgoing grouping edges.
 - Every non-root node has exactly one grouping parent.
 - The grouping projection is rooted, ordered, and acyclic.
@@ -180,13 +180,13 @@ No individual YAML node contains the whole graph.
 
 ## 8. Representation summary
 
-| TLF concept | Directory expression |
+| TLE concept | Directory expression |
 |---|---|
 | Root `K` | `storage/local/props.yaml` |
 | Topic | `T-*/props.yaml` |
 | Lecture | `L-*/props.yaml` |
-| File | `F-*.yaml` |
-| Draft File | `Fd-*.yaml` |
+| Entry | `E-*.yaml` |
+| Draft Entry | `Ed-*.yaml` |
 | Stable identity | `id` UUID property |
 | Intrinsic semantics | `kind`, `title`, `description` |
 | Resource overlay | recursive `contributions.c_*.h_*.r_*` mappings |

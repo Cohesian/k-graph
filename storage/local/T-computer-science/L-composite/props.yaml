@@ -1,14 +1,14 @@
 title: Composite
-description: Binder patterns and the TLF corpus composite model.
+description: Binder patterns and the TLE corpus composite model.
 kind: L
 id: dfa7000b-4b6b-480a-9a33-90d7d5f764c5
 contributions: {}
 edges:
   g:
-    - F-01-carbon-binder
-    - F-02-type-binder
-    - F-03-query-binder
-    - F-04-TLF-composite
+    - E-01-carbon-binder
+    - E-02-type-binder
+    - E-03-query-binder
+    - E-04-TLE-composite
   l:
     prev: null
     next: null

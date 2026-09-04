@@ -27,9 +27,9 @@ except ModuleNotFoundError:
     sys.exit("pyyaml is required: python -m pip install pyyaml")
 
 
-KINDS = frozenset({"T", "L", "F", "Fd"})
+KINDS = frozenset({"T", "L", "E", "Ed"})
 COMPOSITES = frozenset({"T", "L"})
-LEAVES = frozenset({"F", "Fd"})
+LEAVES = frozenset({"E", "Ed"})
 NODE_FIELDS = frozenset(
     {"id", "title", "description", "kind", "contributions", "edges"}
 )
@@ -367,7 +367,7 @@ def add_node(
     if not isinstance(raw_group, list):
         graph.error(path, "edges.g must be a list")
     elif kind in LEAVES and raw_group:
-        graph.error(path, "File nodes cannot group children")
+        graph.error(path, "Entry nodes cannot group children")
 
     raw_linear = edges.get("l", {})
     if not isinstance(raw_linear, dict):
@@ -708,8 +708,8 @@ def emit_cypher(graph: DirectoryGraph) -> str:
     label_for_kind = {
         "T": "Topic",
         "L": "Lecture",
-        "F": "File",
-        "Fd": "File:Draft",
+        "E": "Entry",
+        "Ed": "Entry:Draft",
     }
     for node in sorted(graph.nodes.values(), key=lambda item: item.path):
         lines.extend(

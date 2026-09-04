@@ -33,80 +33,80 @@ SET n.local_id = "T-computer-science", n.kind = "T", n.title = "Computer science
 SET n:Topic;
 
 MERGE (n:KNode {id: "dfa7000b-4b6b-480a-9a33-90d7d5f764c5"})
-SET n.local_id = "L-composite", n.kind = "L", n.title = "Composite", n.description = "Binder patterns and the TLF corpus composite model."
+SET n.local_id = "L-composite", n.kind = "L", n.title = "Composite", n.description = "Binder patterns and the TLE corpus composite model."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
-SET n.local_id = "F-01-carbon-binder", n.kind = "F", n.title = "Carbon Binder", n.description = "A common binder interface that generates many structures."
-SET n:File;
+SET n.local_id = "E-01-carbon-binder", n.kind = "E", n.title = "Carbon Binder", n.description = "A common binder interface that generates many structures."
+SET n:Entry;
 
 MERGE (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
-SET n.local_id = "F-02-type-binder", n.kind = "F", n.title = "Type Binder", n.description = "Types as a composite binder surface."
-SET n:File;
+SET n.local_id = "E-02-type-binder", n.kind = "E", n.title = "Type Binder", n.description = "Types as a composite binder surface."
+SET n:Entry;
 
 MERGE (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
-SET n.local_id = "F-03-query-binder", n.kind = "F", n.title = "Query Binder", n.description = "Query structure as a binder specialization."
-SET n:File;
+SET n.local_id = "E-03-query-binder", n.kind = "E", n.title = "Query Binder", n.description = "Query structure as a binder specialization."
+SET n:Entry;
 
 MERGE (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
-SET n.local_id = "F-04-TLF-composite", n.kind = "F", n.title = "TLF Composite", n.description = "Topic / Lecture / File composite pattern for a knowledge corpus."
-SET n:File;
+SET n.local_id = "E-04-TLE-composite", n.kind = "E", n.title = "TLE Composite", n.description = "Topic / Lecture / Entry composite pattern for a knowledge corpus."
+SET n:Entry;
 
 MERGE (n:KNode {id: "d9cc0386-2ec5-4b6f-be72-24e75594598d"})
 SET n.local_id = "L-functions", n.kind = "L", n.title = "Functions", n.description = "Functions as bounded nodes — composition, execution, networks, and wrappers."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "499ff1af-eed7-425d-9fed-e357ec2e0b97"})
-SET n.local_id = "F-01-function", n.kind = "F", n.title = "Functions", n.description = "One lens on functions as bounded executable nodes."
-SET n:File;
+SET n.local_id = "E-01-function", n.kind = "E", n.title = "Functions", n.description = "One lens on functions as bounded executable nodes."
+SET n:Entry;
 
 MERGE (n:KNode {id: "9d406912-c737-416c-94f2-4edb90db3ee7"})
-SET n.local_id = "F-02-execution", n.kind = "F", n.title = "Execution", n.description = "Execution as the interface admitting many executable forms."
-SET n:File;
+SET n.local_id = "E-02-execution", n.kind = "E", n.title = "Execution", n.description = "Execution as the interface admitting many executable forms."
+SET n:Entry;
 
 MERGE (n:KNode {id: "1e650360-f987-42c8-ab37-d2e928b82b32"})
-SET n.local_id = "F-03-function-network", n.kind = "F", n.title = "Function Network", n.description = "Pipelines, wrappers, and functions as graph structure."
-SET n:File;
+SET n.local_id = "E-03-function-network", n.kind = "E", n.title = "Function Network", n.description = "Pipelines, wrappers, and functions as graph structure."
+SET n:Entry;
 
 MERGE (n:KNode {id: "7bd2455a-1fe5-4972-9c36-78d6a4f0df9b"})
-SET n.local_id = "F-04-function-natural-wrappers", n.kind = "F", n.title = "Function Natural Wrappers", n.description = "Natural wrappers as reusable function boundaries."
-SET n:File;
+SET n.local_id = "E-04-function-natural-wrappers", n.kind = "E", n.title = "Function Natural Wrappers", n.description = "Natural wrappers as reusable function boundaries."
+SET n:Entry;
 
 MERGE (n:KNode {id: "9e9629bd-eb94-40fc-ba6e-922420cd13f7"})
-SET n.local_id = "Fd-function-orchestration", n.kind = "Fd", n.title = "Function Orchestration", n.description = "Internal process coordination behind a function boundary (draft)."
-SET n:File:Draft;
+SET n.local_id = "Ed-function-orchestration", n.kind = "Ed", n.title = "Function Orchestration", n.description = "Internal process coordination behind a function boundary (draft)."
+SET n:Entry:Draft;
 
 MERGE (n:KNode {id: "da255734-d513-41e4-b64c-721403e9da50"})
 SET n.local_id = "L-inference", n.kind = "L", n.title = "Inference", n.description = "Theorem-style reasoning, agents, and conclusions."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "f776b280-d6fa-4bbd-b213-4978165137eb"})
-SET n.local_id = "F-01-theorem", n.kind = "F", n.title = "Inference Theorem", n.description = "Inducing a common semantic backbone from a family of input files."
-SET n:File;
+SET n.local_id = "E-01-theorem", n.kind = "E", n.title = "Inference Theorem", n.description = "Inducing a common semantic backbone from a family of input files."
+SET n:Entry;
 
 MERGE (n:KNode {id: "08113955-1ff0-4131-877e-4466e614bd1b"})
-SET n.local_id = "F-02-agents", n.kind = "F", n.title = "Agent Architecture", n.description = "Agent structure for inference over semantic data."
-SET n:File;
+SET n.local_id = "E-02-agents", n.kind = "E", n.title = "Agent Architecture", n.description = "Agent structure for inference over semantic data."
+SET n:Entry;
 
 MERGE (n:KNode {id: "bb00a29b-d851-4395-9e20-bce895bb379e"})
-SET n.local_id = "F-03-conclusions", n.kind = "F", n.title = "Conclusions", n.description = "Conclusions from the inference exploration."
-SET n:File;
+SET n.local_id = "E-03-conclusions", n.kind = "E", n.title = "Conclusions", n.description = "Conclusions from the inference exploration."
+SET n:Entry;
 
 MERGE (n:KNode {id: "804dadca-9f14-44c8-884c-d3921f9c60e6"})
 SET n.local_id = "L-semantics", n.kind = "L", n.title = "Semantics", n.description = "Data semantics, JSON representation, and agent prompts."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "39b82207-e234-4352-bc3c-01d84362a7eb"})
-SET n.local_id = "F-01-data-semantics", n.kind = "F", n.title = "Data Semantics", n.description = "Composite tree shape of data before file format."
-SET n:File;
+SET n.local_id = "E-01-data-semantics", n.kind = "E", n.title = "Data Semantics", n.description = "Composite tree shape of data before file format."
+SET n:Entry;
 
 MERGE (n:KNode {id: "5da0c374-473b-40d6-a7dd-659dc4f5211d"})
-SET n.local_id = "F-02-json-representation", n.kind = "F", n.title = "JSON Representation", n.description = "JSON as a representation layer for semantic data."
-SET n:File;
+SET n.local_id = "E-02-json-representation", n.kind = "E", n.title = "JSON Representation", n.description = "JSON as a representation layer for semantic data."
+SET n:Entry;
 
 MERGE (n:KNode {id: "0fa7348d-69f2-487a-a684-71eada16a96d"})
-SET n.local_id = "F-03-agent-prompt", n.kind = "F", n.title = "Semantic Data Packets", n.description = "Agent prompts and semantic data packets."
-SET n:File;
+SET n.local_id = "E-03-agent-prompt", n.kind = "E", n.title = "Semantic Data Packets", n.description = "Agent prompts and semantic data packets."
+SET n:Entry;
 
 MERGE (n:KNode {id: "e6217c42-963a-4fbf-9e0a-f224cb826639"})
 SET n.local_id = "T-mechanics", n.kind = "T", n.title = "Mechanics", n.description = "Computational mechanics and ticker-like systems."
@@ -117,8 +117,8 @@ SET n.local_id = "L-sparse-ticker-state", n.kind = "L", n.title = "Sparse ticker
 SET n:Lecture;
 
 MERGE (n:KNode {id: "ff73c9d4-922b-471e-beb5-3dde7c4a415f"})
-SET n.local_id = "F-sparse_ticker_state_ledger", n.kind = "F", n.title = "Sparse Ticker State Ledger", n.description = "Tracking, replaying, and rolling back state in discrete animated worlds."
-SET n:File;
+SET n.local_id = "E-sparse_ticker_state_ledger", n.kind = "E", n.title = "Sparse Ticker State Ledger", n.description = "Tracking, replaying, and rolling back state in discrete animated worlds."
+SET n:Entry;
 
 MERGE (n:KNode {id: "efc84fce-0236-4141-b12d-24342b0d91ae"})
 SET n.local_id = "T-networking", n.kind = "T", n.title = "Networking", n.description = "Networks, naming, and resolution — trees with typed attachments."
@@ -129,8 +129,8 @@ SET n.local_id = "L-DNS", n.kind = "L", n.title = "DNS", n.description = "Domain
 SET n:Lecture;
 
 MERGE (n:KNode {id: "f2b1b8c2-86c8-484c-bb44-92c711ac607e"})
-SET n.local_id = "F-01-introduction", n.kind = "F", n.title = "Introduction", n.description = "Domain namespace tree, zones, and typed DNS record attachments."
-SET n:File;
+SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Domain namespace tree, zones, and typed DNS record attachments."
+SET n:Entry;
 
 MERGE (n:KNode {id: "61def28d-378b-421d-bd96-42281ecc5570"})
 SET n.local_id = "T-math", n.kind = "T", n.title = "Math", n.description = "Mathematical explorations in the Cohesian k-graph."
@@ -141,28 +141,28 @@ SET n.local_id = "L-division", n.kind = "L", n.title = "Division", n.description
 SET n:Lecture;
 
 MERGE (n:KNode {id: "ff647a5d-44f0-42af-9f01-abcadd04fb37"})
-SET n.local_id = "F-01-introduction", n.kind = "F", n.title = "Introduction", n.description = "Division topics (work in progress)."
-SET n:File;
+SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Division topics (work in progress)."
+SET n:Entry;
 
 MERGE (n:KNode {id: "5a761f46-a4a4-4453-98a4-c0424f94aafc"})
 SET n.local_id = "L-exponential-phase", n.kind = "L", n.title = "Exponential phase", n.description = "Exponential growth, layers, and transformations as composable structures."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "1497eefc-aa3d-4444-a426-9ccb0410b0bf"})
-SET n.local_id = "F-01-branching-depth-resolution", n.kind = "F", n.title = "Branching Depth Resolution", n.description = "Base as branching factor; exponent as depth coordinate."
-SET n:File;
+SET n.local_id = "E-01-branching-depth-resolution", n.kind = "E", n.title = "Branching Depth Resolution", n.description = "Base as branching factor; exponent as depth coordinate."
+SET n:Entry;
 
 MERGE (n:KNode {id: "ff7c99b6-ce1f-4973-9d3c-89f1f12a1f69"})
-SET n.local_id = "F-02-discrete-phase-rulers", n.kind = "F", n.title = "Discrete Phase Rulers", n.description = "Phase rulers that inspect coarse exponential jumps without changing the base."
-SET n:File;
+SET n.local_id = "E-02-discrete-phase-rulers", n.kind = "E", n.title = "Discrete Phase Rulers", n.description = "Phase rulers that inspect coarse exponential jumps without changing the base."
+SET n:Entry;
 
 MERGE (n:KNode {id: "f1504ef9-d65e-4753-8032-27672b2ffa6a"})
-SET n.local_id = "F-03-hidden-generators", n.kind = "F", n.title = "Hidden Generators", n.description = "When a phase step lands in the naturals, it becomes a new local branching base."
-SET n:File;
+SET n.local_id = "E-03-hidden-generators", n.kind = "E", n.title = "Hidden Generators", n.description = "When a phase step lands in the naturals, it becomes a new local branching base."
+SET n:Entry;
 
 MERGE (n:KNode {id: "c6d131b8-0ba5-4ab4-bfdb-c871b95b98e6"})
-SET n.local_id = "Fd-exponential-phase-visual-notebook", n.kind = "Fd", n.title = "Exponential phase visual notebook", n.description = "Exponential phase visual notebook (draft)."
-SET n:File:Draft;
+SET n.local_id = "Ed-exponential-phase-visual-notebook", n.kind = "Ed", n.title = "Exponential phase visual notebook", n.description = "Exponential phase visual notebook (draft)."
+SET n:Entry:Draft;
 
 MERGE (n:KNode {id: "37988c21-5843-4b3e-84ac-e80b338f0322"})
 SET n.local_id = "T-linear-algebra", n.kind = "T", n.title = "Linear algebra", n.description = "Vector spaces, bases, and related structure."
@@ -177,16 +177,16 @@ SET n.local_id = "L-basis", n.kind = "L", n.title = "Basis", n.description = "Ba
 SET n:Lecture;
 
 MERGE (n:KNode {id: "edba87bc-3359-4ea1-bfb7-7bb5d4762963"})
-SET n.local_id = "F-01-introduction", n.kind = "F", n.title = "Introduction", n.description = "Basis and coordinates (work in progress)."
-SET n:File;
+SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Basis and coordinates (work in progress)."
+SET n:Entry;
 
 MERGE (n:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"})
 SET n.local_id = "L-reflection", n.kind = "L", n.title = "Reflection", n.description = "Reflections and symmetry in vector space (in development)."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "07ff1a0b-e84f-40bb-996f-467a03d2bf3c"})
-SET n.local_id = "F-01-introduction", n.kind = "F", n.title = "Introduction", n.description = "Reflections in vector space (work in progress)."
-SET n:File;
+SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Reflections in vector space (work in progress)."
+SET n:Entry;
 
 MERGE (n:KNode {id: "d46fb5c1-449d-4561-a399-93d8ec8b543f"})
 SET n.local_id = "T-physics", n.kind = "T", n.title = "Physics", n.description = "Physical models, experiments, and observations across scales."
@@ -201,34 +201,34 @@ SET n.local_id = "L-patchy-particle-emergence", n.kind = "L", n.title = "Patchy-
 SET n:Lecture;
 
 MERGE (n:KNode {id: "440e4d3d-ea9f-4915-97e6-2b6b7c09c6c4"})
-SET n.local_id = "F-00-purpose-and-boundary", n.kind = "F", n.title = "Emergence from Local Rules to Global Observation", n.description = "Purpose, scope, and evidential boundary of the emergence study."
-SET n:File;
+SET n.local_id = "E-00-purpose-and-boundary", n.kind = "E", n.title = "Emergence from Local Rules to Global Observation", n.description = "Purpose, scope, and evidential boundary of the emergence study."
+SET n:Entry;
 
 MERGE (n:KNode {id: "579fa81e-4a5a-4521-98d9-ea8b69a48e8d"})
-SET n.local_id = "F-01-microscopic-model", n.kind = "F", n.title = "The Patchy-particle Model", n.description = "Reduced-unit geometry, dynamics, interactions, and boundary conditions."
-SET n:File;
+SET n.local_id = "E-01-microscopic-model", n.kind = "E", n.title = "The Patchy-particle Model", n.description = "Reduced-unit geometry, dynamics, interactions, and boundary conditions."
+SET n:Entry;
 
 MERGE (n:KNode {id: "65cecd50-0570-42ca-bf41-6b5ad967a0cf"})
-SET n.local_id = "F-02-local-rules-and-parameters", n.kind = "F", n.title = "Local Rules and the Controlled Experiment", n.description = "Microscopic rules, control axes, and declared experimental parameters."
-SET n:File;
+SET n.local_id = "E-02-local-rules-and-parameters", n.kind = "E", n.title = "Local Rules and the Controlled Experiment", n.description = "Microscopic rules, control axes, and declared experimental parameters."
+SET n:Entry;
 
 MERGE (n:KNode {id: "d01f2da8-c079-4665-b0cf-cd78f5c9727e"})
-SET n.local_id = "F-03-macroscopic-observables", n.kind = "F", n.title = "From Trajectories to Macroscopic Observables", n.description = "Contact-graph projection and ensemble observables derived from trajectories."
-SET n:File;
+SET n.local_id = "E-03-macroscopic-observables", n.kind = "E", n.title = "From Trajectories to Macroscopic Observables", n.description = "Contact-graph projection and ensemble observables derived from trajectories."
+SET n:Entry;
 
 MERGE (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
-SET n.local_id = "F-04-experimental-laboratory", n.kind = "F", n.title = "Experimental Laboratory", n.description = "Reproducible HOOMD-blue experiment, notebook, and rendered trajectory."
-SET n:File;
+SET n.local_id = "E-04-experimental-laboratory", n.kind = "E", n.title = "Experimental Laboratory", n.description = "Reproducible HOOMD-blue experiment, notebook, and rendered trajectory."
+SET n:Entry;
 
 MERGE (n:KNode {id: "508419e1-a1ea-4863-82b7-3636e39e5ee4"})
-SET n.local_id = "F-05-findings-and-limitations", n.kind = "F", n.title = "Findings and Limitations", n.description = "Supported observations, uncertainty, limitations, and next experiments."
-SET n:File;
+SET n.local_id = "E-05-findings-and-limitations", n.kind = "E", n.title = "Findings and Limitations", n.description = "Supported observations, uncertainty, limitations, and next experiments."
+SET n:Entry;
 
 MERGE (:Contributor {id: "research"});
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "57b3119069e3ac0a81a3384daed94cf076209b26b3c9eba9b9c943166ba51c00";
+SET r.protocol = "markdown-file@1", r.sha256 = "773afa5cb10a0b3eafffef2b0300c2e9918cebb487e8868e7a812651f52dfd5a";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "2a05068f-d48c-4fdd-915c-778bc8f42211"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "loci-project"}]->(n)
@@ -240,7 +240,7 @@ SET r.protocol = "mp4-file@1", r.sha256 = "71a89456adec6f26dda3282f93382076de615
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "6f83353e4560651dd1f6db2b7367075807fe5b3527b1cd92098ca4b0d4978854";
+SET r.protocol = "markdown-file@1", r.sha256 = "6139447750e57344dadea3cb037670a544aeb2a10b7014edf9b68ffa7bf4ba2e";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "24309c9a-2e80-47b9-884b-cc9801178c0d"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "loci-project"}]->(n)
@@ -252,7 +252,7 @@ SET r.protocol = "mp4-file@1", r.sha256 = "286fc32045a34e29b4982f916f234232ee90e
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "48aca6acaf797ff25abc7211572140f46f26a9a7fc59fe70785ce968ad576f3d";
+SET r.protocol = "markdown-file@1", r.sha256 = "a9b82668180d008789bf8bddb3f23c39c15a243b8f52c2ddcccccc6404439ae3";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "371342c0-401f-4d34-a537-439386bf9f7c"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "loci-project"}]->(n)
@@ -264,7 +264,7 @@ SET r.protocol = "mp4-file@1", r.sha256 = "a4f76cac042ea194965181e08b4943f96d033
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "ac55bcff9acabcc2ed7890fa572edc06fc260212956043e9bc0a7278884d4c5e";
+SET r.protocol = "markdown-file@1", r.sha256 = "f5a2bf90678079d50b25c819bb71aac7bf8d929ae2b90e71a752ab16d5b8d222";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "42292902-3874-4d54-87ec-0e1b7362af13"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "loci-project"}]->(n)
@@ -276,7 +276,7 @@ SET r.protocol = "mp4-file@1", r.sha256 = "e24ad15c57fcb90156b5aaa0b461218bfdf1b
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "499ff1af-eed7-425d-9fed-e357ec2e0b97"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "aaacecaa42528397cc3cca3c88141863d7f381a50bec28bdacf6492dc1472386";
+SET r.protocol = "markdown-file@1", r.sha256 = "338db37083f8d1b6e3becd40e1ab18bf92cdc34671e0ed59523580730cdb7839";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "9d406912-c737-416c-94f2-4edb90db3ee7"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
@@ -284,15 +284,15 @@ SET r.protocol = "markdown-file@1", r.sha256 = "f0ea980f00faf605b704dda44044d77a
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "1e650360-f987-42c8-ab37-d2e928b82b32"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "f28b62124e8521afbfe722579a013052109a91a6923d5869fa3b9c6dd75e753d";
+SET r.protocol = "markdown-file@1", r.sha256 = "3a589598ad499fd1ade7eee6335342716df689710d145430a672c6f00927d105";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "7bd2455a-1fe5-4972-9c36-78d6a4f0df9b"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "cab090f6e9589ae52fb84276a527218df3ae925a75f8faea3d8d738323f498a8";
+SET r.protocol = "markdown-file@1", r.sha256 = "9b2338e13a10a51d3154d87dee61bc4b357dc884f4fee4d9e30e8e6df55f0380";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "9e9629bd-eb94-40fc-ba6e-922420cd13f7"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "bccf5bc84d685f710a4037d539c7e7b0991f34f6da7e34c501c0e8c5947e5d69";
+SET r.protocol = "markdown-file@1", r.sha256 = "7aaef738695f2024b39fdde02de82e9487b7dc70f1084aa6ade888667b67db02";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f776b280-d6fa-4bbd-b213-4978165137eb"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
@@ -308,7 +308,7 @@ SET r.protocol = "markdown-file@1", r.sha256 = "91c23f04317a3bcbef9d90948c491a4c
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "39b82207-e234-4352-bc3c-01d84362a7eb"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "473a11a548b6cf1e09d3ce2b222e0a02635bc4bb9801508dc9f2f8bcdf31f259";
+SET r.protocol = "markdown-file@1", r.sha256 = "d97ff90197c3aa3766f138338365e938872996d331b5730777b1261333060dcd";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "5da0c374-473b-40d6-a7dd-659dc4f5211d"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
@@ -340,15 +340,15 @@ SET r.protocol = "markdown-file@1", r.sha256 = "1d93b58e1a311b0910886a0d04ff843c
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff7c99b6-ce1f-4973-9d3c-89f1f12a1f69"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "67188fb7e37a0c1eb0bb034e3398843908c90cf1e84be0a69a07c2247bddb141";
+SET r.protocol = "markdown-file@1", r.sha256 = "ba15bc875e46ad91d83532bcf994f8c3b494a954f7eb3147b910c93584d8f7ea";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f1504ef9-d65e-4753-8032-27672b2ffa6a"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "2f75a818a6a4349e1f96c821aa9bef11c6eaf11d7cbc1ea784ecece286b2687a";
+SET r.protocol = "markdown-file@1", r.sha256 = "4917e15fe7b7b3aa7cf930227ea4362fa89cab8f8a9acd547cd37ebb0cf5c43e";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "c6d131b8-0ba5-4ab4-bfdb-c871b95b98e6"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
-SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "4c177a1f56637d9715652df28902f98244291e2973d383e2e78448041d56a870";
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "4be37652bdcadb4588ed059fa13ba60b4a49e3ed2954ec5778a1abc7f07227b5";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "edba87bc-3359-4ea1-bfb7-7bb5d4762963"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
@@ -376,15 +376,15 @@ SET r.protocol = "markdown-file@1", r.sha256 = "6f63aa67de4a6b86b5d7b051d4bf09d0
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["code"], key: "hoomd"}]->(n)
-SET r.protocol = "python-project@1", r.sha256 = "54afb496c757d0e0434686dd85ecf7464cba6b24253607e3e79caf710eae5285";
+SET r.protocol = "python-project@1", r.sha256 = "f7ef30799af1e54a95321be16f8a9e5c172adf6980c29a953951e6be7a65141c";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
-SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "0a870281e08909b4552c16b106f34425e78e203a3d53c7483a088f0a830760de";
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "4841ed646c62b810cdb99d21975ac4e86c928f290e8c5a5b4896c3ebded98f73";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-bundle@1", r.sha256 = "a62a9391a6e2bc341aaf68ee5ef0307d9f0c73a0a2648aabd5766be51b70df26";
+SET r.protocol = "markdown-bundle@1", r.sha256 = "e8cf1045bf633eb7caa740683d79825bd867e4f16fa5df29f800a33c2f7ef6e1";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["media"], key: "emergence-video"}]->(n)

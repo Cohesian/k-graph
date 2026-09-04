@@ -17,15 +17,15 @@ K
 └── T-physics
     └── L-emergence
         └── L-patchy-particle-emergence
-            ├── F-00-purpose-and-boundary
-            ├── F-01-microscopic-model
-            ├── F-02-local-rules-and-parameters
-            ├── F-03-macroscopic-observables
-            ├── F-04-experimental-laboratory
-            └── F-05-findings-and-limitations
+            ├── E-00-purpose-and-boundary
+            ├── E-01-microscopic-model
+            ├── E-02-local-rules-and-parameters
+            ├── E-03-macroscopic-observables
+            ├── E-04-experimental-laboratory
+            └── E-05-findings-and-limitations
 ```
 
-The six File nodes form one `NEXT` chain in their displayed order. No related
+The six Entry nodes form one `NEXT` chain in their displayed order. No related
 edges are requested.
 
 ## Canonical identities
@@ -35,16 +35,16 @@ edges are requested.
 | `T-physics` | `d46fb5c1-449d-4561-a399-93d8ec8b543f` |
 | `T-physics/L-emergence` | `1bdc520d-6211-4371-8ff0-2e7b3041aea4` |
 | `T-physics/L-emergence/L-patchy-particle-emergence` | `04475552-1433-4e6d-92f9-a44406c7ed18` |
-| `T-physics/L-emergence/L-patchy-particle-emergence/F-00-purpose-and-boundary` | `440e4d3d-ea9f-4915-97e6-2b6b7c09c6c4` |
-| `T-physics/L-emergence/L-patchy-particle-emergence/F-01-microscopic-model` | `579fa81e-4a5a-4521-98d9-ea8b69a48e8d` |
-| `T-physics/L-emergence/L-patchy-particle-emergence/F-02-local-rules-and-parameters` | `65cecd50-0570-42ca-bf41-6b5ad967a0cf` |
-| `T-physics/L-emergence/L-patchy-particle-emergence/F-03-macroscopic-observables` | `d01f2da8-c079-4665-b0cf-cd78f5c9727e` |
-| `T-physics/L-emergence/L-patchy-particle-emergence/F-04-experimental-laboratory` | `6281d965-093e-4aaa-9ce0-2f67b95c8bbc` |
-| `T-physics/L-emergence/L-patchy-particle-emergence/F-05-findings-and-limitations` | `508419e1-a1ea-4863-82b7-3636e39e5ee4` |
+| `T-physics/L-emergence/L-patchy-particle-emergence/E-00-purpose-and-boundary` | `440e4d3d-ea9f-4915-97e6-2b6b7c09c6c4` |
+| `T-physics/L-emergence/L-patchy-particle-emergence/E-01-microscopic-model` | `579fa81e-4a5a-4521-98d9-ea8b69a48e8d` |
+| `T-physics/L-emergence/L-patchy-particle-emergence/E-02-local-rules-and-parameters` | `65cecd50-0570-42ca-bf41-6b5ad967a0cf` |
+| `T-physics/L-emergence/L-patchy-particle-emergence/E-03-macroscopic-observables` | `d01f2da8-c079-4665-b0cf-cd78f5c9727e` |
+| `T-physics/L-emergence/L-patchy-particle-emergence/E-04-experimental-laboratory` | `6281d965-093e-4aaa-9ce0-2f67b95c8bbc` |
+| `T-physics/L-emergence/L-patchy-particle-emergence/E-05-findings-and-limitations` | `508419e1-a1ea-4863-82b7-3636e39e5ee4` |
 
 ## Resource overlay
 
-Every File provides the `r_md` resource under
+Every Entry provides the `r_md` resource under
 `c_research/h_documents`. The Experimental Laboratory's Markdown resource
 uses `markdown-bundle@1`, so its referenced figures are part of the same
 accepted boundary. That node also provides:
@@ -63,7 +63,7 @@ these canonical selectors through its contributor inventory.
 
 - all nine UUIDs are unique;
 - the grouping projection remains rooted, ordered, and acyclic;
-- the File chain has reciprocal `prev` and `next` declarations;
+- the Entry chain has reciprocal `prev` and `next` declarations;
 - every declared contributor, hierarchy, resource key, protocol, and digest
   is valid;
 - Directory and generated Neo4j projections are equivalent; and

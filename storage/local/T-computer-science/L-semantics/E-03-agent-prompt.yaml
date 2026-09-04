@@ -1,6 +1,6 @@
 title: Semantic Data Packets
 description: Agent prompts and semantic data packets.
-kind: F
+kind: E
 id: 0fa7348d-69f2-487a-a684-71eada16a96d
 contributions:
   c_research:
@@ -11,6 +11,6 @@ contributions:
 edges:
   g: []
   l:
-    prev: F-02-json-representation
+    prev: E-02-json-representation
     next: null
   r: []

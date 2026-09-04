@@ -7,7 +7,7 @@ from to_neo4j import emit_cypher, load_directory_graph
 
 
 REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
-COMPOSITE_PATH = "T-computer-science/L-composite/F-01-carbon-binder"
+COMPOSITE_PATH = "T-computer-science/L-composite/E-01-carbon-binder"
 
 
 class ResourceProjectionTests(unittest.TestCase):

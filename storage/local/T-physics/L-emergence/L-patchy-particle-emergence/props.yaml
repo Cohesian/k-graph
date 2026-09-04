@@ -5,12 +5,12 @@ id: 04475552-1433-4e6d-92f9-a44406c7ed18
 contributions: {}
 edges:
   g:
-    - F-00-purpose-and-boundary
-    - F-01-microscopic-model
-    - F-02-local-rules-and-parameters
-    - F-03-macroscopic-observables
-    - F-04-experimental-laboratory
-    - F-05-findings-and-limitations
+    - E-00-purpose-and-boundary
+    - E-01-microscopic-model
+    - E-02-local-rules-and-parameters
+    - E-03-macroscopic-observables
+    - E-04-experimental-laboratory
+    - E-05-findings-and-limitations
   l:
     prev: null
     next: null

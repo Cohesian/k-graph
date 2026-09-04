@@ -74,9 +74,9 @@ A grouping change may alter a path and every descendant path. K should expose:
 Contributor resources remain durably joined by UUID. Path-mirroring stores may
 consume the change set without treating topology movement as content change.
 
-## 7. Independent terminology migration
+## 7. Topology terminology
 
-Renaming TLF's leaf kind from File to Entry is independent of resource
-protocol v2. If adopted, TLF-to-TLE must update topology terminology,
-representations, tooling, and consumers atomically; resource keys and
-protocols remain unchanged.
+TLE names its leaf kind Entry so graph structure is not confused with a
+physical file or contributed resource. This terminology is independent of
+resource protocol v2: resource keys, protocols, and accepted bodies retain
+their own identities.

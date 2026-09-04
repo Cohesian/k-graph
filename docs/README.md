@@ -2,7 +2,7 @@
 
 | Document | Purpose |
 |---|---|
-| [`TLF.md`](TLF.md) | Representation-independent mathematical model |
+| [`TLE.md`](TLE.md) | Representation-independent mathematical model |
 | [`DIRECTORY-PROJECTION.md`](DIRECTORY-PROJECTION.md) | Complete Git-friendly graph expression |
 | [`NEO4J-PROJECTION.md`](NEO4J-PROJECTION.md) | Neo4j labels, relationships, constraints, and queries |
 | [`CONTRIBUTORS.md`](CONTRIBUTORS.md) | Contributor set, accepted-resource relation, and boundary |

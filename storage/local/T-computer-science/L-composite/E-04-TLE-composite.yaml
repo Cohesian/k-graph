@@ -1,13 +1,13 @@
-title: TLF Composite
-description: Topic / Lecture / File composite pattern for a knowledge corpus.
-kind: F
+title: TLE Composite
+description: Topic / Lecture / Entry composite pattern for a knowledge corpus.
+kind: E
 id: 42292902-3874-4d54-87ec-0e1b7362af13
 contributions:
   c_research:
     h_documents:
       r_md:
         protocol: markdown-file@1
-        sha256: ac55bcff9acabcc2ed7890fa572edc06fc260212956043e9bc0a7278884d4c5e
+        sha256: f5a2bf90678079d50b25c819bb71aac7bf8d929ae2b90e71a752ab16d5b8d222
     h_media:
       r_loci-project:
         protocol: loci-project@1
@@ -18,6 +18,6 @@ contributions:
 edges:
   g: []
   l:
-    prev: F-03-query-binder
+    prev: E-03-query-binder
     next: null
   r: []

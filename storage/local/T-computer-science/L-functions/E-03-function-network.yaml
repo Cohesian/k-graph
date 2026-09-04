@@ -1,16 +1,16 @@
 title: Function Network
 description: Pipelines, wrappers, and functions as graph structure.
-kind: F
+kind: E
 id: 1e650360-f987-42c8-ab37-d2e928b82b32
 contributions:
   c_research:
     h_documents:
       r_md:
         protocol: markdown-file@1
-        sha256: f28b62124e8521afbfe722579a013052109a91a6923d5869fa3b9c6dd75e753d
+        sha256: 3a589598ad499fd1ade7eee6335342716df689710d145430a672c6f00927d105
 edges:
   g: []
   l:
-    prev: F-02-execution
-    next: F-04-function-natural-wrappers
+    prev: E-02-execution
+    next: E-04-function-natural-wrappers
   r: []

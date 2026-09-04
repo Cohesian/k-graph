@@ -63,7 +63,7 @@ Validation covers:
 
 - registered contributor identity;
 - proposal schema and base revision;
-- TLF kinds and intrinsic node properties;
+- TLE kinds and intrinsic node properties;
 - grouping reachability, acyclicity, and sibling order;
 - incoming and outgoing `NEXT` degree;
 - relationship targets;

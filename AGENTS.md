@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This workspace maintains Cohesian's accepted TLF knowledge graph: node
+This workspace maintains Cohesian's accepted TLE knowledge graph: node
 identity, intrinsic semantics, graph topology, accepted resources, and
 equivalent graph representations.
 
@@ -15,7 +15,7 @@ representation still describes the same object.
 | Need | Read |
 |---|---|
 | Repository overview | [`README.md`](README.md) |
-| Formal model | [`docs/TLF.md`](docs/TLF.md) |
+| Formal model | [`docs/TLE.md`](docs/TLE.md) |
 | Normative contract | [`CONTRACT.md`](CONTRACT.md) |
 | Directory representation | [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) |
 | Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
@@ -33,7 +33,7 @@ A Directory node looks like:
 ```yaml
 title: Functions
 description: One lens on functions as bounded executable nodes.
-kind: F
+kind: E
 id: 499ff1af-eed7-425d-9fed-e357ec2e0b97
 contributions:
   c_research:

@@ -1,16 +1,16 @@
 title: Function Natural Wrappers
 description: Natural wrappers as reusable function boundaries.
-kind: F
+kind: E
 id: 7bd2455a-1fe5-4972-9c36-78d6a4f0df9b
 contributions:
   c_research:
     h_documents:
       r_md:
         protocol: markdown-file@1
-        sha256: cab090f6e9589ae52fb84276a527218df3ae925a75f8faea3d8d738323f498a8
+        sha256: 9b2338e13a10a51d3154d87dee61bc4b357dc884f4fee4d9e30e8e6df55f0380
 edges:
   g: []
   l:
-    prev: F-03-function-network
-    next: Fd-function-orchestration
+    prev: E-03-function-network
+    next: Ed-function-orchestration
   r: []

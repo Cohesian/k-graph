@@ -1,7 +1,7 @@
 # Cohesian k-graph
 
 `k-graph` is Cohesian's accepted knowledge registry. It defines knowledge as a
-TLF graph, keeps a complete reviewable representation in Git, and provides an
+TLE graph, keeps a complete reviewable representation in Git, and provides an
 equivalent Neo4j representation.
 
 This repository is K's workspace: it owns the graph contract, documentation,
@@ -14,7 +14,7 @@ Each knowledge node has a small intrinsic semantic surface:
 
 ```yaml
 id: Immutable UUID
-kind: T | L | F | Fd
+kind: T | L | E | Ed
 title: Human-facing title
 description: Concise meaning of this node
 ```
@@ -30,7 +30,7 @@ accepted resource and its locations.
 
 | Need | Read |
 |---|---|
-| Formal TLF model | [`docs/TLF.md`](docs/TLF.md) |
+| Formal TLE model | [`docs/TLE.md`](docs/TLE.md) |
 | Directory/YAML representation | [`docs/DIRECTORY-PROJECTION.md`](docs/DIRECTORY-PROJECTION.md) |
 | Neo4j representation | [`docs/NEO4J-PROJECTION.md`](docs/NEO4J-PROJECTION.md) |
 | Contributors | [`docs/CONTRIBUTORS.md`](docs/CONTRIBUTORS.md) |

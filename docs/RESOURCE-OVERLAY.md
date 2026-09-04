@@ -1,6 +1,6 @@
 # Resource overlay
 
-TLF defines accepted knowledge topology. The resource overlay records which
+TLE defines accepted knowledge topology. The resource overlay records which
 contributor-owned resources K accepts at each node without turning content or
 storage locations into graph topology.
 
@@ -66,7 +66,7 @@ contributions:
         sha256: 7e40c9a693f4c3b118ed77c250f0dc037f291f2141f438abe7bda7e270e74b13
 ```
 
-This accepted record is neither a TLF node nor an edge in $E_g$, $E_l$, or
+This accepted record is neither a TLE node nor an edge in $E_g$, $E_l$, or
 $E_r$. Nodes with no accepted resources use `contributions: {}`.
 
 ## Exact replicas and publications

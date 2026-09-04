@@ -5,11 +5,11 @@ id: d9cc0386-2ec5-4b6f-be72-24e75594598d
 contributions: {}
 edges:
   g:
-    - F-01-function
-    - F-02-execution
-    - F-03-function-network
-    - F-04-function-natural-wrappers
-    - Fd-function-orchestration
+    - E-01-function
+    - E-02-execution
+    - E-03-function-network
+    - E-04-function-natural-wrappers
+    - Ed-function-orchestration
   l:
     prev: null
     next: null

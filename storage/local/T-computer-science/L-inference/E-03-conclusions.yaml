@@ -1,6 +1,6 @@
 title: Conclusions
 description: Conclusions from the inference exploration.
-kind: F
+kind: E
 id: bb00a29b-d851-4395-9e20-bce895bb379e
 contributions:
   c_research:
@@ -11,6 +11,6 @@ contributions:
 edges:
   g: []
   l:
-    prev: F-02-agents
+    prev: E-02-agents
     next: null
   r: []

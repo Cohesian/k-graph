@@ -1,16 +1,16 @@
 title: Data Semantics
 description: Composite tree shape of data before file format.
-kind: F
+kind: E
 id: 39b82207-e234-4352-bc3c-01d84362a7eb
 contributions:
   c_research:
     h_documents:
       r_md:
         protocol: markdown-file@1
-        sha256: 473a11a548b6cf1e09d3ce2b222e0a02635bc4bb9801508dc9f2f8bcdf31f259
+        sha256: d97ff90197c3aa3766f138338365e938872996d331b5730777b1261333060dcd
 edges:
   g: []
   l:
     prev: null
-    next: F-02-json-representation
+    next: E-02-json-representation
   r: []

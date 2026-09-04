@@ -28,8 +28,8 @@ The contributor and hierarchy localize ownership. The resource key selects a
 logical resource. The protocol $q$ defines its concrete boundary and the
 canonical digest $z$ fixes the exact accepted content.
 
-Any `T`, `L`, `F`, or `Fd` node may carry accepted resources without changing
-its TLF kind or graph neighborhood.
+Any `T`, `L`, `E`, or `Ed` node may carry accepted resources without changing
+its TLE kind or graph neighborhood.
 
 ## Responsibility boundary
 
@@ -55,7 +55,7 @@ For example:
 
 ```bash
 tether resource list ../research --hierarchy documents --key md
-tether resource resolve ../research --path T-math/L-division/F-01-introduction
+tether resource resolve ../research --path T-math/L-division/E-01-introduction
 tether contributor check ../research
 ```
 

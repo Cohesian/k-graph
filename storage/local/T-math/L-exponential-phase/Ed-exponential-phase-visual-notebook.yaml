@@ -1,16 +1,16 @@
 title: Exponential phase visual notebook
 description: Exponential phase visual notebook (draft).
-kind: Fd
+kind: Ed
 id: c6d131b8-0ba5-4ab4-bfdb-c871b95b98e6
 contributions:
   c_research:
     h_documents:
       r_ipynb:
         protocol: jupyter-notebook-file@1
-        sha256: 4c177a1f56637d9715652df28902f98244291e2973d383e2e78448041d56a870
+        sha256: 4be37652bdcadb4588ed059fa13ba60b4a49e3ed2954ec5778a1abc7f07227b5
 edges:
   g: []
   l:
-    prev: F-03-hidden-generators
+    prev: E-03-hidden-generators
     next: null
   r: []

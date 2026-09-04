@@ -1,25 +1,25 @@
-# TLF: formal model
+# TLE: formal model
 
 ## 1. Purpose
 
-TLF—Topic, Lecture, File—is Cohesian's labeled composite pattern for a
+TLE—Topic, Lecture, Entry—is Cohesian's labeled composite pattern for a
 knowledge corpus.
 
 Its central distinction is:
 
 ```text
 T and L are composites.
-F and Fd are leaves.
+E and Ed are leaves.
 ```
 
 The familiar shape:
 
 ```text
-T -> L -> F
+T -> L -> E
 ```
 
 is common pedagogy, not a required depth hierarchy. A Topic or Lecture can
-contain any mixture of Topics, Lectures, Files, and draft Files.
+contain any mixture of Topics, Lectures, Entries, and draft Entries.
 
 The graph has three edge families:
 
@@ -71,7 +71,7 @@ $$
 \kappa:
 V
 \longrightarrow
-\{T,L,F,F_d\}
+\{T,L,E,E_d\}
 $$
 
 with inverse images:
@@ -83,9 +83,9 @@ V_L=\kappa^{-1}(L)
 $$
 
 $$
-V_F=\kappa^{-1}(F)
+V_E=\kappa^{-1}(E)
 \qquad
-V_{F_d}=\kappa^{-1}(F_d)
+V_{E_d}=\kappa^{-1}(E_d)
 $$
 
 Define composites:
@@ -97,35 +97,35 @@ $$
 and leaves:
 
 $$
-V_\ell=V_F\cup V_{F_d}
+V_\ell=V_E\cup V_{E_d}
 $$
 
 The draft mark changes publication state, not structural role:
 
 $$
-F_d : \text{leaf}
+E_d : \text{leaf}
 $$
 
 ### Labels, not levels
 
-`T`, `L`, `F`, and `Fd` are node labels. They are not fixed depth numbers.
+`T`, `L`, `E`, and `Ed` are node labels. They are not fixed depth numbers.
 
 Therefore all of these are valid under grouping:
 
 ```text
 T[T]
 T[L]
-T[F]
+T[E]
 L[T]
 L[L]
-L[F]
+L[E]
 ```
 
-and a File remains a leaf:
+and an Entry remains a leaf:
 
 ```text
-F[]
-Fd[]
+E[]
+Ed[]
 ```
 
 ## 4. Composite grammar
@@ -135,9 +135,9 @@ The recursive grammar is:
 $$
 K
 ::=
-F
+E
 \mid
-F_d
+E_d
 \mid
 c[K_1,\ldots,K_n]
 \qquad
@@ -147,9 +147,9 @@ $$
 Equivalently:
 
 $$
-F:K
+E:K
 \qquad
-F_d:K
+E_d:K
 $$
 
 and:
@@ -174,14 +174,14 @@ $$
 while:
 
 $$
-\operatorname{child}_g(F)
+\operatorname{child}_g(E)
 =
-\operatorname{child}_g(F_d)
+\operatorname{child}_g(E_d)
 =
 \varnothing
 $$
 
-This is the TLF composite law:
+This is the TLE composite law:
 
 $$
 T,L:K^*\to K
@@ -243,10 +243,10 @@ $$
 \right)
 $$
 
-The node's local TLF neighborhood is:
+The node's local TLE neighborhood is:
 
 $$
-\operatorname{loc}_{TLF}(v)
+\operatorname{loc}_{TLE}(v)
 =
 \left(
 \nu(v),
@@ -264,7 +264,7 @@ their incidences form the node's local view.
 
 ### Resource overlay
 
-Contributor resources are separate from TLF topology. For contributor $c$,
+Contributor resources are separate from TLE topology. For contributor $c$,
 non-empty hierarchy $H$, and resource key $p$, one accepted resource has the
 durable address:
 
@@ -280,7 +280,7 @@ K(\bar a)=(q,z).
 $$
 
 This accepted record does not add an edge to $E_g$, $E_l$, or $E_r$, and its
-resource key is not synonymous with a TLF `F` node.
+resource key is not synonymous with a TLE `E` node.
 
 The complete identity, storage, and bridge contract is defined in
 [`RESOURCE-OVERLAY.md`](RESOURCE-OVERLAY.md).
@@ -420,7 +420,7 @@ E_l\subseteq V\times V
 $$
 
 This generalizes the original Foundations paper, which used only
-$V_\ell\times V_\ell$. Topics, Lectures, Files, and draft Files may all
+$V_\ell\times V_\ell$. Topics, Lectures, Entries, and draft Entries may all
 participate in linear traversal.
 
 The stored direction is:
@@ -615,7 +615,7 @@ $$
 =(V_T,E_T)
 $$
 
-is the Topic forest. It hides Lectures and Files while preserving immediate
+is the Topic forest. It hides Lectures and Entries while preserving immediate
 Topic ancestry.
 
 ## 13. Lecture forest
@@ -657,10 +657,10 @@ $$
 T_0\in V_T
 $$
 
-The current Foundations view expands all Lectures until a File or nested Topic.
+The current Foundations view expands all Lectures until a Entry or nested Topic.
 The target bounded view is intentionally shallower:
 
-- a File or draft File is shown and stops;
+- a Entry or draft Entry is shown and stops;
 - a nested Topic is shown as a portal and stops;
 - the first encountered Lecture layer expands; and
 - a Lecture below another Lecture is shown as a portal and stops.
@@ -735,7 +735,7 @@ $$
 L_0\in V_L
 $$
 
-The Lecture view shows the origin, direct Files, and the first nested
+The Lecture view shows the origin, direct Entries, and the first nested
 composites as portals. Define:
 
 $$
@@ -766,7 +766,7 @@ $$
 This view gives a Lecture its own description and bounded neighborhood without
 recursively opening a nested Lecture or Topic.
 
-## 16. File view
+## 16. Entry view
 
 For:
 
@@ -774,7 +774,7 @@ $$
 f\in V_\ell
 $$
 
-the File view combines:
+the Entry view combines:
 
 - the node's local metadata and data declarations;
 - its root-to-node grouping path;
@@ -836,7 +836,7 @@ It is a display coordinate, not identity.
 
 ## 18. Representation independence
 
-TLF does not require a filesystem, YAML, Neo4j, or a particular website.
+TLE does not require a filesystem, YAML, Neo4j, or a particular website.
 
 The formal object is:
 
@@ -873,7 +873,9 @@ $$
 \boxed{
 P_{\mathcal K}
 \subseteq
-\bigcup_{c\in C}(V\times\{c\}\times D_c\times F)
+\bigcup_{c\in C}
+\bigcup_{H\in\mathcal H_c}
+\left(V\times\{c\}\times\{H\}\times P_{c,H}\right)
 }
 $$
 
@@ -881,7 +883,7 @@ Composite grammar:
 
 $$
 \boxed{
-K::=F\mid F_d\mid c[K_1,\ldots,K_n],
+K::=E\mid E_d\mid c[K_1,\ldots,K_n],
 \quad c\in\{T,L\}
 }
 $$

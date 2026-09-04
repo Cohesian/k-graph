@@ -16,7 +16,7 @@ The distinguished root is `K`, a Topic.
 
 | Concern | Authority |
 |---|---|
-| Mathematical model | [`docs/TLF.md`](docs/TLF.md) |
+| Mathematical model | [`docs/TLE.md`](docs/TLE.md) |
 | Accepted resource model | [`docs/RESOURCE-CONTRACT-V2.md`](docs/RESOURCE-CONTRACT-V2.md) |
 | Authored graph | [`storage/local/`](storage/local/) |
 | Neo4j expression | [`storage/neo4j/`](storage/neo4j/) |
@@ -33,13 +33,13 @@ Every node has:
 
 ```yaml
 id: 499ff1af-eed7-425d-9fed-e357ec2e0b97
-kind: T | L | F | Fd
+kind: T | L | E | Ed
 title: Human-facing title
 description: Concise local description
 ```
 
-Kinds are Topic composite (`T`), Lecture composite (`L`), File leaf (`F`),
-and draft File leaf (`Fd`). `kind` remains semantic even when a representation
+Kinds are Topic composite (`T`), Lecture composite (`L`), Entry leaf (`E`),
+and draft Entry leaf (`Ed`). `kind` remains semantic even when a representation
 can derive it.
 
 A node has two selectors:
@@ -131,5 +131,4 @@ Generated Cypher is always regenerated through the repository tooling.
 Protocol v2 replaced the v1 `(node id, contributor, domain, format)` identity
 with `(node id, contributor, hierarchy, resource key)` and added protocol-bound
 digests. The active graph is entirely v2; mixed v1/v2 node serialization is
-invalid. A later TLF-to-TLE terminology change is an independent topology
-migration.
+invalid. TLE's Entry terminology remains independent from resource identity.

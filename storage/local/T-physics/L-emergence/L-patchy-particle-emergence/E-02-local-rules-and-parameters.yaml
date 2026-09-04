@@ -1,6 +1,6 @@
 title: Local Rules and the Controlled Experiment
 description: Microscopic rules, control axes, and declared experimental parameters.
-kind: F
+kind: E
 id: 65cecd50-0570-42ca-bf41-6b5ad967a0cf
 contributions:
   c_research:
@@ -11,6 +11,6 @@ contributions:
 edges:
   g: []
   l:
-    prev: F-01-microscopic-model
-    next: F-03-macroscopic-observables
+    prev: E-01-microscopic-model
+    next: E-03-macroscopic-observables
   r: []

@@ -2,7 +2,7 @@
 
 ## 1. Meaning
 
-The Neo4j Projection stores the TLF object as a labeled property graph.
+The Neo4j Projection stores the TLE object as a labeled property graph.
 Knowledge nodes and contributors become Neo4j nodes; topology and accepted
 resources become explicit relationships.
 
@@ -10,12 +10,12 @@ resources become explicit relationships.
 
 Every knowledge node has the common `KNode` label and a kind label:
 
-| TLF kind | Neo4j labels |
+| TLE kind | Neo4j labels |
 |---|---|
 | `T` | `KNode`, `Topic` |
 | `L` | `KNode`, `Lecture` |
-| `F` | `KNode`, `File` |
-| `Fd` | `KNode`, `File`, `Draft` |
+| `E` | `KNode`, `Entry` |
+| `Ed` | `KNode`, `Entry`, `Draft` |
 
 Its identity and semantic properties are:
 
@@ -23,17 +23,17 @@ Its identity and semantic properties are:
 |---|---|
 | `id` | Immutable UUID identity |
 | `local_id` | Local readable name used to form a rooted path |
-| `kind` | Exact `T`, `L`, `F`, or `Fd` value |
+| `kind` | Exact `T`, `L`, `E`, or `Ed` value |
 | `title` | Human-facing title |
 | `description` | Concise local meaning |
 
 ```cypher
-(:KNode:File {
+(:KNode:Entry {
   id: '42292902-3874-4d54-87ec-0e1b7362af13',
-  local_id: 'F-04-TLF-composite',
-  kind: 'F',
-  title: 'TLF Composite',
-  description: 'Topic / Lecture / File composite pattern for a knowledge corpus.'
+  local_id: 'E-04-TLE-composite',
+  kind: 'E',
+  title: 'TLE Composite',
+  description: 'Topic / Lecture / Entry composite pattern for a knowledge corpus.'
 })
 ```
 
@@ -82,7 +82,7 @@ out or cycle, and may carry an optional weight.
 One `PROVIDES` relationship represents one accepted resource at
 `(K node id, contributor, hierarchy, key)`. Its protocol defines the resource
 boundary and digest procedure; `sha256` fixes the accepted bytes. Resource
-relationships are not TLF topology, and physical stores remain outside Neo4j.
+relationships are not TLE topology, and physical stores remain outside Neo4j.
 
 ## 5. Schema
 
@@ -190,7 +190,7 @@ ORDER BY contributor, hierarchy, resource_key;
 
 ## 7. Representation summary
 
-| TLF concept | Neo4j expression |
+| TLE concept | Neo4j expression |
 |---|---|
 | Knowledge node | `(:KNode)` |
 | Stable identity | `KNode.id` |
