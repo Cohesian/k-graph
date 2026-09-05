@@ -376,11 +376,11 @@ SET r.protocol = "markdown-file@1", r.sha256 = "6f63aa67de4a6b86b5d7b051d4bf09d0
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["code"], key: "hoomd"}]->(n)
-SET r.protocol = "python-project@1", r.sha256 = "f7ef30799af1e54a95321be16f8a9e5c172adf6980c29a953951e6be7a65141c";
+SET r.protocol = "python-project@1", r.sha256 = "5fd40cb007b1871ac83dcb06bf2e8327247550996841b7189939cef6aa3c1237";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
-SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "4841ed646c62b810cdb99d21975ac4e86c928f290e8c5a5b4896c3ebded98f73";
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "0a870281e08909b4552c16b106f34425e78e203a3d53c7483a088f0a830760de";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6281d965-093e-4aaa-9ce0-2f67b95c8bbc"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)

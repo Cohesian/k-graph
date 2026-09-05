@@ -657,7 +657,7 @@ $$
 T_0\in V_T
 $$
 
-The current Foundations view expands all Lectures until a Entry or nested Topic.
+The legacy Foundations view expands all Lectures until an Entry or nested Topic.
 The target bounded view is intentionally shallower:
 
 - a Entry or draft Entry is shown and stops;

@@ -7,11 +7,11 @@ contributions:
     h_code:
       r_hoomd:
         protocol: python-project@1
-        sha256: f7ef30799af1e54a95321be16f8a9e5c172adf6980c29a953951e6be7a65141c
+        sha256: 5fd40cb007b1871ac83dcb06bf2e8327247550996841b7189939cef6aa3c1237
     h_documents:
       r_ipynb:
         protocol: jupyter-notebook-file@1
-        sha256: 4841ed646c62b810cdb99d21975ac4e86c928f290e8c5a5b4896c3ebded98f73
+        sha256: 0a870281e08909b4552c16b106f34425e78e203a3d53c7483a088f0a830760de
       r_md:
         protocol: markdown-bundle@1
         sha256: e8cf1045bf633eb7caa740683d79825bd867e4f16fa5df29f800a33c2f7ef6e1
