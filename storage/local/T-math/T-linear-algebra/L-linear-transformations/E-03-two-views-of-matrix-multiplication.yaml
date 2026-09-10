@@ -1,0 +1,16 @@
+title: Two Views of Matrix Multiplication
+description: Matrix products as column combinations and row measurements.
+kind: E
+id: 89b5e274-1438-45b7-a799-998d4fab0dfd
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 5a695ba41228d87e03fd5c6a316027b8881429a31302c8d04360596747191137
+edges:
+  g: []
+  l:
+    prev: E-02-matrices-as-linear-maps
+    next: E-04-image-kernel-and-rank
+  r: []

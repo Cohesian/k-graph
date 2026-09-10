@@ -1,0 +1,16 @@
+title: Division Visual Laboratory
+description: Executed visual experiments for partitive and quotative division.
+kind: E
+id: 78460d28-94cd-4367-b8aa-8b2ea49d9330
+contributions:
+  c_research:
+    h_documents:
+      r_ipynb:
+        protocol: jupyter-notebook-file@1
+        sha256: 7e6fb7d519acc0b558a2c807bb43db824ab314ea15575cec8b5732a06437e2ff
+edges:
+  g: []
+  l:
+    prev: E-04-when-the-dividend-is-smaller
+    next: null
+  r: []

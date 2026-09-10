@@ -1,0 +1,16 @@
+title: Reconstruction by Integration
+description: Recovering finite change by accumulating infinitesimal local contributions.
+kind: E
+id: 28236311-355e-4bda-a31f-bb1075c94051
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 28377abb2eb871589ce5efe4427ad7afb36d333f65458cffddef1fcbf6fd7cf9
+edges:
+  g: []
+  l:
+    prev: E-03-a-field-of-local-rules
+    next: E-05-visual-laboratory
+  r: []

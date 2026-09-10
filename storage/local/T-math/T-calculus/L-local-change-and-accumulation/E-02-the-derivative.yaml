@@ -1,0 +1,16 @@
+title: The Derivative
+description: The limit of finite change as the observation gap approaches zero.
+kind: E
+id: 6d84a9ff-6e0e-4518-ac3a-d0f14f468c06
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 27eaa4220ea2cf0cf169ec721ae1b82e72ed6f815896194f02308bef1ccdf906
+edges:
+  g: []
+  l:
+    prev: E-01-finite-change
+    next: E-03-a-field-of-local-rules
+  r: []

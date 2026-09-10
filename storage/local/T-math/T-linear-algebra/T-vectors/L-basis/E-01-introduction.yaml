@@ -1,5 +1,5 @@
 title: Introduction
-description: Basis and coordinates (work in progress).
+description: Coordinates as scalar descriptions relative to an ordered basis.
 kind: E
 id: edba87bc-3359-4ea1-bfb7-7bb5d4762963
 contributions:
@@ -7,10 +7,10 @@ contributions:
     h_documents:
       r_md:
         protocol: markdown-file@1
-        sha256: 63e9592b7d4a6d723647c6071bcdac5553232e1e31e4a8dd73df68a12d35a5c3
+        sha256: 2931a4938101986597be63d106485d3821ea4187e24848e6742f0adc6f1d31da
 edges:
   g: []
   l:
     prev: null
-    next: null
+    next: E-02-basis-laboratory
   r: []

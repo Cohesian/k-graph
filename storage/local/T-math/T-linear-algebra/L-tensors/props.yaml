@@ -1,0 +1,15 @@
+title: Tensors
+description: Multilinear objects, coordinate components, order, and basis changes.
+kind: L
+id: bf53e733-356a-41ee-962b-3f0a523ace7d
+contributions: {}
+edges:
+  g:
+    - E-01-from-linear-to-multilinear
+    - E-02-components-order-and-shape
+    - E-03-basis-independent-objects
+    - E-04-tensor-laboratory
+  l:
+    prev: L-linear-transformations
+    next: null
+  r: []

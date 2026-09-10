@@ -1,0 +1,16 @@
+title: When the Dividend Is Smaller
+description: Quotients below one as scale, proportion, and partial occupancy.
+kind: E
+id: edd9880d-7aa9-4d32-a10d-4e71f04dd23b
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 4d6d2972b1de877a4566fc164867bf9f400bf99bd322ff18ac4090a130f7dc78
+edges:
+  g: []
+  l:
+    prev: E-03-quotative-division
+    next: E-05-visual-laboratory
+  r: []

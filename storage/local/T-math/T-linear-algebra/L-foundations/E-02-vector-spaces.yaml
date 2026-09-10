@@ -1,0 +1,16 @@
+title: Vector Spaces
+description: The algebraic structure that defines vectors before geometric enrichment.
+kind: E
+id: 34255a7e-13f8-462e-a1b8-fee604de8893
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: f38217c929a9d37bb506f39a982df08ad511b90b71d473af1c3902e5b89a1b8d
+edges:
+  g: []
+  l:
+    prev: E-01-scalars-and-fields
+    next: E-03-linear-combinations
+  r: []

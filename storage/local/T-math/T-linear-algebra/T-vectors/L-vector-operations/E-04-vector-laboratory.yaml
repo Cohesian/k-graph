@@ -1,0 +1,16 @@
+title: Vector Laboratory
+description: Executed visual experiments for vector composition, scaling, and projection.
+kind: E
+id: 0fc19d85-98e6-4def-a55a-121ce4a43140
+contributions:
+  c_research:
+    h_documents:
+      r_ipynb:
+        protocol: jupyter-notebook-file@1
+        sha256: bd5f9fd3ce04d923632d3bf0199959f8469a7ba509cbc6725a2063cfae0f34ef
+edges:
+  g: []
+  l:
+    prev: E-03-magnitude-direction-and-dot-product
+    next: null
+  r: []

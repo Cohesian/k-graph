@@ -1,0 +1,16 @@
+title: Magnitude Direction and Dot Product
+description: Euclidean geometry through norms, normalization, angles, and projection.
+kind: E
+id: b5dfbb83-1557-4359-8a96-8a5b05d98d23
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: c6fda9774f9b59caf651d687175e0afd8375ff00a88728f09a1e0450cdaf5aa1
+edges:
+  g: []
+  l:
+    prev: E-02-scalar-multiplication
+    next: E-04-vector-laboratory
+  r: []

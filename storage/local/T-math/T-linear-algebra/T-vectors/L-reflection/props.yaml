@@ -1,12 +1,15 @@
 title: Reflection
-description: Reflections and symmetry in vector space (in development).
+description: Reflection matrices, mirror eigenspaces, and geometric invariants.
 kind: L
 id: 2a9874d9-5c7e-414f-8959-1364f177aa84
 contributions: {}
 edges:
   g:
     - E-01-introduction
+    - E-02-constructing-the-matrix
+    - E-03-eigendirections-and-invariants
+    - E-04-reflection-laboratory
   l:
-    prev: null
+    prev: L-basis
     next: null
   r: []

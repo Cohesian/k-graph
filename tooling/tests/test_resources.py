@@ -38,9 +38,9 @@ class ResourceProjectionTests(unittest.TestCase):
         )
         self.assertTrue(all(len(item.sha256) == 64 for item in node.contributions))
 
-    def test_current_graph_has_42_accepted_resources(self) -> None:
+    def test_current_graph_has_71_accepted_resources(self) -> None:
         resources = sum(len(node.contributions) for node in self.graph.nodes.values())
-        self.assertEqual(resources, 42)
+        self.assertEqual(resources, 71)
 
     def test_neo4j_projection_preserves_v2_acceptance_records(self) -> None:
         cypher = emit_cypher(self.graph)

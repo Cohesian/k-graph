@@ -1,0 +1,14 @@
+title: Linear Algebra Foundations
+description: Scalars, vector spaces, linear combinations, span, and independence.
+kind: L
+id: f1f661bc-4e84-44b6-bc46-ca3706bef35c
+contributions: {}
+edges:
+  g:
+    - E-01-scalars-and-fields
+    - E-02-vector-spaces
+    - E-03-linear-combinations
+  l:
+    prev: null
+    next: T-vectors
+  r: []

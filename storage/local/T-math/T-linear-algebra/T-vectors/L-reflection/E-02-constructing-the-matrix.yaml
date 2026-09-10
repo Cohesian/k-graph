@@ -1,0 +1,16 @@
+title: Constructing the Matrix
+description: Deriving reflection matrices from projection and a mirror-aligned basis.
+kind: E
+id: d7056ff7-6fd2-46c7-aa19-783694a41739
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: f97493b1266de2465635731b2d18e0fdd3bf844a13fb7b1237c1a5a5a0662860
+edges:
+  g: []
+  l:
+    prev: E-01-introduction
+    next: E-03-eigendirections-and-invariants
+  r: []

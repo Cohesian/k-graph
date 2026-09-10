@@ -1,0 +1,16 @@
+title: Linear Transformations
+description: Linear maps, matrix representations, image, kernel, and rank.
+kind: L
+id: d4de6f3a-f2d6-405e-a9c2-5f97926a9d50
+contributions: {}
+edges:
+  g:
+    - E-01-transforming-a-basis
+    - E-02-matrices-as-linear-maps
+    - E-03-two-views-of-matrix-multiplication
+    - E-04-image-kernel-and-rank
+    - E-05-transformation-laboratory
+  l:
+    prev: T-vectors
+    next: L-tensors
+  r: []

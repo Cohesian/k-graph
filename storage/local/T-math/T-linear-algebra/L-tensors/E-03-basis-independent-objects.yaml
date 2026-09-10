@@ -1,0 +1,16 @@
+title: Basis Independent Objects
+description: How one tensor acquires different components under coordinate changes.
+kind: E
+id: b04ed194-a816-42e5-b950-ab46846cbf41
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 499d73f73590578e47dda2389264fb582dfc3421358f89f8c4abad801fc6725c
+edges:
+  g: []
+  l:
+    prev: E-02-components-order-and-shape
+    next: E-04-tensor-laboratory
+  r: []

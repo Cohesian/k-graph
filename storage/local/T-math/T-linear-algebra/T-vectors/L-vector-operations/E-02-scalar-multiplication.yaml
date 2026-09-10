@@ -1,0 +1,16 @@
+title: Scalar Multiplication
+description: Scaling vector magnitude and reversing direction with scalar coefficients.
+kind: E
+id: 183d90f0-8306-4b96-adef-88c2bc842d07
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 91485f957263aef5695723d3fe0935d94eb6ec258e4a6b7df0eb00a45e7be356
+edges:
+  g: []
+  l:
+    prev: E-01-addition-and-subtraction
+    next: E-03-magnitude-direction-and-dot-product
+  r: []

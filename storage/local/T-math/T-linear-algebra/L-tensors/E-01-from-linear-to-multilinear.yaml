@@ -1,0 +1,16 @@
+title: From Linear to Multilinear
+description: Covectors, bilinear maps, outer products, and contraction.
+kind: E
+id: 63ed346b-8aa1-418d-8b92-6f10e5d74dc6
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: abc54daf57ee8d5c5f980f538c76140c29b5497044a34132af8c35672f58ba91
+edges:
+  g: []
+  l:
+    prev: null
+    next: E-02-components-order-and-shape
+  r: []

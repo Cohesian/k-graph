@@ -1,0 +1,16 @@
+title: Partitive Division
+description: Dividing a total into a prescribed number of equal parts.
+kind: E
+id: 3ea2de18-a6b8-4405-a6cc-bdd0a7c60c79
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: f5f3a7b384651843e9843b9db06bc79acb6828e42a68942ecdd7ff60b60590bb
+edges:
+  g: []
+  l:
+    prev: E-01-introduction
+    next: E-03-quotative-division
+  r: []

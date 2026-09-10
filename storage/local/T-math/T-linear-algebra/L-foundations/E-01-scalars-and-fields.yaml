@@ -1,0 +1,16 @@
+title: Scalars and Fields
+description: Scalars as field elements and coefficients of vector operations.
+kind: E
+id: f379e3eb-b603-4d86-829d-aafe5f5466ff
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 0167d9610172cda7453b99f130dcdbc44a4795448d0601163e64fcddbd45544f
+edges:
+  g: []
+  l:
+    prev: null
+    next: E-02-vector-spaces
+  r: []

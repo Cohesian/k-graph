@@ -1,11 +1,15 @@
 title: Division
-description: Division topics (in development).
+description: Division through partitive and quotative interpretations, reconstruction, and scale.
 kind: L
 id: 2c3cfe88-3010-4730-87b9-31138b863178
 contributions: {}
 edges:
   g:
     - E-01-introduction
+    - E-02-partitive-division
+    - E-03-quotative-division
+    - E-04-when-the-dividend-is-smaller
+    - E-05-visual-laboratory
   l:
     prev: null
     next: null

@@ -1,0 +1,16 @@
+title: Tensor Laboratory
+description: Executed experiments for outer products, tensor slices, and contraction.
+kind: E
+id: 64d860f7-3329-4311-96a5-67a5da67a5c0
+contributions:
+  c_research:
+    h_documents:
+      r_ipynb:
+        protocol: jupyter-notebook-file@1
+        sha256: 2f005f0ca8825ab4bf500f7d14c9295f5a9fe086bfc8458bdd00b5e2bc91e0d1
+edges:
+  g: []
+  l:
+    prev: E-03-basis-independent-objects
+    next: null
+  r: []

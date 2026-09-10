@@ -1,0 +1,16 @@
+title: A Field of Local Rules
+description: The derivative as a function assigning a local linear rule to every input.
+kind: E
+id: a9ed522c-be35-4482-b0fd-35642aa57e56
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: aa646ca3e4ecbb00b740da3d74bb3b1e25d2fdffbf23d0ff17a9d7107690757b
+edges:
+  g: []
+  l:
+    prev: E-02-the-derivative
+    next: E-04-reconstruction-by-integration
+  r: []

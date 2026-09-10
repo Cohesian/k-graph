@@ -1,0 +1,16 @@
+title: Quotative Division
+description: Measuring how many copies of one quantity fit inside another.
+kind: E
+id: 6b3348d3-725d-4e9b-bb3e-3fe21f810661
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 008c14506b290d9fc5284833b281082d5d081c45056487e617b2472a22557b6c
+edges:
+  g: []
+  l:
+    prev: E-02-partitive-division
+    next: E-04-when-the-dividend-is-smaller
+  r: []

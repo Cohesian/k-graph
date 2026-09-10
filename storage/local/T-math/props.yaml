@@ -8,6 +8,7 @@ edges:
     - L-division
     - L-exponential-phase
     - T-linear-algebra
+    - T-calculus
   l:
     prev: null
     next: null

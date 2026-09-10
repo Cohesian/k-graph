@@ -1,13 +1,14 @@
 title: Vectors
-description: Vector-space lectures under linear algebra.
+description: Vector operations, coordinates, bases, and reflections.
 kind: T
 id: ae514a05-eb83-4013-a8c9-b1aaab27100b
 contributions: {}
 edges:
   g:
+    - L-vector-operations
     - L-basis
     - L-reflection
   l:
-    prev: null
-    next: null
+    prev: L-foundations
+    next: L-linear-transformations
   r: []

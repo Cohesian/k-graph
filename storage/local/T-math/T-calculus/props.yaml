@@ -1,0 +1,12 @@
+title: Calculus
+description: Local change, derivative fields, and reconstruction by accumulation.
+kind: T
+id: 0cd0280a-5814-47d5-8254-5a0206c0873f
+contributions: {}
+edges:
+  g:
+    - L-local-change-and-accumulation
+  l:
+    prev: null
+    next: null
+  r: []

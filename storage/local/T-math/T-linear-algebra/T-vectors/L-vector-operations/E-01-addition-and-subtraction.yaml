@@ -1,0 +1,16 @@
+title: Addition and Subtraction
+description: Vector addition as composition and subtraction as displacement.
+kind: E
+id: 13ac5aa2-9e33-4875-a3b9-5f1a86f9171b
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 8cc4e7e658ecc22e9d348aa0be303d73aa381fd8c3e6306f90fc7226e1eb763e
+edges:
+  g: []
+  l:
+    prev: null
+    next: E-02-scalar-multiplication
+  r: []

@@ -1,0 +1,16 @@
+title: Eigendirections and Invariants
+description: The mirror and normal as eigenspaces with eigenvalues one and negative one.
+kind: E
+id: 5387742c-e801-4f99-92a1-3ebdb67235d3
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: f429d97381cded0405633ab83f3a6e9c3317fae3c026f97c93ccdf78b5febad9
+edges:
+  g: []
+  l:
+    prev: E-02-constructing-the-matrix
+    next: E-04-reflection-laboratory
+  r: []

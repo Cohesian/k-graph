@@ -137,11 +137,27 @@ SET n.local_id = "T-math", n.kind = "T", n.title = "Math", n.description = "Math
 SET n:Topic;
 
 MERGE (n:KNode {id: "2c3cfe88-3010-4730-87b9-31138b863178"})
-SET n.local_id = "L-division", n.kind = "L", n.title = "Division", n.description = "Division topics (in development)."
+SET n.local_id = "L-division", n.kind = "L", n.title = "Division", n.description = "Division through partitive and quotative interpretations, reconstruction, and scale."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "ff647a5d-44f0-42af-9f01-abcadd04fb37"})
-SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Division topics (work in progress)."
+SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Division as two complementary questions connected by multiplication."
+SET n:Entry;
+
+MERGE (n:KNode {id: "3ea2de18-a6b8-4405-a6cc-bdd0a7c60c79"})
+SET n.local_id = "E-02-partitive-division", n.kind = "E", n.title = "Partitive Division", n.description = "Dividing a total into a prescribed number of equal parts."
+SET n:Entry;
+
+MERGE (n:KNode {id: "6b3348d3-725d-4e9b-bb3e-3fe21f810661"})
+SET n.local_id = "E-03-quotative-division", n.kind = "E", n.title = "Quotative Division", n.description = "Measuring how many copies of one quantity fit inside another."
+SET n:Entry;
+
+MERGE (n:KNode {id: "edd9880d-7aa9-4d32-a10d-4e71f04dd23b"})
+SET n.local_id = "E-04-when-the-dividend-is-smaller", n.kind = "E", n.title = "When the Dividend Is Smaller", n.description = "Quotients below one as scale, proportion, and partial occupancy."
+SET n:Entry;
+
+MERGE (n:KNode {id: "78460d28-94cd-4367-b8aa-8b2ea49d9330"})
+SET n.local_id = "E-05-visual-laboratory", n.kind = "E", n.title = "Division Visual Laboratory", n.description = "Executed visual experiments for partitive and quotative division."
 SET n:Entry;
 
 MERGE (n:KNode {id: "5a761f46-a4a4-4453-98a4-c0424f94aafc"})
@@ -164,28 +180,152 @@ MERGE (n:KNode {id: "c6d131b8-0ba5-4ab4-bfdb-c871b95b98e6"})
 SET n.local_id = "Ed-exponential-phase-visual-notebook", n.kind = "Ed", n.title = "Exponential phase visual notebook", n.description = "Exponential phase visual notebook (draft)."
 SET n:Entry:Draft;
 
-MERGE (n:KNode {id: "37988c21-5843-4b3e-84ac-e80b338f0322"})
-SET n.local_id = "T-linear-algebra", n.kind = "T", n.title = "Linear algebra", n.description = "Vector spaces, bases, and related structure."
+MERGE (n:KNode {id: "0cd0280a-5814-47d5-8254-5a0206c0873f"})
+SET n.local_id = "T-calculus", n.kind = "T", n.title = "Calculus", n.description = "Local change, derivative fields, and reconstruction by accumulation."
 SET n:Topic;
 
+MERGE (n:KNode {id: "2fbd353f-e9ee-4b3f-93ef-9d85ca132330"})
+SET n.local_id = "L-local-change-and-accumulation", n.kind = "L", n.title = "Local Change and Accumulation", n.description = "From finite secants to derivatives and integration through one continuous example."
+SET n:Lecture;
+
+MERGE (n:KNode {id: "f0746209-7089-4416-b5da-74642bfe6d60"})
+SET n.local_id = "E-01-finite-change", n.kind = "E", n.title = "Finite Change", n.description = "Secant slopes and the scale-dependent change of a nonlinear function."
+SET n:Entry;
+
+MERGE (n:KNode {id: "6d84a9ff-6e0e-4518-ac3a-d0f14f468c06"})
+SET n.local_id = "E-02-the-derivative", n.kind = "E", n.title = "The Derivative", n.description = "The limit of finite change as the observation gap approaches zero."
+SET n:Entry;
+
+MERGE (n:KNode {id: "a9ed522c-be35-4482-b0fd-35642aa57e56"})
+SET n.local_id = "E-03-a-field-of-local-rules", n.kind = "E", n.title = "A Field of Local Rules", n.description = "The derivative as a function assigning a local linear rule to every input."
+SET n:Entry;
+
+MERGE (n:KNode {id: "28236311-355e-4bda-a31f-bb1075c94051"})
+SET n.local_id = "E-04-reconstruction-by-integration", n.kind = "E", n.title = "Reconstruction by Integration", n.description = "Recovering finite change by accumulating infinitesimal local contributions."
+SET n:Entry;
+
+MERGE (n:KNode {id: "20e6f052-b647-4db7-b183-f6cdd49f67f8"})
+SET n.local_id = "E-05-visual-laboratory", n.kind = "E", n.title = "Calculus Visual Laboratory", n.description = "Executed experiments connecting secants, tangents, and accumulated change."
+SET n:Entry;
+
+MERGE (n:KNode {id: "37988c21-5843-4b3e-84ac-e80b338f0322"})
+SET n.local_id = "T-linear-algebra", n.kind = "T", n.title = "Linear algebra", n.description = "Scalars, vector spaces, linear maps, reflections, matrices, and tensors."
+SET n:Topic;
+
+MERGE (n:KNode {id: "f1f661bc-4e84-44b6-bc46-ca3706bef35c"})
+SET n.local_id = "L-foundations", n.kind = "L", n.title = "Linear Algebra Foundations", n.description = "Scalars, vector spaces, linear combinations, span, and independence."
+SET n:Lecture;
+
+MERGE (n:KNode {id: "f379e3eb-b603-4d86-829d-aafe5f5466ff"})
+SET n.local_id = "E-01-scalars-and-fields", n.kind = "E", n.title = "Scalars and Fields", n.description = "Scalars as field elements and coefficients of vector operations."
+SET n:Entry;
+
+MERGE (n:KNode {id: "34255a7e-13f8-462e-a1b8-fee604de8893"})
+SET n.local_id = "E-02-vector-spaces", n.kind = "E", n.title = "Vector Spaces", n.description = "The algebraic structure that defines vectors before geometric enrichment."
+SET n:Entry;
+
+MERGE (n:KNode {id: "598dd717-aaa4-42ed-bbb1-6ca7e1075209"})
+SET n.local_id = "E-03-linear-combinations", n.kind = "E", n.title = "Linear Combinations", n.description = "Span, independence, coordinates, and generation from weighted vectors."
+SET n:Entry;
+
+MERGE (n:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"})
+SET n.local_id = "L-linear-transformations", n.kind = "L", n.title = "Linear Transformations", n.description = "Linear maps, matrix representations, image, kernel, and rank."
+SET n:Lecture;
+
+MERGE (n:KNode {id: "09562bd6-0337-4d1b-94ec-1d6b43694841"})
+SET n.local_id = "E-01-transforming-a-basis", n.kind = "E", n.title = "Transforming a Basis", n.description = "A linear transformation determined by its action on basis vectors."
+SET n:Entry;
+
+MERGE (n:KNode {id: "72f5419c-8895-4d86-abbf-40374e67a3e8"})
+SET n.local_id = "E-02-matrices-as-linear-maps", n.kind = "E", n.title = "Matrices as Linear Maps", n.description = "Matrix columns as images of basis vectors and a map between coordinate spaces."
+SET n:Entry;
+
+MERGE (n:KNode {id: "89b5e274-1438-45b7-a799-998d4fab0dfd"})
+SET n.local_id = "E-03-two-views-of-matrix-multiplication", n.kind = "E", n.title = "Two Views of Matrix Multiplication", n.description = "Matrix products as column combinations and row measurements."
+SET n:Entry;
+
+MERGE (n:KNode {id: "9f55051c-9669-4a78-92b4-9e20b885c1bd"})
+SET n.local_id = "E-04-image-kernel-and-rank", n.kind = "E", n.title = "Image Kernel and Rank", n.description = "Reachable outputs, collapsed inputs, and the dimensionality of a linear map."
+SET n:Entry;
+
+MERGE (n:KNode {id: "99a067c0-f590-4e61-9390-88170fbb4fb6"})
+SET n.local_id = "E-05-transformation-laboratory", n.kind = "E", n.title = "Transformation Laboratory", n.description = "Executed experiments for transformed bases, linear combinations, and rank."
+SET n:Entry;
+
+MERGE (n:KNode {id: "bf53e733-356a-41ee-962b-3f0a523ace7d"})
+SET n.local_id = "L-tensors", n.kind = "L", n.title = "Tensors", n.description = "Multilinear objects, coordinate components, order, and basis changes."
+SET n:Lecture;
+
+MERGE (n:KNode {id: "63ed346b-8aa1-418d-8b92-6f10e5d74dc6"})
+SET n.local_id = "E-01-from-linear-to-multilinear", n.kind = "E", n.title = "From Linear to Multilinear", n.description = "Covectors, bilinear maps, outer products, and contraction."
+SET n:Entry;
+
+MERGE (n:KNode {id: "77ce02d1-567f-4704-b099-76d1391b80e4"})
+SET n.local_id = "E-02-components-order-and-shape", n.kind = "E", n.title = "Components Order and Shape", n.description = "Tensor order, array shape, axes, and explicit component structure."
+SET n:Entry;
+
+MERGE (n:KNode {id: "b04ed194-a816-42e5-b950-ab46846cbf41"})
+SET n.local_id = "E-03-basis-independent-objects", n.kind = "E", n.title = "Basis Independent Objects", n.description = "How one tensor acquires different components under coordinate changes."
+SET n:Entry;
+
+MERGE (n:KNode {id: "64d860f7-3329-4311-96a5-67a5da67a5c0"})
+SET n.local_id = "E-04-tensor-laboratory", n.kind = "E", n.title = "Tensor Laboratory", n.description = "Executed experiments for outer products, tensor slices, and contraction."
+SET n:Entry;
+
 MERGE (n:KNode {id: "ae514a05-eb83-4013-a8c9-b1aaab27100b"})
-SET n.local_id = "T-vectors", n.kind = "T", n.title = "Vectors", n.description = "Vector-space lectures under linear algebra."
+SET n.local_id = "T-vectors", n.kind = "T", n.title = "Vectors", n.description = "Vector operations, coordinates, bases, and reflections."
 SET n:Topic;
 
 MERGE (n:KNode {id: "47a4d65e-41fe-4026-b87c-11050d29bacd"})
-SET n.local_id = "L-basis", n.kind = "L", n.title = "Basis", n.description = "Basis and coordinates (in development)."
+SET n.local_id = "L-basis", n.kind = "L", n.title = "Basis", n.description = "Bases as coordinate systems for basis-independent vectors."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "edba87bc-3359-4ea1-bfb7-7bb5d4762963"})
-SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Basis and coordinates (work in progress)."
+SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Coordinates as scalar descriptions relative to an ordered basis."
+SET n:Entry;
+
+MERGE (n:KNode {id: "b43ad2ae-5d94-41f8-9c15-2bc47044cdeb"})
+SET n.local_id = "E-02-basis-laboratory", n.kind = "E", n.title = "Basis Laboratory", n.description = "Executed comparison of standard and skew coordinate descriptions."
 SET n:Entry;
 
 MERGE (n:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"})
-SET n.local_id = "L-reflection", n.kind = "L", n.title = "Reflection", n.description = "Reflections and symmetry in vector space (in development)."
+SET n.local_id = "L-reflection", n.kind = "L", n.title = "Reflection", n.description = "Reflection matrices, mirror eigenspaces, and geometric invariants."
 SET n:Lecture;
 
 MERGE (n:KNode {id: "07ff1a0b-e84f-40bb-996f-467a03d2bf3c"})
-SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Reflections in vector space (work in progress)."
+SET n.local_id = "E-01-introduction", n.kind = "E", n.title = "Introduction", n.description = "Reflection as preservation of the mirror component and reversal of its normal component."
+SET n:Entry;
+
+MERGE (n:KNode {id: "d7056ff7-6fd2-46c7-aa19-783694a41739"})
+SET n.local_id = "E-02-constructing-the-matrix", n.kind = "E", n.title = "Constructing the Matrix", n.description = "Deriving reflection matrices from projection and a mirror-aligned basis."
+SET n:Entry;
+
+MERGE (n:KNode {id: "5387742c-e801-4f99-92a1-3ebdb67235d3"})
+SET n.local_id = "E-03-eigendirections-and-invariants", n.kind = "E", n.title = "Eigendirections and Invariants", n.description = "The mirror and normal as eigenspaces with eigenvalues one and negative one."
+SET n:Entry;
+
+MERGE (n:KNode {id: "3cfa86df-e1aa-4b78-9b77-6925a72eff67"})
+SET n.local_id = "E-04-reflection-laboratory", n.kind = "E", n.title = "Reflection Laboratory", n.description = "Executed visual experiments for mirror decomposition, geometry, and spectrum."
+SET n:Entry;
+
+MERGE (n:KNode {id: "20749194-7a1d-47e0-b4d7-e954e01c9db8"})
+SET n.local_id = "L-vector-operations", n.kind = "L", n.title = "Vector Operations", n.description = "Addition, subtraction, scaling, magnitude, direction, and dot products."
+SET n:Lecture;
+
+MERGE (n:KNode {id: "13ac5aa2-9e33-4875-a3b9-5f1a86f9171b"})
+SET n.local_id = "E-01-addition-and-subtraction", n.kind = "E", n.title = "Addition and Subtraction", n.description = "Vector addition as composition and subtraction as displacement."
+SET n:Entry;
+
+MERGE (n:KNode {id: "183d90f0-8306-4b96-adef-88c2bc842d07"})
+SET n.local_id = "E-02-scalar-multiplication", n.kind = "E", n.title = "Scalar Multiplication", n.description = "Scaling vector magnitude and reversing direction with scalar coefficients."
+SET n:Entry;
+
+MERGE (n:KNode {id: "b5dfbb83-1557-4359-8a96-8a5b05d98d23"})
+SET n.local_id = "E-03-magnitude-direction-and-dot-product", n.kind = "E", n.title = "Magnitude Direction and Dot Product", n.description = "Euclidean geometry through norms, normalization, angles, and projection."
+SET n:Entry;
+
+MERGE (n:KNode {id: "0fc19d85-98e6-4def-a55a-121ce4a43140"})
+SET n.local_id = "E-04-vector-laboratory", n.kind = "E", n.title = "Vector Laboratory", n.description = "Executed visual experiments for vector composition, scaling, and projection."
 SET n:Entry;
 
 MERGE (n:KNode {id: "d46fb5c1-449d-4561-a399-93d8ec8b543f"})
@@ -332,7 +472,23 @@ SET r.protocol = "markdown-file@1", r.sha256 = "c5588b909ea1117d8bbb73acef1a2d9e
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "ff647a5d-44f0-42af-9f01-abcadd04fb37"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "63e9592b7d4a6d723647c6071bcdac5553232e1e31e4a8dd73df68a12d35a5c3";
+SET r.protocol = "markdown-file@1", r.sha256 = "be37d06022ee5760525b025147f8d6f01e38f6d5fe7b4744103da208957d6ad7";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "3ea2de18-a6b8-4405-a6cc-bdd0a7c60c79"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "f5f3a7b384651843e9843b9db06bc79acb6828e42a68942ecdd7ff60b60590bb";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6b3348d3-725d-4e9b-bb3e-3fe21f810661"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "008c14506b290d9fc5284833b281082d5d081c45056487e617b2472a22557b6c";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "edd9880d-7aa9-4d32-a10d-4e71f04dd23b"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "4d6d2972b1de877a4566fc164867bf9f400bf99bd322ff18ac4090a130f7dc78";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "78460d28-94cd-4367-b8aa-8b2ea49d9330"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "7e6fb7d519acc0b558a2c807bb43db824ab314ea15575cec8b5732a06437e2ff";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "1497eefc-aa3d-4444-a426-9ccb0410b0bf"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
@@ -350,13 +506,113 @@ MATCH (c:Contributor {id: "research"}), (n:KNode {id: "c6d131b8-0ba5-4ab4-bfdb-c
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
 SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "4be37652bdcadb4588ed059fa13ba60b4a49e3ed2954ec5778a1abc7f07227b5";
 
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f0746209-7089-4416-b5da-74642bfe6d60"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "c5d382caa83fc81744905f45fa85bfebf2a1d77d8a90a84c18a8f6d15c16e10c";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "6d84a9ff-6e0e-4518-ac3a-d0f14f468c06"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "27eaa4220ea2cf0cf169ec721ae1b82e72ed6f815896194f02308bef1ccdf906";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "a9ed522c-be35-4482-b0fd-35642aa57e56"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "aa646ca3e4ecbb00b740da3d74bb3b1e25d2fdffbf23d0ff17a9d7107690757b";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "28236311-355e-4bda-a31f-bb1075c94051"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "28377abb2eb871589ce5efe4427ad7afb36d333f65458cffddef1fcbf6fd7cf9";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "20e6f052-b647-4db7-b183-f6cdd49f67f8"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "edfa41111f40ebb0b8a9fe65d5f20424d1bb92984d4f5a486dddbb7b6f91f36d";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "f379e3eb-b603-4d86-829d-aafe5f5466ff"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "0167d9610172cda7453b99f130dcdbc44a4795448d0601163e64fcddbd45544f";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "34255a7e-13f8-462e-a1b8-fee604de8893"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "f38217c929a9d37bb506f39a982df08ad511b90b71d473af1c3902e5b89a1b8d";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "598dd717-aaa4-42ed-bbb1-6ca7e1075209"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "5d09a1ff0da266265109b6eadccf0edc1bd7eae40282c1ef8badceec13a8aa1c";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "09562bd6-0337-4d1b-94ec-1d6b43694841"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "8144aeb4e5d5ff52a3d4941748137a518549e822bf177672240f6453431bdd58";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "72f5419c-8895-4d86-abbf-40374e67a3e8"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "42ccfa7eab28edeb48a20a014d41086268b07aaaed6cee292adf708da5d0a7e1";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "89b5e274-1438-45b7-a799-998d4fab0dfd"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "5a695ba41228d87e03fd5c6a316027b8881429a31302c8d04360596747191137";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "9f55051c-9669-4a78-92b4-9e20b885c1bd"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "04848c494f01ac256c2ec6abe67de0c8b9dee6e66eb739a157a365defad9ef8a";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "99a067c0-f590-4e61-9390-88170fbb4fb6"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "07291719916b5cc9d84d97a100b92c4f27772121ee90a671302db48dec233437";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "63ed346b-8aa1-418d-8b92-6f10e5d74dc6"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "abc54daf57ee8d5c5f980f538c76140c29b5497044a34132af8c35672f58ba91";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "77ce02d1-567f-4704-b099-76d1391b80e4"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "8aea48dcac0dbf624454c1e4173ab11c60c8242d75c422169043dbe3281523b8";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "b04ed194-a816-42e5-b950-ab46846cbf41"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "499d73f73590578e47dda2389264fb582dfc3421358f89f8c4abad801fc6725c";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "64d860f7-3329-4311-96a5-67a5da67a5c0"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "2f005f0ca8825ab4bf500f7d14c9295f5a9fe086bfc8458bdd00b5e2bc91e0d1";
+
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "edba87bc-3359-4ea1-bfb7-7bb5d4762963"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "63e9592b7d4a6d723647c6071bcdac5553232e1e31e4a8dd73df68a12d35a5c3";
+SET r.protocol = "markdown-file@1", r.sha256 = "2931a4938101986597be63d106485d3821ea4187e24848e6742f0adc6f1d31da";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "b43ad2ae-5d94-41f8-9c15-2bc47044cdeb"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "da8afb52413e509405a7e33c8a4329d1f84d0bffdd09471c511b9ad9fcb3b3fc";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "07ff1a0b-e84f-40bb-996f-467a03d2bf3c"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
-SET r.protocol = "markdown-file@1", r.sha256 = "63e9592b7d4a6d723647c6071bcdac5553232e1e31e4a8dd73df68a12d35a5c3";
+SET r.protocol = "markdown-file@1", r.sha256 = "b5e26976328961842f4c52618ccc7851c049860311d2b46046b6933462d89109";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "d7056ff7-6fd2-46c7-aa19-783694a41739"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "f97493b1266de2465635731b2d18e0fdd3bf844a13fb7b1237c1a5a5a0662860";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "5387742c-e801-4f99-92a1-3ebdb67235d3"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "f429d97381cded0405633ab83f3a6e9c3317fae3c026f97c93ccdf78b5febad9";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "3cfa86df-e1aa-4b78-9b77-6925a72eff67"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "c6392f08271ce0731d07bec88b98ccccad9817926dfaa04a40908ede68ef9f15";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "13ac5aa2-9e33-4875-a3b9-5f1a86f9171b"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "8cc4e7e658ecc22e9d348aa0be303d73aa381fd8c3e6306f90fc7226e1eb763e";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "183d90f0-8306-4b96-adef-88c2bc842d07"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "91485f957263aef5695723d3fe0935d94eb6ec258e4a6b7df0eb00a45e7be356";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "b5dfbb83-1557-4359-8a96-8a5b05d98d23"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
+SET r.protocol = "markdown-file@1", r.sha256 = "c6fda9774f9b59caf651d687175e0afd8375ff00a88728f09a1e0450cdaf5aa1";
+
+MATCH (c:Contributor {id: "research"}), (n:KNode {id: "0fc19d85-98e6-4def-a55a-121ce4a43140"})
+MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "ipynb"}]->(n)
+SET r.protocol = "jupyter-notebook-file@1", r.sha256 = "bd5f9fd3ce04d923632d3bf0199959f8469a7ba509cbc6725a2063cfae0f34ef";
 
 MATCH (c:Contributor {id: "research"}), (n:KNode {id: "440e4d3d-ea9f-4915-97e6-2b6b7c09c6c4"})
 MERGE (c)-[r:PROVIDES {hierarchy: ["documents"], key: "md"}]->(n)
@@ -518,9 +774,29 @@ MATCH (a:KNode {id: "61def28d-378b-421d-bd96-42281ecc5570"}), (b:KNode {id: "379
 MERGE (a)-[r:GROUPS]->(b)
 SET r.position = 2;
 
+MATCH (a:KNode {id: "61def28d-378b-421d-bd96-42281ecc5570"}), (b:KNode {id: "0cd0280a-5814-47d5-8254-5a0206c0873f"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 3;
+
 MATCH (a:KNode {id: "2c3cfe88-3010-4730-87b9-31138b863178"}), (b:KNode {id: "ff647a5d-44f0-42af-9f01-abcadd04fb37"})
 MERGE (a)-[r:GROUPS]->(b)
 SET r.position = 0;
+
+MATCH (a:KNode {id: "2c3cfe88-3010-4730-87b9-31138b863178"}), (b:KNode {id: "3ea2de18-a6b8-4405-a6cc-bdd0a7c60c79"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
+MATCH (a:KNode {id: "2c3cfe88-3010-4730-87b9-31138b863178"}), (b:KNode {id: "6b3348d3-725d-4e9b-bb3e-3fe21f810661"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 2;
+
+MATCH (a:KNode {id: "2c3cfe88-3010-4730-87b9-31138b863178"}), (b:KNode {id: "edd9880d-7aa9-4d32-a10d-4e71f04dd23b"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 3;
+
+MATCH (a:KNode {id: "2c3cfe88-3010-4730-87b9-31138b863178"}), (b:KNode {id: "78460d28-94cd-4367-b8aa-8b2ea49d9330"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 4;
 
 MATCH (a:KNode {id: "5a761f46-a4a4-4453-98a4-c0424f94aafc"}), (b:KNode {id: "1497eefc-aa3d-4444-a426-9ccb0410b0bf"})
 MERGE (a)-[r:GROUPS]->(b)
@@ -538,25 +814,145 @@ MATCH (a:KNode {id: "5a761f46-a4a4-4453-98a4-c0424f94aafc"}), (b:KNode {id: "c6d
 MERGE (a)-[r:GROUPS]->(b)
 SET r.position = 3;
 
+MATCH (a:KNode {id: "0cd0280a-5814-47d5-8254-5a0206c0873f"}), (b:KNode {id: "2fbd353f-e9ee-4b3f-93ef-9d85ca132330"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 0;
+
+MATCH (a:KNode {id: "2fbd353f-e9ee-4b3f-93ef-9d85ca132330"}), (b:KNode {id: "f0746209-7089-4416-b5da-74642bfe6d60"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 0;
+
+MATCH (a:KNode {id: "2fbd353f-e9ee-4b3f-93ef-9d85ca132330"}), (b:KNode {id: "6d84a9ff-6e0e-4518-ac3a-d0f14f468c06"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
+MATCH (a:KNode {id: "2fbd353f-e9ee-4b3f-93ef-9d85ca132330"}), (b:KNode {id: "a9ed522c-be35-4482-b0fd-35642aa57e56"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 2;
+
+MATCH (a:KNode {id: "2fbd353f-e9ee-4b3f-93ef-9d85ca132330"}), (b:KNode {id: "28236311-355e-4bda-a31f-bb1075c94051"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 3;
+
+MATCH (a:KNode {id: "2fbd353f-e9ee-4b3f-93ef-9d85ca132330"}), (b:KNode {id: "20e6f052-b647-4db7-b183-f6cdd49f67f8"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 4;
+
+MATCH (a:KNode {id: "37988c21-5843-4b3e-84ac-e80b338f0322"}), (b:KNode {id: "f1f661bc-4e84-44b6-bc46-ca3706bef35c"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 0;
+
 MATCH (a:KNode {id: "37988c21-5843-4b3e-84ac-e80b338f0322"}), (b:KNode {id: "ae514a05-eb83-4013-a8c9-b1aaab27100b"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
+MATCH (a:KNode {id: "37988c21-5843-4b3e-84ac-e80b338f0322"}), (b:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 2;
+
+MATCH (a:KNode {id: "37988c21-5843-4b3e-84ac-e80b338f0322"}), (b:KNode {id: "bf53e733-356a-41ee-962b-3f0a523ace7d"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 3;
+
+MATCH (a:KNode {id: "f1f661bc-4e84-44b6-bc46-ca3706bef35c"}), (b:KNode {id: "f379e3eb-b603-4d86-829d-aafe5f5466ff"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 0;
+
+MATCH (a:KNode {id: "f1f661bc-4e84-44b6-bc46-ca3706bef35c"}), (b:KNode {id: "34255a7e-13f8-462e-a1b8-fee604de8893"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
+MATCH (a:KNode {id: "f1f661bc-4e84-44b6-bc46-ca3706bef35c"}), (b:KNode {id: "598dd717-aaa4-42ed-bbb1-6ca7e1075209"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 2;
+
+MATCH (a:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"}), (b:KNode {id: "09562bd6-0337-4d1b-94ec-1d6b43694841"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 0;
+
+MATCH (a:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"}), (b:KNode {id: "72f5419c-8895-4d86-abbf-40374e67a3e8"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
+MATCH (a:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"}), (b:KNode {id: "89b5e274-1438-45b7-a799-998d4fab0dfd"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 2;
+
+MATCH (a:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"}), (b:KNode {id: "9f55051c-9669-4a78-92b4-9e20b885c1bd"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 3;
+
+MATCH (a:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"}), (b:KNode {id: "99a067c0-f590-4e61-9390-88170fbb4fb6"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 4;
+
+MATCH (a:KNode {id: "bf53e733-356a-41ee-962b-3f0a523ace7d"}), (b:KNode {id: "63ed346b-8aa1-418d-8b92-6f10e5d74dc6"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 0;
+
+MATCH (a:KNode {id: "bf53e733-356a-41ee-962b-3f0a523ace7d"}), (b:KNode {id: "77ce02d1-567f-4704-b099-76d1391b80e4"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
+MATCH (a:KNode {id: "bf53e733-356a-41ee-962b-3f0a523ace7d"}), (b:KNode {id: "b04ed194-a816-42e5-b950-ab46846cbf41"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 2;
+
+MATCH (a:KNode {id: "bf53e733-356a-41ee-962b-3f0a523ace7d"}), (b:KNode {id: "64d860f7-3329-4311-96a5-67a5da67a5c0"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 3;
+
+MATCH (a:KNode {id: "ae514a05-eb83-4013-a8c9-b1aaab27100b"}), (b:KNode {id: "20749194-7a1d-47e0-b4d7-e954e01c9db8"})
 MERGE (a)-[r:GROUPS]->(b)
 SET r.position = 0;
 
 MATCH (a:KNode {id: "ae514a05-eb83-4013-a8c9-b1aaab27100b"}), (b:KNode {id: "47a4d65e-41fe-4026-b87c-11050d29bacd"})
 MERGE (a)-[r:GROUPS]->(b)
-SET r.position = 0;
+SET r.position = 1;
 
 MATCH (a:KNode {id: "ae514a05-eb83-4013-a8c9-b1aaab27100b"}), (b:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"})
 MERGE (a)-[r:GROUPS]->(b)
-SET r.position = 1;
+SET r.position = 2;
 
 MATCH (a:KNode {id: "47a4d65e-41fe-4026-b87c-11050d29bacd"}), (b:KNode {id: "edba87bc-3359-4ea1-bfb7-7bb5d4762963"})
 MERGE (a)-[r:GROUPS]->(b)
 SET r.position = 0;
 
+MATCH (a:KNode {id: "47a4d65e-41fe-4026-b87c-11050d29bacd"}), (b:KNode {id: "b43ad2ae-5d94-41f8-9c15-2bc47044cdeb"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
 MATCH (a:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"}), (b:KNode {id: "07ff1a0b-e84f-40bb-996f-467a03d2bf3c"})
 MERGE (a)-[r:GROUPS]->(b)
 SET r.position = 0;
+
+MATCH (a:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"}), (b:KNode {id: "d7056ff7-6fd2-46c7-aa19-783694a41739"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
+MATCH (a:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"}), (b:KNode {id: "5387742c-e801-4f99-92a1-3ebdb67235d3"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 2;
+
+MATCH (a:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"}), (b:KNode {id: "3cfa86df-e1aa-4b78-9b77-6925a72eff67"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 3;
+
+MATCH (a:KNode {id: "20749194-7a1d-47e0-b4d7-e954e01c9db8"}), (b:KNode {id: "13ac5aa2-9e33-4875-a3b9-5f1a86f9171b"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 0;
+
+MATCH (a:KNode {id: "20749194-7a1d-47e0-b4d7-e954e01c9db8"}), (b:KNode {id: "183d90f0-8306-4b96-adef-88c2bc842d07"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 1;
+
+MATCH (a:KNode {id: "20749194-7a1d-47e0-b4d7-e954e01c9db8"}), (b:KNode {id: "b5dfbb83-1557-4359-8a96-8a5b05d98d23"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 2;
+
+MATCH (a:KNode {id: "20749194-7a1d-47e0-b4d7-e954e01c9db8"}), (b:KNode {id: "0fc19d85-98e6-4def-a55a-121ce4a43140"})
+MERGE (a)-[r:GROUPS]->(b)
+SET r.position = 3;
 
 MATCH (a:KNode {id: "d46fb5c1-449d-4561-a399-93d8ec8b543f"}), (b:KNode {id: "1bdc520d-6211-4371-8ff0-2e7b3041aea4"})
 MERGE (a)-[r:GROUPS]->(b)
@@ -623,6 +1019,18 @@ MERGE (a)-[:NEXT]->(b);
 MATCH (a:KNode {id: "5da0c374-473b-40d6-a7dd-659dc4f5211d"}), (b:KNode {id: "0fa7348d-69f2-487a-a684-71eada16a96d"})
 MERGE (a)-[:NEXT]->(b);
 
+MATCH (a:KNode {id: "ff647a5d-44f0-42af-9f01-abcadd04fb37"}), (b:KNode {id: "3ea2de18-a6b8-4405-a6cc-bdd0a7c60c79"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "3ea2de18-a6b8-4405-a6cc-bdd0a7c60c79"}), (b:KNode {id: "6b3348d3-725d-4e9b-bb3e-3fe21f810661"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "6b3348d3-725d-4e9b-bb3e-3fe21f810661"}), (b:KNode {id: "edd9880d-7aa9-4d32-a10d-4e71f04dd23b"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "edd9880d-7aa9-4d32-a10d-4e71f04dd23b"}), (b:KNode {id: "78460d28-94cd-4367-b8aa-8b2ea49d9330"})
+MERGE (a)-[:NEXT]->(b);
+
 MATCH (a:KNode {id: "1497eefc-aa3d-4444-a426-9ccb0410b0bf"}), (b:KNode {id: "ff7c99b6-ce1f-4973-9d3c-89f1f12a1f69"})
 MERGE (a)-[:NEXT]->(b);
 
@@ -630,6 +1038,81 @@ MATCH (a:KNode {id: "ff7c99b6-ce1f-4973-9d3c-89f1f12a1f69"}), (b:KNode {id: "f15
 MERGE (a)-[:NEXT]->(b);
 
 MATCH (a:KNode {id: "f1504ef9-d65e-4753-8032-27672b2ffa6a"}), (b:KNode {id: "c6d131b8-0ba5-4ab4-bfdb-c871b95b98e6"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "f0746209-7089-4416-b5da-74642bfe6d60"}), (b:KNode {id: "6d84a9ff-6e0e-4518-ac3a-d0f14f468c06"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "6d84a9ff-6e0e-4518-ac3a-d0f14f468c06"}), (b:KNode {id: "a9ed522c-be35-4482-b0fd-35642aa57e56"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "a9ed522c-be35-4482-b0fd-35642aa57e56"}), (b:KNode {id: "28236311-355e-4bda-a31f-bb1075c94051"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "28236311-355e-4bda-a31f-bb1075c94051"}), (b:KNode {id: "20e6f052-b647-4db7-b183-f6cdd49f67f8"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "f1f661bc-4e84-44b6-bc46-ca3706bef35c"}), (b:KNode {id: "ae514a05-eb83-4013-a8c9-b1aaab27100b"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "f379e3eb-b603-4d86-829d-aafe5f5466ff"}), (b:KNode {id: "34255a7e-13f8-462e-a1b8-fee604de8893"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "34255a7e-13f8-462e-a1b8-fee604de8893"}), (b:KNode {id: "598dd717-aaa4-42ed-bbb1-6ca7e1075209"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"}), (b:KNode {id: "bf53e733-356a-41ee-962b-3f0a523ace7d"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "09562bd6-0337-4d1b-94ec-1d6b43694841"}), (b:KNode {id: "72f5419c-8895-4d86-abbf-40374e67a3e8"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "72f5419c-8895-4d86-abbf-40374e67a3e8"}), (b:KNode {id: "89b5e274-1438-45b7-a799-998d4fab0dfd"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "89b5e274-1438-45b7-a799-998d4fab0dfd"}), (b:KNode {id: "9f55051c-9669-4a78-92b4-9e20b885c1bd"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "9f55051c-9669-4a78-92b4-9e20b885c1bd"}), (b:KNode {id: "99a067c0-f590-4e61-9390-88170fbb4fb6"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "63ed346b-8aa1-418d-8b92-6f10e5d74dc6"}), (b:KNode {id: "77ce02d1-567f-4704-b099-76d1391b80e4"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "77ce02d1-567f-4704-b099-76d1391b80e4"}), (b:KNode {id: "b04ed194-a816-42e5-b950-ab46846cbf41"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "b04ed194-a816-42e5-b950-ab46846cbf41"}), (b:KNode {id: "64d860f7-3329-4311-96a5-67a5da67a5c0"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "ae514a05-eb83-4013-a8c9-b1aaab27100b"}), (b:KNode {id: "d4de6f3a-f2d6-405e-a9c2-5f97926a9d50"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "47a4d65e-41fe-4026-b87c-11050d29bacd"}), (b:KNode {id: "2a9874d9-5c7e-414f-8959-1364f177aa84"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "edba87bc-3359-4ea1-bfb7-7bb5d4762963"}), (b:KNode {id: "b43ad2ae-5d94-41f8-9c15-2bc47044cdeb"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "07ff1a0b-e84f-40bb-996f-467a03d2bf3c"}), (b:KNode {id: "d7056ff7-6fd2-46c7-aa19-783694a41739"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "d7056ff7-6fd2-46c7-aa19-783694a41739"}), (b:KNode {id: "5387742c-e801-4f99-92a1-3ebdb67235d3"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "5387742c-e801-4f99-92a1-3ebdb67235d3"}), (b:KNode {id: "3cfa86df-e1aa-4b78-9b77-6925a72eff67"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "20749194-7a1d-47e0-b4d7-e954e01c9db8"}), (b:KNode {id: "47a4d65e-41fe-4026-b87c-11050d29bacd"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "13ac5aa2-9e33-4875-a3b9-5f1a86f9171b"}), (b:KNode {id: "183d90f0-8306-4b96-adef-88c2bc842d07"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "183d90f0-8306-4b96-adef-88c2bc842d07"}), (b:KNode {id: "b5dfbb83-1557-4359-8a96-8a5b05d98d23"})
+MERGE (a)-[:NEXT]->(b);
+
+MATCH (a:KNode {id: "b5dfbb83-1557-4359-8a96-8a5b05d98d23"}), (b:KNode {id: "0fc19d85-98e6-4def-a55a-121ce4a43140"})
 MERGE (a)-[:NEXT]->(b);
 
 MATCH (a:KNode {id: "440e4d3d-ea9f-4915-97e6-2b6b7c09c6c4"}), (b:KNode {id: "579fa81e-4a5a-4521-98d9-ea8b69a48e8d"})

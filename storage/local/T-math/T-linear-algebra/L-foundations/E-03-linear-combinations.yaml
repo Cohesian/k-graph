@@ -1,0 +1,16 @@
+title: Linear Combinations
+description: Span, independence, coordinates, and generation from weighted vectors.
+kind: E
+id: 598dd717-aaa4-42ed-bbb1-6ca7e1075209
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 5d09a1ff0da266265109b6eadccf0edc1bd7eae40282c1ef8badceec13a8aa1c
+edges:
+  g: []
+  l:
+    prev: E-02-vector-spaces
+    next: null
+  r: []

@@ -1,0 +1,16 @@
+title: Components Order and Shape
+description: Tensor order, array shape, axes, and explicit component structure.
+kind: E
+id: 77ce02d1-567f-4704-b099-76d1391b80e4
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 8aea48dcac0dbf624454c1e4173ab11c60c8242d75c422169043dbe3281523b8
+edges:
+  g: []
+  l:
+    prev: E-01-from-linear-to-multilinear
+    next: E-03-basis-independent-objects
+  r: []

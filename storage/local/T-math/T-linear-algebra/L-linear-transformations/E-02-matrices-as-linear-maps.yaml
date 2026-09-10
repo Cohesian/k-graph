@@ -1,0 +1,16 @@
+title: Matrices as Linear Maps
+description: Matrix columns as images of basis vectors and a map between coordinate spaces.
+kind: E
+id: 72f5419c-8895-4d86-abbf-40374e67a3e8
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 42ccfa7eab28edeb48a20a014d41086268b07aaaed6cee292adf708da5d0a7e1
+edges:
+  g: []
+  l:
+    prev: E-01-transforming-a-basis
+    next: E-03-two-views-of-matrix-multiplication
+  r: []

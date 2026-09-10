@@ -1,0 +1,16 @@
+title: Local Change and Accumulation
+description: From finite secants to derivatives and integration through one continuous example.
+kind: L
+id: 2fbd353f-e9ee-4b3f-93ef-9d85ca132330
+contributions: {}
+edges:
+  g:
+    - E-01-finite-change
+    - E-02-the-derivative
+    - E-03-a-field-of-local-rules
+    - E-04-reconstruction-by-integration
+    - E-05-visual-laboratory
+  l:
+    prev: null
+    next: null
+  r: []

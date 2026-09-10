@@ -1,0 +1,16 @@
+title: Transforming a Basis
+description: A linear transformation determined by its action on basis vectors.
+kind: E
+id: 09562bd6-0337-4d1b-94ec-1d6b43694841
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 8144aeb4e5d5ff52a3d4941748137a518549e822bf177672240f6453431bdd58
+edges:
+  g: []
+  l:
+    prev: null
+    next: E-02-matrices-as-linear-maps
+  r: []

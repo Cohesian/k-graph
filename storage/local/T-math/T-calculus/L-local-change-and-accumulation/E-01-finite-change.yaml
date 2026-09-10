@@ -1,0 +1,16 @@
+title: Finite Change
+description: Secant slopes and the scale-dependent change of a nonlinear function.
+kind: E
+id: f0746209-7089-4416-b5da-74642bfe6d60
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: c5d382caa83fc81744905f45fa85bfebf2a1d77d8a90a84c18a8f6d15c16e10c
+edges:
+  g: []
+  l:
+    prev: null
+    next: E-02-the-derivative
+  r: []

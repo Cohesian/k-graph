@@ -1,0 +1,16 @@
+title: Image Kernel and Rank
+description: Reachable outputs, collapsed inputs, and the dimensionality of a linear map.
+kind: E
+id: 9f55051c-9669-4a78-92b4-9e20b885c1bd
+contributions:
+  c_research:
+    h_documents:
+      r_md:
+        protocol: markdown-file@1
+        sha256: 04848c494f01ac256c2ec6abe67de0c8b9dee6e66eb739a157a365defad9ef8a
+edges:
+  g: []
+  l:
+    prev: E-03-two-views-of-matrix-multiplication
+    next: E-05-transformation-laboratory
+  r: []

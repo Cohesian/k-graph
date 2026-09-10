@@ -1,0 +1,16 @@
+title: Calculus Visual Laboratory
+description: Executed experiments connecting secants, tangents, and accumulated change.
+kind: E
+id: 20e6f052-b647-4db7-b183-f6cdd49f67f8
+contributions:
+  c_research:
+    h_documents:
+      r_ipynb:
+        protocol: jupyter-notebook-file@1
+        sha256: edfa41111f40ebb0b8a9fe65d5f20424d1bb92984d4f5a486dddbb7b6f91f36d
+edges:
+  g: []
+  l:
+    prev: E-04-reconstruction-by-integration
+    next: null
+  r: []

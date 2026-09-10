@@ -1,0 +1,16 @@
+title: Basis Laboratory
+description: Executed comparison of standard and skew coordinate descriptions.
+kind: E
+id: b43ad2ae-5d94-41f8-9c15-2bc47044cdeb
+contributions:
+  c_research:
+    h_documents:
+      r_ipynb:
+        protocol: jupyter-notebook-file@1
+        sha256: da8afb52413e509405a7e33c8a4329d1f84d0bffdd09471c511b9ad9fcb3b3fc
+edges:
+  g: []
+  l:
+    prev: E-01-introduction
+    next: null
+  r: []

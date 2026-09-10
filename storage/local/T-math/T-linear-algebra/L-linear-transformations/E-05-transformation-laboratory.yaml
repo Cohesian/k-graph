@@ -1,0 +1,16 @@
+title: Transformation Laboratory
+description: Executed experiments for transformed bases, linear combinations, and rank.
+kind: E
+id: 99a067c0-f590-4e61-9390-88170fbb4fb6
+contributions:
+  c_research:
+    h_documents:
+      r_ipynb:
+        protocol: jupyter-notebook-file@1
+        sha256: 07291719916b5cc9d84d97a100b92c4f27772121ee90a671302db48dec233437
+edges:
+  g: []
+  l:
+    prev: E-04-image-kernel-and-rank
+    next: null
+  r: []

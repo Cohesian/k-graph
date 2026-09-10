@@ -1,0 +1,15 @@
+title: Vector Operations
+description: Addition, subtraction, scaling, magnitude, direction, and dot products.
+kind: L
+id: 20749194-7a1d-47e0-b4d7-e954e01c9db8
+contributions: {}
+edges:
+  g:
+    - E-01-addition-and-subtraction
+    - E-02-scalar-multiplication
+    - E-03-magnitude-direction-and-dot-product
+    - E-04-vector-laboratory
+  l:
+    prev: null
+    next: L-basis
+  r: []

@@ -1,0 +1,16 @@
+title: Reflection Laboratory
+description: Executed visual experiments for mirror decomposition, geometry, and spectrum.
+kind: E
+id: 3cfa86df-e1aa-4b78-9b77-6925a72eff67
+contributions:
+  c_research:
+    h_documents:
+      r_ipynb:
+        protocol: jupyter-notebook-file@1
+        sha256: c6392f08271ce0731d07bec88b98ccccad9817926dfaa04a40908ede68ef9f15
+edges:
+  g: []
+  l:
+    prev: E-03-eigendirections-and-invariants
+    next: null
+  r: []
